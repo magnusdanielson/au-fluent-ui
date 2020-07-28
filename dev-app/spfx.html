@@ -1,0 +1,154 @@
+<template>
+    <require from="./gettingstarted.css"></require>
+    <div class="content" style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+        <h1 class="pageTitle">Getting started with SPFx</h1>
+        <div role="presentation" class="ms-FocusZone"></div>
+    </div>
+    <div class="PageSection">
+
+        <h2 class="ms-font-xxl">Get started with Office UI Fabric for Aurelia on SPFx</h2>
+        <p>
+
+        </p>
+
+        <ol class="steps">
+            <li>
+                <p>Follow the instructions at https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-development-environment to set up your development environemnt.</p>
+                <p>Verify that you can run your webpart or extension with gulp serve.</p>
+            </li>
+            <li>
+                <p>Add the npm packages with below command.</p>
+                <hljs language="shell">
+                    npm install @dunite/au-office-ui --save
+                    npm install aurelia-bootstrapper aurelia-fetch-client bluebird@3.5.0 --save
+                    npm install aurelia-webpack-plugin@2.0.0-rc.5 --save-dev
+                </hljs>
+            </li>
+            <li>
+                <p>In your webpart.ts file add the following to import necessery files.</p>
+                <hljs language="javascript" linenumbers="true">
+    import * as Bluebird from 'bluebird';
+    import {bootstrap} from 'aurelia-bootstrapper';
+    import { Aurelia,TemplatingEngine } from 'aurelia-framework';
+    import { PLATFORM } from "aurelia-pal";
+                </hljs>
+            </li>
+            <li>
+                <p>Then we add a constructor to configure bluebird to handle Promise for us.</p>
+                <hljs language="javascript">
+                    constructor() {
+                        super();
+                        Bluebird.config({ warnings: { wForgottenReturn: false } });
+                      }
+                </hljs>
+
+                <p>Replace the render function with below code.</p>
+                <hljs language="javascript">
+    public render(): void {
+        this.domElement.innerHTML = `<div id="${this.instanceId}" class="${this.instanceId}"  >
+        <helloworld>Loading...</helloworld></div>`;
+        
+        bootstrap(aurelia => {
+                aurelia.use
+                .standardConfiguration()
+                .plugin(PLATFORM.moduleName('@dunite/au-office-ui'))
+                .developmentLogging()
+                .globalResources(
+                    [ // Registrera alla komponenter som denna webpart använder här
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/ProgressValidation/DuMessageBar'),
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuDefaultButton'),
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuTextField'),
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/Pickers/DuDatePicker'),
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuIconButton'),
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuCommandBarButton'),
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuCheckBox')
+                ]);
+        
+                var el = document.getElementById(this.instanceId);
+                aurelia.start().then(a => 
+                {
+                    aurelia.container.registerInstance("WebPartContext", this.context);
+
+                    let templatingEngine = a.container.get(TemplatingEngine);
+
+                    templatingEngine.enhance({
+                    container: a.container,
+                    element: el,
+                    resources: a.resources
+                    });
+                });
+            }
+            );
+        
+        }
+                </hljs>
+                <p>Add a hellowworld.ts file next to your webpart.</p>
+                <hljs language="javascript" linenumbers="true">
+    export class helloworld
+    {
+        private onFormatDate(date: Date) 
+        {
+            var mm = date.getMonth() + 1;
+            var dd = date.getDate();
+
+            return [date.getFullYear(),'-',
+                    (mm>9 ? '' : '0') + mm,'-',
+                    (dd>9 ? '' : '0') + dd
+                    ].join('');
+        }
+    }
+                </hljs>
+                <p>Add a helloworld.html file next to your webpart</p>
+                <hljs language="html" linenumbers="true">
+&lt;template&gt;
+    &lt;du-date-picker format-date.bind=&quot;onFormatDate&quot; placeholder=&quot;V&#228;lj ett datum&quot; show-week-numbers=&quot;true&quot; &gt;&lt;/du-date-picker&gt;
+&lt;/template&gt;
+                </hljs>
+            </li>
+            <li>
+                <p>We also need to update gulp.js file to use the Aurelia Webpack plugin. Add below code just before the call to build.initialize(gulp);</p>
+                <hljs language="javascript" linenumbers="true">
+const { AureliaPlugin } = require("aurelia-webpack-plugin");
+
+build.configureWebpack.mergeConfig({
+  additionalConfiguration: (generatedConfiguration) => {
+    //generatedConfiguration.resolve.modules.push("src");
+    generatedConfiguration.module.rules[0].issuer = {
+      // only when the issuer is a .js/.ts file, so the loaders are not applied inside templates
+      test: /\.[tj]s$/i,
+    };
+
+    var rule1 = { test: /\.css$/i,issuer: [{ test: /\.html$/i }], use: "css-loader"} ;
+    generatedConfiguration.module.rules.push(rule1)
+
+    var rule2 = { test: /\.ts$/i, use: "ts-loader" };
+    generatedConfiguration.module.rules.push(rule2);
+    
+    generatedConfiguration.plugins.push(new AureliaPlugin(
+    {
+      aureliaApp: undefined
+    }));
+    
+    return generatedConfiguration;
+  }
+});
+                </hljs>
+                <p>Note that you need to use .one-time since Aurelia can not update the literal object.</p>
+                <p>If you add bindings to any event always use .bind with the function name, see on-click.bind example
+                    above.</p>
+                <p>In the event function in your view, the 'this' keyword always points to the Office-UI element. In the
+                    code example below, we use a TypeScript feature to explicitly tell the compiler which type this has.
+                    If you need to reach out to the parent element, just use this.parent. The parent property is
+                    assigned on all au-office-ui elements and points to the hosting element, the parent. The parent
+                    property is actually assigned to the binding context. </p>
+                <hljs language="javascript" linenumbers="true">
+export class helloworld
+{
+    
+}
+                </hljs>
+            </li>
+        </ol>
+
+    </div>
+</template>

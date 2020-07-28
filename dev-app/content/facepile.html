@@ -1,0 +1,45 @@
+<template>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);"
+  >
+    <h1 class="pageTitle">Facepile</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+    <examplecard title="Default Facepile">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+  &lt;du-facepile number-of-face.bind=&quot;numberOfFaces&quot; images-fade-in.one-time=&quot;true&quot; 
+  persona-size.bind=&quot;personaSize&quot; personas.bind=&quot;personas&quot;
+  overflow-button-type.bind=&quot;overflowButtonType&quot; overflow-button-props.bind=&quot;overflowButtonProps&quot;
+  overflow-personas.bind=&quot;overflowPersonas&quot;&gt;&lt;/du-facepile&gt;
+        </hljs>
+        <hljs language="javascript" linenumbers="true">
+
+  //import facepilePersonas from https://github.com/OfficeDev/office-ui-fabric-react/blob/master/packages/office-ui-fabric-react/src/components/Facepile/examples/FacepileExampleData.ts
+  numberOfFaces = 5;
+  personaSize = PersonaSize.large;
+  personas= facepilePersonas.slice(0, this.numberOfFaces);
+  overflowPersonas =  facepilePersonas.slice(this.numberOfFaces);
+  overflowButtonType = OverflowButtonType.more;
+  overflowButtonProps =  {
+      ariaLabel: &#39;More users&#39;,
+      onClick: (ev: any) =&gt; alert(&#39;overflow icon clicked&#39;)
+    }
+        </hljs>
+      </div>
+      <div slot="example">
+         <du-facepile number-of-face.bind="numberOfFaces" images-fade-in.one-time="true" 
+         persona-size.bind="personaSize" personas.bind="personas"
+         overflow-button-type.bind="overflowButtonType" overflow-button-props.bind="overflowButtonProps"
+         overflow-personas.bind="overflowPersonas"></du-facepile>
+      </div>
+    </examplecard>
+
+  </div>
+</template>

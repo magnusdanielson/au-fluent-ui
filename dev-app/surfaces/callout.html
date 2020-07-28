@@ -1,0 +1,152 @@
+<template>
+  <require from="./callout.scss"></require>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Callout</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+      <examplecard title="Default Callout">
+          <div slot="code">
+            <hljs language="html" linenumbers="true">
+  &lt;du-callout
+  class-name=&quot;ms-CalloutExample-callout&quot;
+  role=&#39;alertdialog&#39;
+  gap-space.one-time=&quot;0&quot;
+  target.bind=&quot;menuButtonElement&quot;
+  on-dismiss=&quot;_onCalloutDismiss&quot;
+  set-initial-focus.one-time=&quot;true&quot;
+  hidden.bind=&quot;isCalloutHidden&quot;
+  &gt;&lt;div class=&quot;du-Callout&quot;&gt;
+      &lt;div class=&quot;ms-CalloutExample-header&quot;&gt;
+          &lt;p class=&quot;ms-CalloutExample-title&quot; id=&quot;callout-label-1&quot;&gt;
+            All of your favorite people
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;ms-CalloutExample-inner&quot;&gt;
+          &lt;div class=&quot;ms-CalloutExample-content&quot;&gt;
+            &lt;p class=&quot;ms-CalloutExample-subText&quot; id=&quot;callout-description-1&quot;&gt;
+              Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.
+            &lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;ms-CalloutExample-actions&quot;&gt;
+            &lt;a class=&quot;ms-CalloutExample-link&quot; href=&quot;http://microsoft.com&quot;&gt;
+              Go to microsoft
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;&lt;/du-callout&gt; 
+            </hljs>
+            <hljs language="javascript" linenumbers="true" include="https://raw.githubusercontent.com/magnusdanielson/demo-office-ui/master/src/surfaces/callout.ts">
+  
+            </hljs>
+          </div>
+          <div slot="example">
+              <div class="buttonArea" id="menuButtonElement" style="vertical-align: top; display: inline-block; text-align: center;" >
+                  <du-default-button id="toggleCallout" on-click.bind="_onShowMenuClicked" text="${isCalloutHidden ? 'Show callout' : 'Hide callout'}" />
+                </div>
+              <du-callout
+              class-name="ms-CalloutExample-callout"
+              role='alertdialog'
+              gap-space.one-time="0"
+              target.bind="menuButtonElement"
+              on-dismiss="_onCalloutDismiss"
+              set-initial-focus.one-time="true"
+              hidden.bind="isCalloutHidden"
+              ><div class="du-Callout">
+                  <div class="ms-CalloutExample-header">
+                      <p class="ms-CalloutExample-title" id="callout-label-1">
+                        All of your favorite people
+                      </p>
+                    </div>
+                    <div class="ms-CalloutExample-inner">
+                      <div class="ms-CalloutExample-content">
+                        <p class="ms-CalloutExample-subText" id="callout-description-1">
+                          Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.
+                        </p>
+                      </div>
+                      <div class="ms-CalloutExample-actions">
+                        <a class="ms-CalloutExample-link" href="http://microsoft.com">
+                          Go to microsoft
+                        </a>
+                      </div>
+                    </div>
+                  </div></du-callout>         
+          </div>
+        </examplecard>
+
+        <examplecard title="Nested Callout... Callout with a commandbar with a sub menu">
+            <div slot="code">
+              <hljs language="html" linenumbers="true">
+  &lt;du-callout  style=&quot;z-index:100;&quot;
+  class-name=&quot;ms-CalloutExample-callout&quot;
+  role=&#39;alertdialog&#39;
+  gap-space.one-time=&quot;0&quot;
+  target.bind=&quot;menuButtonElement2&quot;
+  on-dismiss=&quot;_onCalloutDismiss2&quot;
+  set-initial-focus.one-time=&quot;true&quot;
+  
+hidden.bind=&quot;isCalloutHidden2&quot;&gt;
+  &lt;div class=&quot;du-Callout&quot;&gt;
+      &lt;div class=&quot;ms-CalloutExample-header&quot;&gt;
+          &lt;p class=&quot;ms-CalloutExample-title&quot; id=&quot;callout-label-2&quot;&gt;
+            All of your favorite people
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;ms-CalloutExample-inner&quot;&gt;
+          &lt;div class=&quot;ms-CalloutExample-content&quot;&gt;
+            &lt;p class=&quot;ms-CalloutExample-subText&quot; id=&quot;callout-description-2&quot;&gt;
+              Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.
+            &lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div &gt;
+              
+            &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;du-command-bar  items.one-time=&quot;getItems()&quot;  &gt;&lt;/du-command-bar&gt;
+  &lt;/du-callout&gt; 
+              </hljs>
+            </div>
+            <div slot="example">
+                <div class="buttonArea" id="menuButtonElement2" style="vertical-align: top; display: inline-block; text-align: center;" >
+                    <du-default-button id="toggleCallout2" on-click.bind="_onShowMenuClicked2" text="${isCalloutHidden2 ? 'Show callout' : 'Hide callout'}" />
+                  </div>
+                <du-callout  style="z-index:100;"
+                class-name="ms-CalloutExample-callout"
+                role='alertdialog'
+                gap-space.one-time="0"
+                target.bind="menuButtonElement2"
+                on-dismiss="_onCalloutDismiss2"
+                set-initial-focus.one-time="true"
+                
+              hidden.bind="isCalloutHidden2">
+                <div class="du-Callout">
+                    <div class="ms-CalloutExample-header">
+                        <p class="ms-CalloutExample-title" id="callout-label-2">
+                          All of your favorite people
+                        </p>
+                      </div>
+                      <div class="ms-CalloutExample-inner">
+                        <div class="ms-CalloutExample-content">
+                          <p class="ms-CalloutExample-subText" id="callout-description-2">
+                            Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.
+                          </p>
+                        </div>
+                        <div >
+                            
+                          </div>
+                      </div>
+                    </div>
+                    <du-command-bar  items.one-time="getItems()"  ></du-command-bar>
+                </du-callout>         
+            </div>
+          </examplecard>
+          
+  </div>
+</template>

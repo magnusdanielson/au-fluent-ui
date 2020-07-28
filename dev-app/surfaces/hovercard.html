@@ -1,0 +1,42 @@
+<template>
+        
+         
+        
+        
+      
+        <div
+          class="content"
+          style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+          <h1 class="pageTitle">Dialog</h1>
+          <div
+            role="presentation"
+            class="ms-FocusZone"
+            
+          ></div>
+        </div>
+        <div class="PageSection">
+          
+            
+              <examplecard title="Default HoverCard">
+                      <div slot="code">
+                        <hljs language="html" linenumbers="true">
+                            
+                        </hljs>
+                      </div>
+                      <div slot="example">
+                          <du-hover-card expanding-card-props.bind="expandingCardProps" 
+                          instant-open-on-click.bind="true" hidden.bind="hidden">
+                             
+                                  <du-default-button primary="true" on-click.bind="dialogprops.onDismiss" text="Save" ></du-default-button>
+                              
+                          </du-hover-card>
+                          <du-default-button text="Show Dialog"
+                            on-click.bind="actionButtonClick"></du-default-button>
+                      </div>
+                    </examplecard>
+      
+                    
+                            
+        </div>
+      </template>
+      

@@ -1,0 +1,158 @@
+<template>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);"
+  >
+    <h1 class="pageTitle">Button</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+    <examplecard title="Default Button">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+          &#x3C;du-default-button text=&#x22;Default
+          Button&#x22;&#x3E;&#x3C;/du-default-button&#x3E;
+          &#x3C;du-default-button text=&#x22;Primary Button&#x22;
+          primary=&#x22;true&#x22;&#x3E;&#x3C;/du-default-button&#x3E;
+        </hljs>
+      </div>
+      <div slot="example">
+          <a href="https://codesandbox.io/s/71777k4l41" target="_blank" style="float:right;">
+            <img alt="Edit Aurelia TypeScript Sandbox" src="https://codesandbox.io/static/img/play-codesandbox.svg">
+          </a>          
+        <div class="ms-font-m-plus">Standard</div>
+        <du-default-button text="Default Button"></du-default-button>
+
+        <div class="ms-font-m-plus">Primary</div>
+        <du-default-button
+          text="Primary Button"
+          primary="true"
+        ></du-default-button>
+      </div>
+    </examplecard>
+
+    <examplecard title="Compound Button">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+          &#x3C;du-compound-button text=&#x22;Compound Button&#x22;
+          secondary-text=&#x22;You can create an account
+          here.&#x22;&#x3E;&#x3C;/du-compound-button&#x3E;
+          &#x3C;du-compound-button text=&#x22;Compound Button&#x22;
+          primary=&#x22;true&#x22; secondary-text=&#x22;You can create an
+          account here.&#x22;&#x3E;&#x3C;/du-compound-button&#x3E;
+        </hljs>
+      </div>
+      <div slot="example">
+        <div>
+        <div class="ms-font-m-plus">Standard</div>
+        <du-compound-button
+          text="Compound Button"
+          secondary-text="You can create an account here."
+        ></du-compound-button>
+      </div>
+        <div class="ms-font-m-plus">Primary</div>
+        <du-compound-button
+          text="Compound Button"
+          primary="true"
+          secondary-text="You can create an account here."
+        ></du-compound-button>
+      </div>
+    </examplecard>
+
+    <examplecard title="CommandBar Button">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+          &#x3C;du-command-bar-button text=&#x22;Create Account&#x22;
+          on-click.bind=&#x22;actionButtonClick&#x22;
+          icon-props.one-time=&#x22;{ iconName: &#x27;Add&#x27; }&#x22;
+          menu-props.bind=&#x22;commandMenu&#x22;
+          split.bind=&#x22;true&#x22;&#x3E;&#x3C;/du-command-bar-button&#x3E;
+        </hljs>
+        <hljs language="typescript" linenumbers="true">
+          public commandMenu = { items:[ { key: 'emailMessage', text: 'Email
+          message', name:"Email message", iconProps: { iconName: 'Mail' },
+          onClick: () => alert('mail click') }, { key: 'calendarEvent', text:
+          'Calendar event', "name": "Calendar event", iconProps: { iconName:
+          'Calendar' }, onClick: () => alert('calender click') } ] };
+          actionButtonClick() { console.log("actionButtonClick"); }
+        </hljs>
+      </div>
+      <div slot="example">
+        <du-command-bar-button
+          text="Create Account"
+          on-click.bind="(actionButtonClick)"
+          icon-props.one-time="{ iconName: 'Add' }"
+          menu-props.bind="commandMenu"
+          split.bind="true"
+        ></du-command-bar-button>
+      </div>
+    </examplecard>
+
+    <examplecard title="Split Button">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+          &#x3C;du-default-button text=&#x22;Split Button&#x22;
+          menu-props.bind=&#x22;commandMenu&#x22;
+          on-click.bind=&#x22;actionButtonClick&#x22;
+          split.bind=&#x22;true&#x22; style=&#x22;height:
+          35px;&#x22;&#x3E;&#x3C;/du-default-button&#x3E;
+        </hljs>
+        <hljs language="typescript" linenumbers="true">
+          public commandMenu = { items:[ { key: 'emailMessage', text: 'Email
+          message', name:"Email message", iconProps: { iconName: 'Mail' },
+          onClick: () => alert('mail click') }, { key: 'calendarEvent', text:
+          'Calendar event', "name": "Calendar event", iconProps: { iconName:
+          'Calendar' }, onClick: () => alert('calender click') } ] };
+          actionButtonClick() { console.log("actionButtonClick"); }
+        </hljs>
+      </div>
+      <div slot="example">
+        <du-default-button
+          text="Split Button"
+          menu-props.bind="commandMenu"
+          on-click.bind="(actionButtonClick)"
+          split.bind="true"
+          style="height: 35px;"
+        ></du-default-button>
+      </div>
+    </examplecard>
+
+    <examplecard title="Icon Button">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+          &#x3C;du-icon-button text=&#x22;Default Button&#x22;
+          icon-props.one-time=&#x22;{ iconName: &#x27;Emoji2&#x27; }&#x22;
+          title=&#x22;Emoji&#x22;&#x3E;&#x3C;/du-icon-button&#x3E;
+        </hljs>
+      </div>
+      <div slot="example">
+        <du-default-button
+          text="Split Button"
+          menu-props.bind="commandMenu"
+          on-click.bind="(actionButtonClick)"
+          split.bind="true"
+          style="height: 35px;"
+        ></du-default-button>
+      </div>
+    </examplecard>
+
+    <examplecard title="Action Button">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+          &#x3C;du-action-button text=&#x22;View code&#x22;
+          icon-props.bind=&#x22;actionicon&#x22;&#x3E;&#x3C;/du-action-button&#x3E;
+        </hljs>
+      </div>
+      <div slot="example">
+        <du-action-button
+          text="View code"
+          icon-props.bind="actionicon"
+        ></du-action-button>
+      </div>
+    </examplecard>
+  </div>
+</template>

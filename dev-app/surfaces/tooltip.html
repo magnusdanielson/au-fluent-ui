@@ -1,0 +1,79 @@
+<template>
+    <div
+      class="content"
+      style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+      <h1 class="pageTitle">ToolTip</h1>
+      <div
+        role="presentation"
+        class="ms-FocusZone"
+        
+      ></div>
+    </div>
+    <div class="PageSection">
+      
+        
+          <examplecard title="Default ToolTip">
+            <div slot="code">
+              <hljs language="html" linenumbers="true">
+  &#x3C;du-tool-tip content=&#x22;Texten&#x22; target-element.bind=&#x22;mybutton&#x22; hidden.bind=&#x22;tooltip1&#x22; &#x3E;&#x3C;/du-tool-tip&#x3E;
+  &#x3C;du-default-button mouseover.trigger=&#x22;onMouseOver()&#x22; mouseout.trigger=&#x22;onMouseOut()&#x22; ref=&#x22;mybutton&#x22; text=&#x22;Save&#x22; &#x3E;&#x3C;/du-default-button&#x3E;
+              </hljs>
+              <hljs language="javascript" linenumbers="true">
+  tooltip1: boolean = true;
+
+  onMouseOver()
+  {
+    this.tooltip1 = false;
+  }
+
+  onMouseOut()
+  {
+    this.tooltip1 = true;
+  }    
+            </hljs>
+            </div>
+            <div slot="example">
+                <du-tool-tip content="Texten" target-element.bind="mybutton" hidden.bind="tooltip1" ></du-tool-tip>
+                <du-default-button mouseover.trigger="onMouseOver()" mouseout.trigger="onMouseOut()" ref="mybutton" text="Save" ></du-default-button>
+            </div>
+          </examplecard>
+
+
+          <examplecard title="ToolTip with properties">
+            <div slot="code">
+              <hljs language="html" linenumbers="true">
+  &#x3C;du-tool-tip content=&#x22;Texten&#x22; target-element.bind=&#x22;mybutton2&#x22; callout-props.one-time=&#x22;calloutProps&#x22; delay.one-time=&#x22;2000&#x22; &#x3E;&#x3C;/du-tool-tip&#x3E;
+  &#x3C;du-default-button ref=&#x22;mybutton2&#x22; text=&#x22;Save&#x22; &#x3E;&#x3C;/du-default-button&#x3E;
+              </hljs>
+              <hljs language="javascript" linenumbers="true">
+  tooltip2: boolean = true;
+
+  onMouseOver2()
+  {
+    this.tooltip2 = false;
+  }
+
+  onMouseOut2()
+  {
+    this.tooltip2 = true;
+  }
+
+  constructor()
+  {
+    this.calloutProps = {};
+    this.calloutProps.gapSpace = 50;
+    this.calloutProps.isBeakVisible = false;
+    this.calloutProps.directionalHint = 12;
+
+  }
+              </hljs>
+            </div>
+            <div slot="example">
+                <du-tool-tip hidden.bind="tooltip2" content="Texten" target-element.bind="mybutton2" callout-props.one-time="calloutProps" delay.one-time="2000" ></du-tool-tip>
+                <du-default-button mouseover.trigger="onMouseOver2()" mouseout.trigger="onMouseOut2()" ref="mybutton2" text="Save" ></du-default-button>
+                    
+            </div>
+          </examplecard>
+    </div>
+  </template>
+  

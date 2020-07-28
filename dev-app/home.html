@@ -1,0 +1,25 @@
+<template>
+    Home
+
+    
+    Binding to html value
+    <du-label required="true">I'm a required Label</du-label>
+
+    Binding to literal object
+    <du-command-bar-button icon-props.one-time="{ iconName: 'Add' }"></du-command-bar-button>
+
+    Binding to object on parent
+    <du-command-bar items.one-time="items" ></du-command-bar>
+
+    Binding to object on parent
+    <du-command-bar items.bind="items" ></du-command-bar>
+
+    Binding to return value of function
+    <du-command-bar items.one-time="getItems()" ></du-command-bar>
+
+    For event
+    onLinkClick = (reactEvent:any,item:INavLink) => {
+      console.log('Clicked on ' + item.name + ' with key ' + item.key);
+    };
+    
+    </template>

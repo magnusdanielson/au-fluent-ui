@@ -1,0 +1,118 @@
+<template>
+  
+   
+  
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Pivot</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+        <examplecard title="Default Pivot">
+          <div slot="code">
+            <hljs language="html" linenumbers="true">
+  &#x3C;du-pivot items.bind=&#x22;items&#x22;&#x3E;&#x3C;/du-pivot&#x3E;
+            </hljs>
+            <hljs language="javascript" linenumbers="true">
+  items = [
+  { headerText : 'My files', itemKey:'k1' }
+  ,{ headerText : 'Recent', itemKey:'k2' }
+  ,{ headerText : 'Shared with me', itemKey:'k3' }
+  ];
+              </hljs>
+          </div>
+          <div slot="example">
+              <du-pivot items.bind="items"></du-pivot>
+          </div>
+        </examplecard>
+
+        <examplecard title="Count and Icon Pivot">
+            <div slot="code">
+              <hljs language="html" linenumbers="true">
+  &#x3C;du-pivot items.bind=&#x22;items&#x22;&#x3E;&#x3C;/du-pivot&#x3E;
+              </hljs>
+              <hljs language="javascript" linenumbers="true">
+  items2 = [
+  { headerText : 'My files', itemKey:'k1', itemCount: 42, itemIcon : "Emoji2" }
+  ,{ headerText : 'Recent', itemKey:'k2', itemCount : 23, itemIcon: "Globe" }
+  ,{ headerText : 'Shared with me', itemKey:'k3', itemIcon:"Ringer", itemCount:1 }
+  ];
+                </hljs>
+            </div>
+            <div slot="example">
+                <du-pivot items.bind="items2"></du-pivot>
+            </div>
+          </examplecard>
+
+          <examplecard title="Large Link size">
+              <div slot="code">
+                <hljs language="html" linenumbers="true">
+  &#x3C;du-pivot link-size.bind=&#x22;pivotLinkSize&#x22; items.bind=&#x22;items&#x22;&#x3E;&#x3C;/du-pivot&#x3E;
+                </hljs>
+                <hljs language="javascript" linenumbers="true">
+import {PivotLinkSize } from 'office-ui-fabric-react/lib/Pivot'
+
+export class demo
+{
+  pivotLinkSize = PivotLinkSize.large;
+}
+                  </hljs>
+              </div>
+              <div slot="example">
+                  <du-pivot link-size.bind="pivotLinkSize" items.bind="items"></du-pivot>
+              </div>
+            </examplecard>
+
+            <examplecard title="Tab format">
+                <div slot="code">
+                  <hljs language="html" linenumbers="true">
+  &#x3C;du-pivot link-format.bind=&#x22;pivotTabFormat&#x22; items.bind=&#x22;items&#x22;&#x3E;&#x3C;/du-pivot&#x3E;
+                  </hljs>
+                  <hljs language="javascript" linenumbers="true">
+  import {PivotItem,  PivotLinkSize, PivotLinkFormat } from 'office-ui-fabric-react/lib/Pivot'
+  
+  export class demo
+  {
+    pivotTabFormat = PivotLinkFormat.tabs;
+  }
+                  </hljs>
+                </div>
+                <div slot="example">
+                    <du-pivot link-format.bind="pivotTabFormat" items.bind="items"></du-pivot>
+                </div>
+              </examplecard>
+
+              <examplecard title="Trigger onchange event">
+                  <div slot="code">
+                    <hljs language="html" linenumbers="true">
+  &#x3C;du-pivot on-link-click.bind=&#x22;onLinkClick&#x22; link-format.bind=&#x22;pivotTabFormat&#x22; items.bind=&#x22;items&#x22;&#x3E;
+  &#x3C;/du-pivot&#x3E;
+  &#x3C;div show.bind=&#x22;selectedTab==&#x27;k1&#x27;&#x22;&#x3E;Content for tab with itemKey k1&#x3C;/div&#x3E;
+  &#x3C;div show.bind=&#x22;selectedTab==&#x27;k2&#x27;&#x22;&#x3E;Content for tab with itemKey k2&#x3C;/div&#x3E;
+  &#x3C;div show.bind=&#x22;selectedTab==&#x27;k3&#x27;&#x22;&#x3E;Content for tab with itemKey k3&#x3C;/div&#x3E;
+                    </hljs>
+                    <hljs language="javascript" linenumbers="true">
+  public selectedTab = "k1";
+
+  onLinkClick = (item?: PivotItem, ev?: any)=>
+  {
+      //@ts-ignore
+      this.selectedTab = item.props.itemKey;       
+  }
+                      </hljs>
+                  </div>
+                  <div slot="example">
+                      <du-pivot on-link-click.bind="onLinkClick" link-format.bind="pivotTabFormat" items.bind="items">
+                      </du-pivot>
+                      <div show.bind="selectedTab=='k1'">Content for tab with itemKey k1</div>
+                      <div show.bind="selectedTab=='k2'">Content for tab with itemKey k2</div>
+                      <div show.bind="selectedTab=='k3'">Content for tab with itemKey k3</div>
+                  </div>
+                </examplecard>
+  </div>
+</template>

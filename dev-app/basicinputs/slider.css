@@ -1,0 +1,17 @@
+.ms-SliderVertical {
+    padding-top: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 200px;
+    background-color: green;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+  .ms-verticalBox {
+    display: flex;
+  }
+

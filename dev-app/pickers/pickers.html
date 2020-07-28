@@ -1,0 +1,84 @@
+<template>
+  <require from="./pickers.css"></require>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Pickers</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+      <examplecard title="Controlled Tag Picker, anything but blue.">
+          <div slot="code">
+            <hljs language="html" linenumbers="true">
+  &#x3C;du-tag-picker  
+  on-resolve-suggestions.bind=&#x22;onFilterChanged&#x22; 
+  on-item-selected.bind=&#x22;onItemSelected&#x22;
+  get-text-from-item.bind=&#x22;getTextFromItem&#x22;
+  picker-suggestions-props.one-time=&#x22;{
+    suggestionsHeaderText: &#x27;Suggested Tags&#x27;,
+    noResultsFoundText: &#x27;No Color Tags Found&#x27;
+  }&#x22;
+  item-limit=&#x22;8&#x22;
+  input-props.bind=&#x22;inputProps&#x22;&#x3E;&#x3C;/du-tag-picker&#x3E;
+            </hljs>
+            <hljs language="javascript" linenumbers="true" include="https://raw.githubusercontent.com/magnusdanielson/demo-office-ui/master/src/pickers/pickers.ts">
+ 
+            </hljs>
+          </div>
+          <div slot="example">
+            <du-tag-picker  
+            on-resolve-suggestions.bind="onFilterChanged" 
+            on-item-selected.bind="onItemSelected"
+            get-text-from-item.bind="getTextFromItem"
+            picker-suggestions-props.one-time="{
+              suggestionsHeaderText: 'Suggested Tags',
+              noResultsFoundText: 'No Color Tags Found'
+            }"
+            item-limit="8"
+            input-props.bind="inputProps"></du-tag-picker>
+          </div>  
+    </examplecard>
+
+        <examplecard title="Controlled and items bound Tag Picker, anything but blue.">
+                <div slot="code">
+                  <hljs language="html" linenumbers="true">
+  &#x3C;du-tag-picker  items.bind=&#x22;selectedItems&#x22;
+  on-resolve-suggestions.bind=&#x22;onFilterChanged&#x22; on-change.bind=&#x22;onChange&#x22;
+  on-item-selected.bind=&#x22;onItemSelected&#x22;
+  get-text-from-item.bind=&#x22;getTextFromItem&#x22;
+  picker-suggestions-props.one-time=&#x22;{
+  suggestionsHeaderText: &#x27;Suggested Tags&#x27;,
+  noResultsFoundText: &#x27;No Color Tags Found&#x27;
+  }&#x22;
+  item-limit=&#x22;8&#x22;
+  input-props.bind=&#x22;inputProps&#x22;&#x3E;&#x3C;/du-tag-picker&#x3E;
+                  </hljs>
+
+                </div>
+                <div slot="example">
+                  <du-tag-picker  items.bind="selectedItems"
+                  on-resolve-suggestions.bind="onFilterChanged" on-change.bind="onChange"
+                  on-item-selected.bind="onItemSelected"
+          get-text-from-item.bind="getTextFromItem"
+          picker-suggestions-props.one-time="{
+            suggestionsHeaderText: 'Suggested Tags',
+            noResultsFoundText: 'No Color Tags Found'
+          }"
+          item-limit="8"
+          input-props.bind="inputProps" selected-items.bind="selectedItems"></du-tag-picker>
+          <ul>
+              <li repeat.for="item of selectedItems">${item.key}</li>
+            </ul>
+                </div>
+
+                
+                
+          </examplecard>
+
+          
+  </div>
+</template>

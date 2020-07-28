@@ -1,0 +1,147 @@
+<template>
+  
+   
+  
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">CommandBar</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+        <examplecard title="CommandBar with overflowing menu items">
+          <div slot="code">
+            <hljs language="html" linenumbers="true">
+  &#x3C;du-command-bar items.one-time=&#x22;getItems()&#x22; overflow-items.one-time=&#x22;getOverflowItems()&#x22; far-items.one-time=&#x22;getFarItems()&#x22; &#x3E;&#x3C;/du-command-bar&#x3E;
+            </hljs>
+            <hljs language="javascript" linenumbers="true">
+  getItems = () => {
+    return [
+      {
+        key: 'newItem',
+        name: 'New',
+        cacheKey: 'myCacheKey', // changing this key will invalidate this items cache
+        iconProps: {
+          iconName: 'Add'
+        },
+        ariaLabel: 'New. Use left and right arrow keys to navigate',
+        subMenuProps: {
+          items: [
+            {
+              key: 'emailMessage',
+              name: 'Email message',
+              iconProps: {
+                iconName: 'Mail'
+              },
+              ['data-automation-id']: 'newEmailButton'
+            },
+            {
+              key: 'calendarEvent',
+              name: 'Calendar event',
+              iconProps: {
+                iconName: 'Calendar'
+              }
+            }
+          ]
+        }
+      },
+      {
+        key: 'upload',
+        name: 'Upload',
+        iconProps: {
+          iconName: 'Upload'
+        },
+        href: 'https://dev.office.com/fabric',
+        ['data-automation-id']: 'uploadButton'
+      },
+      {
+        key: 'share',
+        name: 'Share',
+        iconProps: {
+          iconName: 'Share'
+        },
+        onClick: () => console.log('Share')
+      },
+      {
+        key: 'download',
+        name: 'Download',
+        iconProps: {
+          iconName: 'Download'
+        },
+        onClick: () => console.log('Download')
+      }
+    ];
+  };
+
+  getOverflowItems = () => {
+    return [
+      {
+        key: 'move',
+        name: 'Move to...',
+        onClick: () => console.log('Move to'),
+        iconProps: {
+          iconName: 'MoveToFolder'
+        }
+      },
+      {
+        key: 'copy',
+        name: 'Copy to...',
+        onClick: () => console.log('Copy to'),
+        iconProps: {
+          iconName: 'Copy'
+        }
+      },
+      {
+        key: 'rename',
+        name: 'Rename...',
+        onClick: () => console.log('Rename'),
+        iconProps: {
+          iconName: 'Edit'
+        }
+      }
+    ];
+  };
+
+  getFarItems = () => {
+    return [
+      {
+        key: 'sort',
+        name: 'Sort',
+        iconProps: {
+          iconName: 'SortLines'
+        },
+        onClick: () => console.log('Sort')
+      },
+      {
+        key: 'tile',
+        name: 'Grid view',
+        iconProps: {
+          iconName: 'Tiles'
+        },
+        iconOnly: true,
+        onClick: () => console.log('Tiles')
+      },
+      {
+        key: 'info',
+        name: 'Info',
+        iconProps: {
+          iconName: 'Info'
+        },
+        iconOnly: true,
+        onClick: () => console.log('Info')
+      }
+    ];
+  };
+            </hljs>
+          </div>
+          <div slot="example">
+              <!-- overflow-items.bind="getOverflowItems" far-items.bind="getFarItems" -->
+            <du-command-bar items.one-time="getItems()" overflow-items.one-time="getOverflowItems()" far-items.one-time="getFarItems()" ></du-command-bar>
+          </div>
+        </examplecard>
+  </div>
+</template>

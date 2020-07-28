@@ -1,0 +1,41 @@
+<template>
+  
+   
+  
+  
+
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">ColorPicker</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+        <examplecard title="Default ColorPicker">
+                <div slot="code">
+                  <hljs language="html" linenumbers="true">
+  &#x3C;du-text-field  value.bind=&#x22;thecolor&#x22; label=&#x22;Standard&#x22; &#x3E;&#x3C;/du-text-field&#x3E;
+  &#x3C;du-color-picker  alpha-slider-hidden=&#x22;true&#x22; color.bind=&#x22;thecolor&#x22; on-color-changed.bind=&#x22;colorChanged&#x22;  &#x3E;&#x3C;/du-color-picker&#x3E;
+                  </hljs>
+                  <hljs language="javascript" linenumbers="true">
+  public thecolor:string = &quot;#ffffff&quot;;
+
+  colorChanged( ev:any, colorObj: IColor)
+  {
+      this.thecolor= colorObj.str;
+  }
+                    </hljs>
+                </div>
+                <div slot="example">
+                    <du-text-field  value.bind="thecolor" label="Standard" ></du-text-field>
+                    <du-color-picker  alpha-slider-hidden="true" color.bind="thecolor"   ></du-color-picker>
+                </div>
+              </examplecard>
+
+
+  </div>
+</template>

@@ -1,0 +1,214 @@
+<template>
+  
+   
+  
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">DocumentCard</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+    <examplecard title="Default DocumentCard">
+      <div slot="code">
+        <hljs language="html" linenumbers="true" include="https://raw.githubusercontent.com/magnusdanielson/demo-office-ui/master/src/content/detailslist.html">
+  
+        </hljs>
+        <hljs language="typescript" linenumbers="true">
+  public previewImages = [
+        {
+          name: 'Revenue stream proposal fiscal year 2016 version02.pptx',
+          linkProps: {
+              href: 'http://google.com'
+            },
+          previewImageSrc: TestImages.documentPreview,
+          iconSrc: TestImages.iconPpt,
+          imageFit: ImageFit.cover,
+          width: 318,
+          height: 196
+        }
+      ];
+
+  public people = [{ name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale }];
+
+        </hljs>
+      </div>
+      <div slot="example">
+        <du-document-card on-click-href="http://bing.com">
+          <du-document-card-preview preview-images.one-time="previewImages" ></du-document-card-preview>
+          <du-document-card-title
+            title="Large_file_name_with_underscores_used_to_separate_all_of_the_words_and_there_are_so_many_words_it_needs_truncating.pptx"
+            should-truncate.one-time="true"></du-document-card-title>
+          <du-document-card-activity
+            activity="Created a few minutes ago"
+            people.one-time="people"
+          ></du-document-card-activity>
+        </du-document-card>
+          </div>
+    </examplecard>
+
+    <examplecard title="DocumentCard with multiple items, commands, and views">
+        <div slot="code">
+          <hljs language="html" linenumbers="true">
+  &#x3C;du-document-card on-click.bind=&#x22;_onClick2&#x22;&#x3E;
+    &#x3C;du-document-card-preview preview-images.one-time=&#x22;previewImages2&#x22; get-overflow-document-count-text.bind=&#x22;getOverflowDocumentCountText&#x22; &#x3E;&#x3C;/du-document-card-preview&#x3E;
+    &#x3C;du-document-card-location
+    location=&#x22;Marketing Documents&#x22;
+    location-href=&#x22;http://microsoft.com&#x22;
+    aria-label=&#x22;Location, Marketing Documents&#x22;&#x3E;&#x3C;/du-document-card-location&#x3E;
+    &#x3C;du-document-card-title
+      title=&#x22;6 files were uploaded&#x22;&#x3E;&#x3C;/du-document-card-title&#x3E;
+    &#x3C;du-document-card-activity
+      activity=&#x22;Created Feb 23, 2016&#x22;
+      people.one-time=&#x22;people2&#x22;
+    &#x3E;&#x3C;/du-document-card-activity&#x3E;
+    &#x3C;du-document-card-actions
+      actions.one-time=&#x22;actions2&#x22;
+      views.one-time=&#x22;243&#x22;
+    &#x3E;&#x3C;/du-document-card-actions&#x3E;
+  &#x3C;/du-document-card&#x3E;
+          </hljs>
+          <hljs language="typescript" linenumbers="true">
+  public getOverflowDocumentCountText(overflowCount: number)
+  {
+      return `+${overflowCount} more`
+  };
+          
+  public previewImages2= [
+    {
+      name: '2016 Conference Presentation',
+      linkProps: {
+        href: 'http://bing.com'
+      },
+      previewImageSrc: TestImages.documentPreview,
+      iconSrc: TestImages.iconPpt,
+      imageFit: ImageFit.cover,
+      width: 318,
+      height: 196
+    },
+    {
+      name: 'New Contoso Collaboration for Conference Presentation Draft',
+      linkProps: {
+        href: 'http://bing.com'
+      },
+      previewImageSrc: TestImages.documentPreviewTwo,
+      iconSrc: TestImages.iconPpt,
+      imageFit: ImageFit.cover,
+      width: 318,
+      height: 196
+    },
+    {
+      name: 'Spec Sheet for design',
+      linkProps: {
+        href: 'http://bing.com'
+      },
+      previewImageSrc: TestImages.documentPreviewThree,
+      iconSrc: TestImages.iconPpt,
+      imageFit: ImageFit.cover,
+      width: 318,
+      height: 196
+    },
+    {
+      name: 'Contoso Marketing Presentation',
+      linkProps: {
+        href: 'http://bing.com'
+      },
+      previewImageSrc: TestImages.documentPreview,
+      iconSrc: TestImages.iconPpt,
+      imageFit: ImageFit.cover,
+      width: 318,
+      height: 196
+    },
+    {
+      name: 'Notes from Ignite conference',
+      linkProps: {
+        href: 'http://bing.com'
+      },
+      previewImageSrc: TestImages.documentPreviewTwo,
+      iconSrc: TestImages.iconPpt,
+      imageFit: ImageFit.cover,
+      width: 318,
+      height: 196
+    },
+    {
+      name: 'FY17 Cost Projections',
+      linkProps: {
+        href: 'http://bing.com'
+      },
+      previewImageSrc: TestImages.documentPreviewThree,
+      iconSrc: TestImages.iconPpt,
+      imageFit: ImageFit.cover,
+      width: 318,
+      height: 196
+    }
+  ]
+
+  public people2 = [
+    { name: 'Annie Lindqvist', profileImageSrc: TestImages.personaFemale },
+    { name: 'Roko Kolar', profileImageSrc: '', initials: 'JH' },
+    { name: 'Greta Lundberg', profileImageSrc: TestImages.personaFemale }
+  ];
+
+  public actions2 = [
+    {
+      iconProps: { iconName: 'Share' },
+      onClick: (ev: any) => {
+        console.log('You clicked the share action.');
+        ev.preventDefault();
+        ev.stopPropagation();
+      },
+      ariaLabel: 'share action'
+    },
+    {
+      iconProps: { iconName: 'Pin' },
+      onClick: (ev: any) => {
+        console.log('You clicked the pin action.');
+        ev.preventDefault();
+        ev.stopPropagation();
+      },
+      ariaLabel: 'pin action'
+    },
+    {
+      iconProps: { iconName: 'Ringer' },
+      onClick: (ev: any) => {
+        console.log('You clicked the ringer action.');
+        ev.preventDefault();
+        ev.stopPropagation();
+      },
+      ariaLabel: 'ringer action'
+    }
+  ];
+
+  private _onClick2(): void {
+    console.log('You clicked the card.');
+  }
+       
+          </hljs>
+        </div>
+        <div slot="example">
+          <du-document-card on-click.bind="_onClick2">
+            <du-document-card-preview preview-images.one-time="previewImages2" get-overflow-document-count-text.bind="getOverflowDocumentCountText" ></du-document-card-preview>
+            <du-document-card-location
+            location="Marketing Documents"
+            location-href="http://microsoft.com"
+            aria-label="Location, Marketing Documents"></du-document-card-location>
+            <du-document-card-title
+              title="6 files were uploaded"></du-document-card-title>
+            <du-document-card-activity
+              activity="Created Feb 23, 2016"
+              people.one-time="people2"
+            ></du-document-card-activity>
+            <du-document-card-actions
+              actions.one-time="actions2"
+              views.one-time="243"
+            ></du-document-card-actions>
+          </du-document-card>
+            </div>
+      </examplecard>
+
+  </div>
+</template>

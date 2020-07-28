@@ -1,0 +1,39 @@
+<template>
+  
+   
+  
+  
+
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Label</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+        <examplecard title="Default Checkbox">
+                <div slot="code">
+                  <hljs language="html" linenumbers="true">
+  &#x3C;du-label&#x3E;&#x3C;span&#x3E;I&#x27;m a Label with &#x3C;/span&#x3E;&#x3C;span&#x3E;inner content&#x3C;/span&#x3E;&#x3C;/du-label&#x3E;
+  &#x3C;du-label required=&#x22;true&#x22;&#x3E;I&#x27;m a required Label&#x3C;/du-label&#x3E;
+  &#x3C;du-label html-for=&#x22;anInput&#x22;&#x3E;A Label for An Input&#x3C;/du-label&#x3E;
+  &#x3C;du-text-field id=&#x22;anInput&#x22;&#x3E;&#x3C;/du-text-field&#x3E;
+  &#x3C;du-label disabled=&#x22;true&#x22;&#x3E;I&#x27;m a disabled Label&#x3C;/span&#x3E;&#x3C;/du-label&#x3E;
+                  </hljs>
+                </div>
+                <div slot="example">
+                    <du-label><span>I'm a Label with </span><span>inner content</span></du-label>
+                    <du-label required.one-time="true">I'm a required Label</du-label>
+                    <du-label html-for="anInput">A Label for An Input</du-label>
+                    <du-text-field id="anInput"></du-text-field>
+                    <du-label disabled.one-time="true">I'm a disabled Label</span></du-label>
+                </div>
+              </examplecard>
+
+
+  </div>
+</template>

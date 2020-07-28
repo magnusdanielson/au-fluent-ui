@@ -1,0 +1,21 @@
+<template>
+    <require from="./examplecard.css"></require>
+  <div class="ExampleCard">
+    <div class="ExampleCard-header">
+      <span class="ms-font-l">${title}</span>
+      <div class="ExampleCard-toggleButtons">
+        <du-action-button
+          text="View code"
+          icon-props.bind="actionicon"
+          on-click.bind="toggleCode"
+        ></du-action-button>
+      </div>
+    </div>
+    <div class="ExampleCard-code" show.bind="showCode">
+      <slot name="code"></slot>
+    </div>
+    <div class="ExampleCard is-scrollable">
+    <slot name="example"></slot>
+</div>
+  </div>
+</template>

@@ -1,0 +1,99 @@
+<template>
+  
+   
+  
+  
+
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">MessageBar</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+        <examplecard title="Default MessageBar infoType with dismiss event">
+                <div slot="code">
+                  <hljs language="html" linenumbers="true">
+  &#x3C;du-message-bar on-dismiss.bind=&#x22;onDismiss&#x22;&#x3E;Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.&#x3C;/du-message-bar&#x3E;
+                  </hljs>
+                  <hljs language="javascript" linenumbers="true">
+  import { MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
+
+  errorType = MessageBarType.error;
+  blockedType = MessageBarType.blocked;
+  infoType = MessageBarType.info;
+  severeWarningType = MessageBarType.severeWarning;
+  successType = MessageBarType.success;
+  warningType = MessageBarType.warning;
+
+  onDismiss()
+  { 
+    console.log('dismiss clicked');
+  }
+                  </hljs>
+                </div>
+                <div slot="example">
+                    <du-message-bar on-dismiss.bind="onDismiss">Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</du-message-bar>
+                </div>
+              </examplecard>
+
+              <examplecard title="Error MessageBar multiline element array">
+                <div slot="code">
+                  <hljs language="html" linenumbers="true">
+  &#x3C;du-message-bar is-multiline.bind=&#x22;true&#x22; message-bar-type.bind=&#x22;errorType&#x22;&#x3E;&#x3C;span&#x3E;Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit. &#x3C;/span&#x3E;&#x3C;span&#x3E;Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.&#x3C;/span&#x3E;&#x3C;/du-message-bar&#x3E;
+                  </hljs>
+                </div>
+                <div slot="example">
+                    <du-message-bar is-multiline.bind="true" message-bar-type.bind="errorType"><span>Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit. </span><span>Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</span></du-message-bar>
+                </div>
+              </examplecard>
+                <examplecard title="blockedType MessageBar truncated not multiline">
+                    <div slot="code">
+                      <hljs language="html" linenumbers="true">
+  &#x3C;du-message-bar is-multiline.bind=&#x22;false&#x22; truncated.bind=&#x22;true&#x22; message-bar-type.bind=&#x22;blockedType&#x22;&#x3E;Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit. Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit. Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.&#x3C;/du-message-bar&#x3E;
+                      </hljs>
+                    </div>
+                    <div slot="example">
+                        <du-message-bar is-multiline.bind="false" truncated.bind="true" message-bar-type.bind="blockedType">Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit. Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit. Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</du-message-bar>
+                    </div>
+                  </examplecard>
+                  <examplecard title="severeWarningType MessageBar">
+                      <div slot="code">
+                        <hljs language="html" linenumbers="true">
+  &#x3C;du-message-bar message-bar-type.bind=&#x22;severeWarningType&#x22;&#x3E;Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.&#x3C;/du-message-bar&#x3E;
+                        </hljs>
+                      </div>
+                      <div slot="example">
+                          <du-message-bar message-bar-type.bind="severeWarningType">Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</du-message-bar>
+                      </div>
+                    </examplecard>
+                    <examplecard title="successType MessageBar">
+                        <div slot="code">
+                          <hljs language="html" linenumbers="true">
+  &#x3C;du-message-bar message-bar-type.bind=&#x22;successType&#x22;&#x3E;Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.&#x3C;/du-message-bar&#x3E;
+                          </hljs>
+                        </div>
+                        <div slot="example">
+                            <du-message-bar message-bar-type.bind="successType">Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</du-message-bar>
+                        </div>
+                      </examplecard>
+                      <examplecard title="warningType MessageBar">
+                          <div slot="code">
+                            <hljs language="html" linenumbers="true">
+  &#x3C;du-message-bar message-bar-type.bind=&#x22;warningType&#x22;&#x3E;Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.&#x3C;/du-message-bar&#x3E;
+                            </hljs>
+                          </div>
+                          <div slot="example">
+                              <du-message-bar message-bar-type.bind="warningType">Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</du-message-bar>
+                          </div>
+                        </examplecard>
+
+
+
+
+  </div>
+</template>

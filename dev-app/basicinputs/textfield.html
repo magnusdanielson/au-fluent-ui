@@ -1,0 +1,95 @@
+<template>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Textfield</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+
+
+              <examplecard title="Implementation examples">
+                    <div slot="code">
+                      <hljs language="html" linenumbers="true">
+  name: ${name} &lt;br/&gt;
+  &lt;input value.bind=&quot;name&quot;&gt;&lt;/input&gt;
+  &lt;du-text-field value.bind=&quot;name&quot; label=&quot;Standard bound to {name}&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Disabled&quot; disabled.one-time=&quot;true&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Read Only&quot; read-only.one-time=&quot;true&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Required&quot; required.one-time=&quot;true&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;With error message&quot; error-message=&quot;Error message&quot;&gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;With placeholder message&quot; placeholder=&quot;I am a placeholder.&quot;&gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Multiline resizable&quot; multiline=&quot;true&quot; rows=&quot;4&quot; resizable.bind=&quot;true&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Multiline auto adjust&quot; multiline=&quot;true&quot;  auto-adjust-height.bind=&quot;true&quot; rows=&quot;4&quot;  &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Multiline non resizable&quot; multiline=&quot;true&quot; rows=&quot;4&quot; resizable.bind=&quot;false&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Underlined&quot; underlined=&quot;true&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Borderless&quot; borderless=&quot;true&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;AutoComplete&quot; auto-complete=&quot;true&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Prefix&quot; prefix=&quot;https://&quot;&gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;Suffix&quot; suffix=&quot;.com&quot;  &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;With icon&quot; icon-props.one-time=&quot;{ iconName: &#39;Calendar&#39; }&quot;  &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;With description&quot; description=&quot;A description&quot;&gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;TextField with a string-based validator.&quot; on-get-error-message.bind=&quot;getErrorMessage&quot; &gt;&lt;/du-text-field&gt;
+  &lt;du-text-field label=&quot;TextField with a Promise-based validator.&quot; on-get-error-message.bind=&quot;getErrorMessagePromise&quot; &gt;&lt;/du-text-field&gt;
+    
+</hljs>
+                      <hljs language="typescript" linenumbers="true">
+  public onchange(event: any, newValue?: string)
+  {
+      console.log(event)
+      console.log(newValue);
+      this.myvalue = newValue;
+
+  }
+
+  public onGetErrorMessage =(value: string) => {
+      console.log('onGetErrorMessage');
+      console.log(value);
+      return value.length &lt; 3 ? '' : `Input value length must be less than 3. Actual length is ${value.length}.`;
+    };
+
+  
+    private onGetErrorMessagePromise = (value: string): Promise<string> => {
+      return new Promise(resolve => {
+        // resolve the promise after 3 second.
+        setTimeout(() => resolve(this.onGetErrorMessage(value)), 5000);
+      });
+    };
+                      </hljs> 
+                    </div>
+                    <div slot="example">
+                      name: ${name} <br/>
+                        <input value.bind="myvalue"></input>
+                        <du-text-field value.bind="myvalue" validate.bind="onchange" label="Standard bound to ${myvalue}" ></du-text-field>
+                        <du-text-field label="Disabled" disabled.one-time="true" ></du-text-field>
+                        <du-text-field label="Read Only" read-only.one-time="true" ></du-text-field>
+                        <du-text-field label="Required" required.one-time="true" ></du-text-field>
+                        <du-text-field label="With error message" error-message="Error message"></du-text-field>
+                        <du-text-field label="With placeholder message" placeholder="I am a placeholder."></du-text-field>
+                        <du-text-field label="Multiline resizable" multiline="true" rows="4" resizable.bind="true" ></du-text-field>
+                        <du-text-field label="Multiline auto adjust" multiline="true"  auto-adjust-height.bind="true" rows="4"  ></du-text-field>
+                        <du-text-field label="Multiline non resizable" multiline="true" rows="4" resizable.bind="false" ></du-text-field>
+                        <du-text-field label="Underlined" underlined="true" ></du-text-field>
+                        <du-text-field label="Borderless" borderless="true" ></du-text-field>
+                        <du-text-field label="AutoComplete" auto-complete="true" ></du-text-field>
+                        <du-text-field label="Prefix" prefix="https://"></du-text-field>
+                        <du-text-field label="Suffix" suffix=".com"  ></du-text-field>
+                        <du-text-field label="With icon" icon-props.one-time="{ iconName: 'Calendar' }"  ></du-text-field>
+                        <du-text-field label="With description" description="A description"></du-text-field>
+                        
+                        <du-text-field label="TextField with a string-based validator." 
+                        on-get-error-message.bind="onGetErrorMessage"  ></du-text-field>
+                        
+                        <du-text-field on-before-change.bind="onchange" on-changed.bind="onchange" validate.bind="onchange"
+                        label="TextField with a Promise-based validator." on-get-error-message.bind="onGetErrorMessagePromise" 
+                         >
+                      </du-text-field>
+                    
+                      </div>
+                  </examplecard>
+  </div>
+</template>

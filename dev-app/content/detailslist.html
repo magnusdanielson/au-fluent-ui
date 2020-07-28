@@ -1,0 +1,69 @@
+<template>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);"
+  >
+    <h1 class="pageTitle">DetailsList</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+    <examplecard title="Default DetailsList">
+      <div slot="code">
+        <hljs language="html" linenumbers="true">
+  &lt;du-details-list items.bind=&quot;_allItems&quot; election.bind=&quot;_selection&quot; on-item-invoked.bind=&quot;onItemInvoked&quot;
+  selection-details.bind=&quot;selectionDetails&quot; columns.bind=&quot;_columns&quot;&gt;&lt;/du-details-list&gt;
+        </hljs>
+        <hljs language="javascript" linenumbers="true">
+  private _allItems: any[];
+  private _columns: IColumn[];
+
+  constructor() {
+    // Populate with items for demos.
+    this._allItems = [];
+    for (let i = 0; i &lt; 200; i++) {
+      this._allItems.push({
+        key: i,
+        name: &quot;Item &quot; + i,
+        value: i
+      });
+    }
+
+    this._columns = [
+      {
+        key: &quot;column1&quot;,
+        name: &quot;Name&quot;,
+        fieldName: &quot;name&quot;,
+        minWidth: 100,
+        maxWidth: 200,
+        isResizable: true
+      },
+      {
+        key: &quot;column2&quot;,
+        name: &quot;Value&quot;,
+        fieldName: &quot;value&quot;,
+        minWidth: 100,
+        maxWidth: 200,
+        isResizable: true
+      }
+    ];
+  }
+
+  private onItemInvoked = (item: any): void =&gt; {
+    alert(`Item invoked: ${item[0].name}`);
+  };
+        </hljs>
+      </div>
+      <div slot="example">
+        <du-marquee-selection selection.bind="_selection" hidden.one-time="false">
+         <du-details-list items.bind="_allItems" election.bind="_selection" on-item-invoked.bind="onItemInvoked"
+         selection-details.bind="selectionDetails" columns.bind="_columns"></du-details-list>
+        </du-marquee-selection>
+      </div>
+    </examplecard>
+
+  </div>
+</template>

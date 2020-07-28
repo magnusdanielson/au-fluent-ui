@@ -1,0 +1,89 @@
+<template>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">DatePicker</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+        <examplecard title="Default DatePicker">
+                <div slot="code">
+                  <hljs language="html" linenumbers="true">
+  &lt;du-date-picker on-select-date.bind=&quot;selected&quot; value.bind=&quot;mydate&quot; placeholder=&quot;Select a date&quot; show-week-numbers=&quot;true&quot; &gt;&lt;/du-date-picker&gt;
+  !${'${mydate}'}!
+  &lt;/div&gt;
+                  </hljs>
+                  <hljs language="javascript" linenumbers="true">
+  mydate:any;
+
+  selected(date: Date | null | undefined)
+  {
+    this.mydate =date;
+  }
+                  </hljs>
+                </div>
+                <div slot="example">
+                    <du-date-picker on-select-date.bind="selected" value.bind="mydate" placeholder="Select a date" show-week-numbers="true" ></du-date-picker>
+                    !${mydate}!
+                  </div>
+              </examplecard>
+
+              <examplecard title="No month picker in DatePicker">
+                  <div slot="code">
+                    <hljs language="html" linenumbers="true">
+  &#x3C;du-date-picker  is-month-picker-visible.one-time=&#x22;false&#x22; &#x3E;&#x3C;/du-date-picker&#x3E;
+                    </hljs>
+                  </div>
+                  <div slot="example">
+                      <du-date-picker  is-month-picker-visible.one-time="false" ></du-date-picker>
+                  </div>
+                </examplecard>
+
+                <examplecard title="Required DatePicker">
+                    <div slot="code">
+                      <hljs language="html" linenumbers="true">
+  &#x3C;du-date-picker  is-month-picker-visible.one-time=&#x22;false&#x22; &#x3E;&#x3C;/du-date-picker&#x3E;
+                      </hljs>
+                    </div>
+                    <div slot="example">
+                        <du-date-picker  is-required.one-time="true" ></du-date-picker>
+                    </div>
+                  </examplecard>
+
+                  <examplecard title="DatePicker allows dates to be formatted">
+                      <div slot="code">
+                        <hljs language="html" linenumbers="true">
+  &#x3C;du-date-picker  format-date.bind=&#x22;onFormatDate&#x22;&#x3E;&#x3C;/du-date-picker&#x3E;
+                        </hljs>
+                        <hljs language="javascript" linenumbers="true">
+  onFormatDate = (date: Date): string => {
+    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + (date.getFullYear() % 100);
+  };
+                                                                        </hljs>
+                      </div>
+                      <div slot="example">
+                          <du-date-picker  format-date.bind="onFormatDate"></du-date-picker>
+                      </div>
+                    </examplecard>
+
+                    <examplecard title="DatePicker with date boundary (minDate, maxDate)">
+                        <div slot="code">
+                          <hljs language="html" linenumbers="true">
+  &#x3C;du-date-picker  min-date.bind=&#x22;minDate&#x22; max-date.bind=&#x22;maxDate&#x22;&#x3E;&#x3C;/du-date-picker&#x3E;
+                          </hljs>
+                          <hljs language="javascript" linenumbers="true">
+    import { addMonths, addYears } from 'office-ui-fabric-react/lib/utilities/dateMath/DateMath';
+    minDate: Date = addMonths(this.today, -1);
+    maxDate: Date = addYears(this.today, 1);
+                                                </hljs>
+                        </div>
+                        <div slot="example">
+                            <du-date-picker  min-date.bind="minDate" max-date.bind="maxDate"></du-date-picker>
+                        </div>
+                      </examplecard>
+  </div>
+</template>

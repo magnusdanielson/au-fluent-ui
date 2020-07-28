@@ -1,0 +1,57 @@
+<template>
+    <div
+      class="content"
+      style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+      <h1 class="pageTitle">TeachingBubble</h1>
+      <div
+        role="presentation"
+        class="ms-FocusZone"
+        
+      ></div>
+    </div>
+    <div class="PageSection">
+      
+        
+          <examplecard title="Default TeachingBubble">
+            <div slot="code">
+              <hljs language="html" linenumbers="true">
+  &#x3C;du-teaching-bubble 
+  primary-button-props.one-time=&#x22;{
+    children: &#x27;Try it out&#x27;
+  }&#x22;
+  secondary-button-props.one-time=&#x22;{
+    children: &#x27;Maybe later&#x27;,
+    onClick: this._onDismiss
+  }&#x22;
+  on-dismiss.bind=&#x22;onDismiss&#x22;
+  headline=&#x22;Discover what&#x2019;s trending around you&#x22;
+  target-element.bind=&#x22;mybutton&#x22; hidden.bind=&#x22;bubble1&#x22; &#x3E;&#x3C;/du-teaching-bubble&#x3E;
+  &#x3C;du-default-button click.delegate=&#x22;showBubble()&#x22; ref=&#x22;mybutton&#x22; text=&#x22;Show&#x22; &#x3E;&#x3C;/du-default-button&#x3E;
+              </hljs>
+              <hljs language="javascript" linenumbers="true">
+  bubble1: boolean = true;
+
+  showBubble()
+  {
+    this.bubble1 = ! this.bubble1;
+  }   
+            </hljs>
+            </div>
+            <div slot="example">
+                <du-teaching-bubble 
+                primary-button-props.one-time="{
+                  children: 'Try it out'
+                }"
+                secondary-button-props.one-time="{
+                  children: 'Maybe later',
+                  onClick: this._onDismiss
+                }"
+                on-dismiss.bind="onDismiss"
+                headline="Discover what’s trending around you"
+                target-element.bind="mybutton" hidden.bind="bubble1" ></du-teaching-bubble>
+                <du-default-button click.delegate="showBubble()" ref="mybutton" text="Show" ></du-default-button>
+            </div>
+          </examplecard>
+    </div>
+  </template>
+  

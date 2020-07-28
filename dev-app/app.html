@@ -1,0 +1,23 @@
+<template>
+    <require from="./page.css"></require>
+  <div class="ms-Fabric">
+      <div class="ms-Grid" dir="ltr">
+          <div class="ms-Grid-row">
+              <div class="ms-Grid-col ms-sm12">
+                    <du-icon-button
+                    icon-props.one-time="{ iconName: 'CollapseMenu' }"
+                    title="Menu" on-click.bind="toggleMenu"></du-icon-button>
+              </div>
+          </div>
+          <div class="ms-Grid-row">
+            <div class="ms-Grid-col ms-sm12 ms-lg3" show.bind="showBurgerMenu" >
+                    
+                <du-nav show.bind="showBurgerMenu" selected-key.to-view="router.currentInstruction.config.name" groups.bind="groups"></du-nav>
+            </div>
+            <div class="ms-Grid-col ${showBurgerMenu ? 'ms-sm12 ms-lg9' : 'ms-sm12'} ">
+                <router-view></router-view>
+            </div>
+          </div>
+        </div>
+</div>
+</template>
