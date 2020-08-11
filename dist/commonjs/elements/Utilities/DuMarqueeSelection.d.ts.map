@@ -1,0 +1,1 @@
+{"version":3,"sources":["elements/Utilities/DuMarqueeSelection.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,mBAAmB,EAAsB,MAAM,0BAA0B,CAAC;AAOnF,qBAEa,kBAAoB,SAAQ,mBAAmB;gBAE9C,OAAO,KAAA;IAMnB,MAAM,EAAE,OAAO,CAAC;IAEhB,QAAQ;CAIT","file":"DuMarqueeSelection.d.ts","sourceRoot":"../../../../src/"}

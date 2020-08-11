@@ -1,0 +1,1 @@
+{"version":3,"sources":["elements/Surfaces/DuDocumentCardLocation.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,mBAAmB,EAAwC,MAAM,0BAA0B,CAAC;AAarG,qBAEa,sBAAuB,SAAS,mBAAmB;gBAElD,OAAO,KAAA;IAMnB,MAAM,EAAE,OAAO,CAAS;IAExB,QAAQ;CAGT","file":"DuDocumentCardLocation.d.ts","sourceRoot":"../../../../src/"}

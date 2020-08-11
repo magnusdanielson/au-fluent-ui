@@ -1,0 +1,1 @@
+{"version":3,"sources":["elements/Surfaces/DuDocumentCardTitle.ts"],"names":[],"mappings":"AACA,OAAO,EAAqB,uBAAuB,EAAE,MAAM,kCAAkC,CAAC;AAC9F,OAAO,EAAE,mBAAmB,EAAsB,MAAM,0BAA0B,CAAC;AAYnF,qBAEa,mBAAoB,SAAS,mBAAoB,YAAW,uBAAuB;gBAElF,OAAO,KAAA;IAMnB,MAAM,EAAE,OAAO,CAAS;IACxB,KAAK,EAAE,MAAM,CAAC;IAEd,QAAQ;CAGT","file":"DuDocumentCardTitle.d.ts","sourceRoot":"../../../../src/"}

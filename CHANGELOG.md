@@ -16,6 +16,6 @@
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 <!--------------------------------[ v0.1.0 ]------------------------------- -->
-## [v0.1.0](https://github.com/magnusdanielson/au-fluent-ui/tree/v0.1.0) (2020-08-11)
+## [v0.1.0](https://github.com/magnusdanielson/au-fluent-ui/releases/tag/v0.1.0) (2020-08-11)
 
 Initial release

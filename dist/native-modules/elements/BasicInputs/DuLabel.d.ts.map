@@ -1,0 +1,1 @@
+{"version":3,"sources":["elements/BasicInputs/DuLabel.ts"],"names":[],"mappings":"AACA,OAAO,EAAS,WAAW,EAAE,MAAM,2BAA2B,CAAC;AAC/D,OAAO,EAAE,mBAAmB,EAAsB,MAAM,0BAA0B,CAAC;AASnF,qBAEa,OAAQ,SAAS,mBAAoB,YAAW,WAAW;gBAE1D,OAAO,KAAA;IAMnB,MAAM,EAAE,OAAO,CAAS;IAExB,QAAQ;CAGT","file":"DuLabel.d.ts","sourceRoot":"../../../../src/"}
