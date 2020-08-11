@@ -36,3 +36,6 @@ Then just use it as below
 ```
 <du-default-button checked="true" text.bind="mytextbutton"  primary class-name="lisa"  on-click.bind="buttonclick"  ></du-default-button>
 ```
+
+## Demo site
+[Examples of most controls in action.](https://magnusdanielson.github.io/au-fluent-ui/)
