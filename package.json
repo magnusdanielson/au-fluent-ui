@@ -1,8 +1,20 @@
 {
   "name": "au-fluent-ui",
   "description": "An Aurelia plugin project that wraps Microsoft Fluent UI React components.",
-  "keywords": ["aurelia","react","fluent","fluent ui","office","office ui","ui","material design","wrapper","dunite","microsoft"],
-  "version": "0.1.0",
+  "keywords": [
+    "aurelia",
+    "react",
+    "fluent",
+    "fluent ui",
+    "office",
+    "office ui",
+    "ui",
+    "material design",
+    "wrapper",
+    "dunite",
+    "microsoft"
+  ],
+  "version": "0.1.1",
   "author": "Magnus Danielson <magnus@dunite.se>",
   "repository": {
     "type": "git",
