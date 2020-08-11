@@ -1,5 +1,4 @@
-import { ITextFieldProps } from "office-ui-fabric-react/lib/TextField";
-
+import { ITextFieldProps } from "@fluentui/react/lib/TextField"
 
 export class textfield
 {

@@ -1,8 +1,10 @@
-import { SelectableOptionMenuItemType } from 'office-ui-fabric-react/lib/utilities/selectableOption/SelectableOption.types'
-import { IComboBoxOption } from 'office-ui-fabric-react/lib/components/ComboBox/ComboBox.types';
+import { IComboBoxOption, SelectableOptionMenuItemType } from '@fluentui/react/lib/ComboBox';
+import { DuComboBox } from 'elements/BasicInputs/DuComboBox';
 
 export class combobox
 {
+
+  private mycombo:DuComboBox;
 
     private testOptions = [
       { key: 'Header', text: 'Theme Fonts', itemType: SelectableOptionMenuItemType.Header },
@@ -20,11 +22,10 @@ export class combobox
       { key: 'J', text: 'Option j', disabled: true }
     ];
 
-    public onChange(event: any, option?: IComboBoxOption, index?: number, value?: string){
+    public onChange = (event: any, option?: IComboBoxOption, index?: number)=>{
       console.log(event);
       console.log(option);
       console.log(index);
-      console.log(value);
     };
 
 
@@ -44,4 +45,5 @@ export class combobox
     {
       console.log("dismissed log");
     }    
+
 }

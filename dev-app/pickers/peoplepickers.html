@@ -12,32 +12,7 @@
   </div>
   <div class="PageSection">
       <examplecard title="Controlled Processed List People Picker">
-          <div slot="code">
-            <hljs language="html" linenumbers="true">
-  &lt;du-list-people-picker
-  on-change.bind=&quot;onChangeList&quot;
-  items.bind=&quot;selectedItemsList&quot;
-  on-item-selected.bind=&quot;onItemSelected&quot;
-  on-resolve-suggestions.bind=&quot;_onFilterChanged&quot;
-  get-text-from-item.bind=&quot;_getTextFromItem&quot;
-  input-props.bind=&quot;inputProps&quot; 
-  on-empty-input-focus.bind=&quot;_returnMostRecentlyUsed&quot;
-  class-name=&quot;ms-PeoplePicker&quot;
-  picker-suggestions-props.bind=&quot;suggestionProps&quot;
-  key=&quot;list&quot;
-  on-remove-suggestion.bind=&quot;_onRemoveSuggestion&quot;
-  on-validate-input.bind=&quot;_validateInput&quot;
-  resolve-delay.one-time=&quot;300&quot;   
-  &gt;&lt;/du-list-people-picker&gt;
-  &lt;du-label&gt;Below list is bound to aurelia property on view model&lt;/du-label&gt;
-  &lt;ul&gt;
-    &lt;li style=&quot;list-style-type: none;&quot; repeat.for=&quot;item of selectedItemsList&quot;&gt;${item.text}&lt;/li&gt;
-  &lt;/ul&gt;
-            </hljs>
-            <hljs language="javascript" linenumbers="true" include="https://raw.githubusercontent.com/magnusdanielson/demo-office-ui/master/src/pickers/peoplepickers.ts">
-  
-            </hljs>
-          </div>
+        
           <div slot="example">
             <du-list-people-picker
             on-change.bind="onChangeList"
@@ -63,30 +38,7 @@
 
 
     <examplecard title="Controlled Processed Compact People Picker, with preselect">
-      <div slot="code">
-        <hljs language="html" linenumbers="true">
-  &lt;du-compact-people-picker
-  on-change.bind=&quot;onChangeCompact&quot;
-  items.bind=&quot;selectedItemsCompact&quot;
-  default-selected-items.one-time=&quot;state.peopleList.splice(0, 3)&quot;
-  on-item-selected.bind=&quot;onItemSelected&quot;
-  on-resolve-suggestions.bind=&quot;_onFilterChanged&quot;
-  get-text-from-item.bind=&quot;_getTextFromItem&quot;
-  input-props.bind=&quot;inputProps&quot; 
-  on-empty-input-focus.bind=&quot;_returnMostRecentlyUsed&quot;
-  class-name=&quot;ms-PeoplePicker&quot;
-  picker-suggestions-props.bind=&quot;suggestionProps&quot;
-  key=&quot;compact&quot;
-  on-remove-suggestion.bind=&quot;_onRemoveSuggestion&quot;
-  on-validate-input.bind=&quot;_validateInput&quot;
-  resolve-delay.one-time=&quot;300&quot;   
-  &gt;&lt;/du-compact-people-picker&gt;
-  &lt;du-label&gt;Below list is bound to aurelia property on view model&lt;/du-label&gt;
-  &lt;ul&gt;
-    &lt;li style=&quot;list-style-type: none;&quot; repeat.for=&quot;item of selectedItemsCompact&quot;&gt;${item.text}&lt;/li&gt;
-  &lt;/ul&gt;
-        </hljs>
-      </div>
+    
       <div slot="example">
         <du-compact-people-picker
         on-change.bind="onChangeCompact"
@@ -114,29 +66,7 @@
 
 
 <examplecard title="Controlled Processed Normal People Picker">
-  <div slot="code">
-    <hljs language="html" linenumbers="true">
-  &lt;du-normal-people-picker
-  on-change.bind=&quot;onChangeNormal&quot;
-  items.bind=&quot;selectedItemsNormal&quot;
-  on-item-selected.bind=&quot;onItemSelected&quot;
-  on-resolve-suggestions.bind=&quot;_onFilterChanged&quot;
-  get-text-from-item.bind=&quot;_getTextFromItem&quot;
-  input-props.bind=&quot;inputProps&quot; 
-  on-empty-input-focus.bind=&quot;_returnMostRecentlyUsed&quot;
-  class-name=&quot;ms-PeoplePicker&quot;
-  picker-suggestions-props.bind=&quot;suggestionProps&quot;
-  key=&quot;normal&quot;
-  on-remove-suggestion.bind=&quot;_onRemoveSuggestion&quot;
-  on-validate-input.bind=&quot;_validateInput&quot;
-  resolve-delay.one-time=&quot;300&quot;
-  &gt;&lt;/du-normal-people-picker&gt;
-  &lt;du-label&gt;Below list is bound to aurelia property on view model&lt;/du-label&gt;
-  &lt;ul&gt;
-    &lt;li style=&quot;list-style-type: none;&quot; repeat.for=&quot;item of selectedItemsNormal&quot;&gt;${item.text}&lt;/li&gt;
-  &lt;/ul&gt;
-    </hljs>
-  </div>
+
   <div slot="example">
     <du-normal-people-picker
     on-change.bind="onChangeNormal"
@@ -161,30 +91,7 @@
 </examplecard>
 
 <examplecard title="Controlled Processed Limited to 3 Compact People Picker">
-  <div slot="code">
-    <hljs language="html" linenumbers="true">
-  &lt;du-compact-people-picker
-  on-change.bind=&quot;onChangeLimited&quot;
-  items.bind=&quot;selectedItemsLimited&quot;
-  on-item-selected.bind=&quot;onItemSelected&quot;
-  on-resolve-suggestions.bind=&quot;_onFilterChangedWithLimit&quot;
-  get-text-from-item.bind=&quot;_getTextFromItem&quot;
-  input-props.bind=&quot;inputProps&quot; 
-  on-empty-input-focus.bind=&quot;_returnMostRecentlyUsedWithLimit&quot;
-  class-name=&quot;ms-PeoplePicker&quot;
-  picker-suggestions-props.bind=&quot;limitedSearchSuggestionProps&quot;
-  key=&quot;compact&quot;
-  on-remove-suggestion.bind=&quot;_onRemoveSuggestion&quot;
-  on-validate-input.bind=&quot;_validateInput&quot;
-  resolve-delay.one-time=&quot;300&quot;   
-  on-get-more-results.bind=&quot;_onFilterChanged&quot;
-  &gt;&lt;/du-compact-people-picker&gt;
-  &lt;du-label&gt;Below list is bound to aurelia property on view model&lt;/du-label&gt;
-  &lt;ul&gt;
-    &lt;li style=&quot;list-style-type: none;&quot; repeat.for=&quot;item of selectedItemsLimited&quot;&gt;${item.text}&lt;/li&gt;
-  &lt;/ul&gt;
-    </hljs>
-  </div>
+ 
   <div slot="example">
     <du-compact-people-picker
     on-change.bind="onChangeLimited"

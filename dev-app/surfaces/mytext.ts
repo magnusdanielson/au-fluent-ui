@@ -1,5 +1,5 @@
 import { customElement, inject } from 'aurelia-framework';
-import { TextField, ITextFieldProps, ITextField } from 'office-ui-fabric-react/lib/TextField';
+import { TextField, ITextFieldProps, ITextField } from '@fluentui/react/lib/TextField';
 import { addProperties, onlyAureliaBound } from './myutils';
 import { mybasenochild } from './mybasenochild';
 

@@ -13,30 +13,6 @@
         
 
               <examplecard title="Dropdown">
-                    <div slot="code">
-                      <hljs language="html" linenumbers="true">
-  &lt;du-dropdown placeholder=&quot;Select an Option&quot; label=&quot;Basic uncontrolled example&quot; id=&quot;Basicdrop1&quot; 
-  options.one-time=&quot;simpleOptions&quot;&gt;&lt;/du-dropdown&gt; 
-                      </hljs>
-                      <hljs language="javascript" linenumbers="true">
-  public simpleOptions:any =
-  [
-    { key: &#39;Header&#39;, text: &#39;Actions&#39;, itemType: DropdownMenuItemType.Header },
-    { key: &#39;A&#39;, text: &#39;Option a&#39;, title: &#39;I am option a.&#39; },
-    { key: &#39;B&#39;, text: &#39;Option b&#39; },
-    { key: &#39;C&#39;, text: &#39;Option c&#39;, disabled: true },
-    { key: &#39;D&#39;, text: &#39;Option d&#39; },
-    { key: &#39;E&#39;, text: &#39;Option e&#39; },
-    { key: &#39;divider_2&#39;, text: &#39;-&#39;, itemType: DropdownMenuItemType.Divider },
-    { key: &#39;Header2&#39;, text: &#39;People&#39;, itemType: DropdownMenuItemType.Header },
-    { key: &#39;F&#39;, text: &#39;Option f&#39; },
-    { key: &#39;G&#39;, text: &#39;Option g&#39; },
-    { key: &#39;H&#39;, text: &#39;Option h&#39; },
-    { key: &#39;I&#39;, text: &#39;Option i&#39; },
-    { key: &#39;J&#39;, text: &#39;Option j&#39; }
-  ];
-                      </hljs>
-                    </div>
                     <div slot="example">
                       
                       <du-dropdown placeholder="Select an Option" label="Basic uncontrolled example" id="Basicdrop1" 
@@ -48,21 +24,6 @@
 
 
                   <examplecard title="Dropdown, disabled, default selected">
-                      <div slot="code">
-                        <hljs language="html" linenumbers="true">
-  &lt;du-dropdown placeholder=&quot;Select an Option&quot; 
-  default-selected-key=&quot;D&quot;
-  label=&quot;Disabled uncontrolled example with defaultSelectedKey:&quot; id=&quot;dropDefaultKey&quot; 
-  options.one-time=&quot;[
-  { key: &#39;Header&#39;, text: &#39;Actions&#39;, itemType: DropdownMenuItemType.Header },
-  { key: &#39;A&#39;, text: &#39;Option a&#39;, title: &#39;I am option a.&#39; },
-  { key: &#39;B&#39;, text: &#39;Option b&#39; },
-  { key: &#39;C&#39;, text: &#39;Option c&#39;, disabled: true },
-  { key: &#39;D&#39;, text: &#39;Option d&#39; },
-  { key: &#39;E&#39;, text: &#39;Option e&#39; }
-]&quot; disabled.one-time=&quot;true&quot;&gt;
-                        </hljs>
-                      </div>
                       <div slot="example">
                         
                         <du-dropdown placeholder="Select an Option" 
@@ -82,29 +43,6 @@
 
           
                     <examplecard title="Multi-Select uncontrolled example, required">
-                        <div slot="code">
-                          <hljs language="html" linenumbers="true">
-  &lt;du-dropdown placeholder=&quot;Select options&quot;
-  label=&quot;Multi-Select uncontrolled example:&quot;
-  default-selected-keys.one-time=&quot;[&#39;Apple&#39;, &#39;Banana&#39;, &#39;Orange&#39;]&quot;
-  multi-select.one-time=&quot;true&quot;
-  options.bind=&quot;fruits&quot; required.one-time=&quot;true&quot;&gt;&lt;/du-dropdown&gt; 
-                          </hljs>
-                          <hljs language="javascript" linenumbers="true">
-    public fruits:any = [
-    { key: &#39;Header2&#39;, text: &#39;Fruits&#39;, itemType: DropdownMenuItemType.Header },
-    { key: &#39;Apple&#39;, text: &#39;apple&#39; },
-    { key: &#39;Banana&#39;, text: &#39;banana&#39; },
-    { key: &#39;Orange&#39;, text: &#39;orange&#39;, disabled: true },
-    { key: &#39;Grape&#39;, text: &#39;grape&#39;, disabled: true },
-    { key: &#39;divider_1&#39;, text: &#39;-&#39;, itemType: DropdownMenuItemType.Divider },
-    { key: &#39;Header3&#39;, text: &#39;Lanuages&#39;, itemType: DropdownMenuItemType.Header },
-    { key: &#39;English&#39;, text: &#39;english&#39; },
-    { key: &#39;French&#39;, text: &#39;french&#39; },
-    { key: &#39;Germany&#39;, text: &#39;germany&#39; }
-  ];
-                          </hljs>
-                        </div>
                         <div slot="example">
                           
                           <du-dropdown placeholder="Select options"
@@ -116,45 +54,6 @@
 
 
                       <examplecard title="Dropdown, controlled no-banana, with error message">
-                          <div slot="code">
-                            <hljs language="html" linenumbers="true">
-  &lt;du-dropdown placeholder=&quot;Select an Option&quot; 
-  selected-key.bind=&quot;selectedItem&quot;
-  label=&quot;Dropdown, controlled no-banana, with error message for anything but English&quot; 
-  id=&quot;dropDefaultKey&quot; 
-  options.one-time=&quot;fruits&quot; 
-  on-change.bind=&quot;onChange&quot;
-  on-blur.bind=&quot;onBlur&quot;
-  on-focus.bind=&quot;onFocus&quot;
-  error-message=&quot;An error&quot;
-  &gt;&lt;/du-dropdown&gt;
-                            </hljs>
-                            <hljs language="javascript" linenumbers="true">
-  public onChange(event: any, option?: IDropdownOption, index?: number):void
-  {
-    console.log("The option has been changed to Object:");
-    console.log(option);
-    console.log(index);
-    if(option.key != 'English')
-    {
-      this.errorMessage = "An error";
-    }
-    else
-    {
-      this.errorMessage = "";
-    }
-    if(option.key != 'Banana')
-    {
-      this.selectedItem = <string> option.key;
-    }
-    else
-    {
-      this.selectedItem = "undefined"; // Yes, a string
-    }
-
-  }
-                              </hljs>
-                          </div>
                           <div slot="example">
                             
                             <du-dropdown placeholder="Select an Option" 
@@ -165,9 +64,8 @@
                             on-change.bind="onChange"
                             on-blur.bind="onBlur"
                             on-focus.bind="onFocus"
-                            error-message="errorMessage"
+                            error-message.bind="errorMessage"
                             ></du-dropdown>
-                              
                           </div>
                         </examplecard>
   </div>

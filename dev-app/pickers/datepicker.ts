@@ -1,5 +1,5 @@
-import { addMonths, addYears } from 'office-ui-fabric-react/lib/utilities/dateMath/DateMath';
-import { IDatePickerProps  } from 'office-ui-fabric-react/lib/DatePicker';
+import { addMonths, addYears } from '@fluentui/date-time-utilities';
+import { IDatePickerProps  } from '@fluentui/react/lib/DatePicker';
 
 
 export class datepicker

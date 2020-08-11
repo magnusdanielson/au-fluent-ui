@@ -1,9 +1,7 @@
-import {LogManager} from "aurelia-framework";
+import {PLATFORM, LogManager} from "aurelia-framework";
 import { Logger } from "aurelia-logging";
 import {Router, RouterConfiguration} from 'aurelia-router';
-import { PLATFORM } from "aurelia-framework";
-import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
-import {IAuReactWrapper} from '@dunite/au-react-wrapper'
+import { initializeIcons } from "@fluentui/react/lib/Icons";
 
 initializeIcons(/* optional base url */);
 

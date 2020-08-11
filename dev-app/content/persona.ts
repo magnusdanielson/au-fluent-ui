@@ -1,4 +1,4 @@
-import { PersonaSize, PersonaPresence } from "office-ui-fabric-react/lib/Persona";
+import { PersonaSize, PersonaPresence } from "@fluentui/react/lib/Persona";
 import { TestImages } from "../testimages";
 
 export class persona

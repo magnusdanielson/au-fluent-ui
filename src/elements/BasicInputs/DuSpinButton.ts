@@ -2,6 +2,14 @@ import { customElement, inject } from 'aurelia-framework';
 import { SpinButton, ISpinButton, ISpinButtonProps } from '@fluentui/react/lib/SpinButton';
 import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
+// Should be imported from @fluentui/react/utilities/positioning
+export enum Position {
+  top = 0,
+  bottom = 1,
+  start = 2,
+  end = 3,
+}
+
 let reactprops: ISpinButtonProps & ISpinButton = {} as ISpinButton & ISpinButtonProps;
 reactprops.focus = onlyAureliaBound;
 reactprops.disabled = <any>{};

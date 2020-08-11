@@ -1,4 +1,4 @@
-import { ISliderProps } from 'office-ui-fabric-react/lib/Slider';
+import { ISliderProps } from '@fluentui/react/lib/Slider';
 
 export class slider
 {

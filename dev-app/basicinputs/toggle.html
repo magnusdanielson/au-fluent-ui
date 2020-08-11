@@ -17,23 +17,6 @@
   <div class="PageSection">
         
               <examplecard title="Implementation examples">
-                    <div slot="code">
-                      <hljs language="html" linenumbers="true">
-  checked:${'${checked}'}'
-  &lt;du-toggle off-text=&quot;MyOffText&quot;   on-text=&quot;MyOnText&quot; checked.bind=&quot;checked&quot;&gt;&lt;/du-toggle&gt;
-  &lt;du-toggle disabled=&quot;true&quot; off-text=&quot;MyOffText&quot;   on-text=&quot;MyOnText&quot;&gt;&lt;/du-toggle&gt;
-                      </hljs>
-                      <hljs language="typescript" linenumbers="true">
-  public checked:boolean = false;
-
-  onChange(event: any, checked?: boolean)
-  {
-      console.log("onChange");
-      console.log(checked); 
-      this.checked = checked; 
-  };
-                      </hljs>
-                    </div>
                     <div slot="example">
                         checked:${checked}
                         <du-toggle off-text="MyOffText"   on-text="MyOnText" checked.bind="checked"></du-toggle>

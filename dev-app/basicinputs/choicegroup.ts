@@ -1,5 +1,4 @@
-import { IChoiceGroupOption } from "office-ui-fabric-react/lib/components/ChoiceGroup/ChoiceGroup.types";
-
+import { IChoiceGroupOption } from "@fluentui/react/lib/ChoiceGroup"
 export class choicegroup
 {
   myvalue:any;

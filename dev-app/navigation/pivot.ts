@@ -1,4 +1,4 @@
-import { PivotLinkSize, PivotLinkFormat, PivotItem } from 'office-ui-fabric-react/lib/Pivot'
+import { PivotLinkSize, PivotLinkFormat, PivotItem } from '@fluentui/react/lib/Pivot'
 
 export class pivot
 {

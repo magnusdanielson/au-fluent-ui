@@ -1,5 +1,5 @@
-import { ITeachingBubbleProps } from 'office-ui-fabric-react/lib/TeachingBubble';
-import { DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
+import { ITeachingBubbleProps } from '@fluentui/react/lib/TeachingBubble';
+import { DirectionalHint } from '@fluentui/react/lib/Callout';
 
 export class coachmark
 {

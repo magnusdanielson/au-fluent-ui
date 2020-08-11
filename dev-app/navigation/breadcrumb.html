@@ -16,101 +16,24 @@
   </div>
   <div class="PageSection">
         <examplecard title="Default Breadcrumb with no maxDisplayedItems">
-          <div slot="code">
-            <hljs language="html" linenumbers="true">
-  &#x3C;du-breadcrumb items.one-time=&#x22;items&#x22;&#x3E;&#x3C;/du-breadcrumb&#x3E; 
-            </hljs>
-            <hljs language="javascript" linenumbers="true">
-    items = [
-    { text: 'Files', key: 'Files',  onClick: this.onBreadcrumbItemClicked },
-    { text: 'This is folder 1', key: 'f1', onClick: this.onBreadcrumbItemClicked },
-    { text: 'This is folder 2', key: 'f2', onClick: this.onBreadcrumbItemClicked },
-    { text: 'This is folder 3', key: 'f3', onClick: this.onBreadcrumbItemClicked },
-    { text: 'This is folder 4', key: 'f4', onClick: this.onBreadcrumbItemClicked },
-    { text: 'This is folder 5', key: 'f5', onClick: this.onBreadcrumbItemClicked, isCurrentItem: true }
-  ];
-
-  //@ts-ignore
-  onBreadcrumbItemClicked(reactEvent:any, item:IBreadcrumbItem)
-  {
-    console.log('Breadcrumb item with key ' + item.key + ' has been clicked.');
-  }
-            </hljs>
-          </div>
           <div slot="example">
               <du-breadcrumb items.one-time="items"></du-breadcrumb>              
           </div>
         </examplecard>
 
         <examplecard title="Default Breadcrumb with max items and href">
-            <div slot="code">
-              <hljs language="html" linenumbers="true">
-  &#x3C;du-breadcrumb items.one-time=&#x22;items2&#x22; max-displayed-items=&#x22;3&#x22;&#x3E;&#x3C;/du-breadcrumb&#x3E;
-              </hljs>
-              <hljs language="javascript" linenumbers="true">
-  items2 = [
-  { text: 'Files', key: 'Files', href: '#/examples/breadcrumb', onClick: this.onBreadcrumbItemClicked },
-  {
-    text: 'This is link 1',
-    key: 'l1',
-    href: '#/examples/breadcrumb',
-    onClick: this.onBreadcrumbItemClicked
-  },
-  {
-    text: 'This is link 2',
-    key: 'l2',
-    href: '#/examples/breadcrumb',
-    onClick: this.onBreadcrumbItemClicked
-  },
-  {
-    text: 'This is link 3 with a long name',
-    key: 'l3',
-    href: '#/examples/breadcrumb',
-    onClick: this.onBreadcrumbItemClicked
-  },
-  {
-    text: 'This is link 4',
-    key: 'l4',
-    href: '#/examples/breadcrumb',
-    onClick: this.onBreadcrumbItemClicked
-  },
-  {
-    text: 'This is link 5',
-    key: 'l5',
-    href: '#/examples/breadcrumb',
-    onClick: this.onBreadcrumbItemClicked,
-    isCurrentItem: true
-  }
-]
-                </hljs>
-            </div>
             <div slot="example">
                 <du-breadcrumb items.one-time="items2" max-displayed-items="3"></du-breadcrumb>
             </div>
           </examplecard>
 
           <examplecard title="Default Breadcrumb with max items 2 and overflow index 1">
-              <div slot="code">
-                <hljs language="html" linenumbers="true">
-  &#x3C;du-breadcrumb items.one-time=&#x22;items&#x22; overflow-index=&#x22;1&#x22; max-displayed-items=&#x22;3&#x22;&#x3E;&#x3C;/du-breadcrumb&#x3E;  
-                </hljs>
-              </div>
               <div slot="example">
                   <du-breadcrumb items.one-time="items" overflow-index="1" max-displayed-items="3"></du-breadcrumb>
               </div>
             </examplecard>
 
             <examplecard title="Breadcrumb with static width">
-                <div slot="code">
-                  <hljs language="html" linenumbers="true">
-  &#x3C;du-breadcrumb items.one-time=&#x22;items&#x22; on-reduce-data.bind=&#x22;returnUndefined&#x22;  max-displayed-items=&#x22;3&#x22;&#x3E;&#x3C;/du-breadcrumb&#x3E;
-                  </hljs>
-                  <hljs language="javascript" linenumbers="true">
-  returnUndefined(): undefined {
-    return undefined;
-  }
-                    </hljs>
-                </div>
                 <div slot="example">
                     <du-breadcrumb items.one-time="items" on-reduce-data.bind="returnUndefined"  max-displayed-items="3"></du-breadcrumb>
                 </div>

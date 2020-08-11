@@ -1,4 +1,4 @@
-import { DialogType,IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
+import { DialogType,IDialogProps } from '@fluentui/react/lib/Dialog';
 
 
 export class dialog

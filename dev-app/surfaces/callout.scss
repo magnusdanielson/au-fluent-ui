@@ -1,11 +1,5 @@
-@import 'office-ui-fabric-react/dist/sass/_References.scss';
-
-.ms-Callout-container
-{
-  z-index: 1;
-}
 .ms-CalloutExample-title {
-  font-size: x-large;
+  font-size: 32px;
 }
 
 .ms-CalloutExample-cmdBarHost {
@@ -24,21 +18,21 @@
 
 .ms-CalloutExample-title {
   margin: 0;
-  @include ms-font-xl;
-  color: $ms-color-neutralPrimary;
-  font-weight: $ms-font-weight-semilight;
+  font-size: 32px;
+  color: black;
+  font-weight:500
 }
 
 .ms-CalloutExample-subText {
   margin: 0;
-  @include ms-font-s;
-  color: $ms-color-neutralPrimary;
-  font-weight: $ms-font-weight-semilight;
+  font-size: 16px;
+  color: black;
+  font-weight: 500;
 }
 
 .ms-CalloutExample-link {
-  @include ms-font-m;
-  color: $ms-color-neutralPrimary;
+  font-size: 24px;
+  color: black;
 }
 
 .ms-CalloutExample-actions {

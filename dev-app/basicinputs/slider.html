@@ -1,47 +1,18 @@
 <template>
-  
-  <require from="./slider.css"></require>
-   
-  
-  
-
-  <div
-    class="content"
-    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+  <div class="content" style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
     <h1 class="pageTitle">Slider</h1>
-    <div
-      role="presentation"
-      class="ms-FocusZone"
-      
-    ></div>
+    <div role="presentation" class="ms-FocusZone"></div>
   </div>
   <div class="PageSection">
-        <examplecard title="Slider">
-                <div slot="code">
-                  <hljs language="html" linenumbers="true">
-  &lt;du-slider label=&quot;Basic example:&quot; max=&quot;100&quot; step.one-time=&quot;5&quot; value.bind=&quot;sliderValue&quot; show-value.one-time=&quot;true&quot; on-change.bind=&quot;onchange&quot; &gt;&lt;/du-slider&gt;
-  sliderValue:${sliderValue}
-  &lt;du-slider label=&quot;Min max example:&quot; min.bind=&quot;-10&quot; max=&quot;50&quot; step.one-time=&quot;1&quot;, default-value=&quot;2&quot; show-value.one-time=&quot;true&quot; &gt;&lt;/du-slider&gt;
-  &lt;du-slider label=&quot;Disabled example:&quot; min.bind=&quot;50&quot; max=&quot;500&quot; step.one-time=&quot;50&quot;, default-value=&quot;300&quot; show-value.one-time=&quot;true&quot; disabled.one-time=&quot;true&quot;&gt;&lt;/du-slider&gt;
-</hljs>
-<hljs language="javascript" linenumbers="true">
-  public min = -5;
-
-  sliderValue = 25;
-  public onchange( value:any)
-  {
-      this.sliderValue = value;
-  }
-</hljs>
-                </div>
-                <div slot="example">
-                  <du-slider label="Basic example:" max="100" step.one-time="5" value.bind="sliderValue" show-value.one-time="true" on-change.bind="onchange" ></du-slider>
-                  sliderValue:${sliderValue}
-                  <du-slider label="Min max example:" min.bind="-10" max="50" step.one-time="1", default-value="2" show-value.one-time="true" ></du-slider>
-                  <du-slider label="Disabled example:" min.bind="50" max="500" step.one-time="50", default-value="300" show-value.one-time="true" disabled.one-time="true"></du-slider>
-              </examplecard>
-
-
-
+    <examplecard title="Slider">
+      <div slot="example">
+        <du-slider label="Basic example:" max="100" step.one-time="5" value.bind="sliderValue"
+          show-value.one-time="true" on-change.bind="onchange"></du-slider>
+        sliderValue:${sliderValue}
+        <du-slider label="Min max example:" min.bind="-10" max="50" step.one-time="1" , default-value="2"
+          show-value.one-time="true"></du-slider>
+        <du-slider label="Disabled example:" min.bind="50" max="500" step.one-time="50" , default-value="300"
+          show-value.one-time="true" disabled.one-time="true"></du-slider>
+    </examplecard>
   </div>
 </template>

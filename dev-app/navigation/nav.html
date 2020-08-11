@@ -16,48 +16,6 @@
   </div>
   <div class="PageSection">
         <examplecard title="Default Nav">
-                <div slot="code">
-                  <hljs language="html" linenumbers="true">
-  &#x3C;du-nav groups.bind=&#x22;navgroups&#x22; on-link-click.bind=&#x22;onLinkClick&#x22; 
-  expanded-state-text=&#x27;expanded&#x27; collapsed-state-text=&#x27;collapsed&#x27; selected-key=&#x27;key3&#x27;&#x3E;&#x3C;/du-nav&#x3E;
-                  </hljs>
-                  <hljs language="javascript" linenumbers="true">
-    onLinkClick = (reactEvent:any,item:INavLink) => {
-      console.log('Clicked on ' + item.name + ' with key ' + item.key);
-    };
-
-    navgroups = [
-      {
-        links: [
-          {
-            name: 'Home',
-            links: [
-              {
-                name: 'Activity',
-                key: 'key1'
-              },
-              {
-                name: 'MSN',
-                key: 'key2'
-              }
-            ],
-            isExpanded: true
-          },
-          { name: 'Documents', url: 'http://example.com', key: 'key3', isExpanded: true },
-          { name: 'Pages', url: 'http://msn.com', key: 'key4' },
-          { name: 'Notebook', url: 'http://msn.com', key: 'key5' },
-          { name: 'Long Name Test for ellipse', url: 'http://msn.com', key: 'key6' },
-          {
-            name: 'News',
-            url: 'http://www.dunite.se',
-            icon: 'News',
-            key: 'key8'
-          }
-        ]
-      }
-    ]
-                  </hljs>
-                </div>
                 <div slot="example">
                     <du-nav groups.bind="navgroups" on-link-click.bind="onLinkClick" 
                     expanded-state-text='expanded' collapsed-state-text='collapsed' selected-key='key3'></du-nav>

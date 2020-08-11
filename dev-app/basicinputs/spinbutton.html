@@ -16,17 +16,6 @@
   </div>
   <div class="PageSection">
         <examplecard title="Basic Spinbutton">
-                <div slot="code">
-                  <hljs language="html" linenumbers="true">
-  &lt;du-spin-button min=&quot;0&quot; max=&quot;100&quot; precision=&quot;0&quot; value.bind=&quot;spinvalue1&quot; step.bind=&quot;1&quot; label=&quot;Basic Spinbutton:&quot; &gt;&lt;/du-spin-button&gt;
-  &lt;du-spin-button min=&quot;0&quot; max=&quot;11&quot; precision=&quot;1&quot; value.bind=&quot;spinvalue2&quot; step.bind=&quot;0.4&quot; label=&quot;Decimal Spinbutton:&quot; icon-props.one-time=&quot;{ iconName: &#39;IncreaseIndentLegacy&#39; }&quot;&gt;&lt;/du-spin-button&gt;
-
-                  </hljs>
-                  <hljs language="javascript" linenumbers="true">
-  public spinvalue1:number = 4;
-  public spinvalue2:number = 4;
-                    </hljs>
-                </div>
                 <div slot="example">
 
                   <du-spin-button min="0" max="100" precision="0" value.bind="spinvalue1" step.bind="1" label="Basic Spinbutton:" ></du-spin-button>
@@ -36,12 +25,6 @@
               </examplecard>
 
               <examplecard title="Disabled Spinbutton">
-                  <div slot="code">
-                    <hljs language="html" linenumbers="true">
-  &lt;du-spin-button disabled.one-time=&quot;true&quot; min=&quot;0&quot; max=&quot;100&quot; precision=&quot;0&quot; step.bind=&quot;1&quot; label=&quot;Disabled Spinbutton:&quot; &gt;&lt;/du-spin-button&gt;                  
-                    </hljs>
-                    
-                  </div>
                   <div slot="example">
                     <du-spin-button disabled.one-time="true" min="0" max="100" precision="0" step.bind="1" label="Disabled Spinbutton:" ></du-spin-button>
                     
@@ -49,14 +32,6 @@
                 </examplecard>
 
                 <examplecard title="Statefull Spinbutton">
-                    <div slot="code">
-                      <hljs language="html" linenumbers="true">
-  &lt;du-spin-button min=&quot;0&quot; max=&quot;100&quot; precision=&quot;0&quot; on-increment.bind=&quot;onIncrement&quot; on-decrement.bind=&quot;onDecrement&quot; on-validate.bind=&quot;onValidate&quot; value.bind=&quot;spinvalue3&quot; step.bind=&quot;1&quot; label=&quot;Custom handler Spinbutton:&quot; &gt;&lt;/du-spin-button&gt;
-
-                      </hljs>
-                      <hljs language="javascript" linenumbers="true" include="https://raw.githubusercontent.com/magnusdanielson/demo-office-ui/master/src/basicinputs/spinbutton.ts">
-                          </hljs>
-                    </div>
                     <div slot="example">
     
                       <du-spin-button min="0" max="100" precision="0" on-increment.bind="onIncrement" on-decrement.bind="onDecrement" on-validate.bind="onValidate" value.bind="spinvalue3" step.bind="1" label="Custom handler Spinbutton:" ></du-spin-button>
@@ -65,15 +40,6 @@
                   </examplecard>
 
                   <examplecard title="Label position Spinbutton">
-                      <div slot="code">
-                        <hljs language="html" linenumbers="true">
-  &lt;du-spin-button min=&quot;0&quot; max=&quot;100&quot; label-position.bind=&quot;labelPosition&quot; precision=&quot;0&quot; on-increment.bind=&quot;onIncrement&quot; icon-props.one-time=&quot;{ iconName: &#39;Light&#39; }&quot; on-decrement.bind=&quot;onDecrement&quot; on-validate.bind=&quot;onValidate&quot; value.bind=&quot;spinvalue3&quot; step.bind=&quot;1&quot; label=&quot;Icon position Spinbutton:&quot; &gt;&lt;/du-spin-button&gt;
-                     
-                        </hljs>
-                        <hljs language="javascript" linenumbers="true">
-  public labelPosition = Position.end;
-                          </hljs>
-                      </div>
                       <div slot="example">
                         <du-spin-button min="0" max="100" label-position.bind="labelPosition" precision="0" on-increment.bind="onIncrement" icon-props.one-time="{ iconName: 'Light' }" on-decrement.bind="onDecrement" on-validate.bind="onValidate" value.bind="spinvalue3" step.bind="1" label="Icon position Spinbutton:" ></du-spin-button>
                       </div>

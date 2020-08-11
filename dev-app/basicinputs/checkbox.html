@@ -16,38 +16,12 @@
   </div>
   <div class="PageSection">
         <examplecard title="Default Checkbox">
-                <div slot="code">
-                  <hljs language="html" linenumbers="true">
-    &#x3C;du-checkbox label=&#x22;Standard checkbox&#x22;&#x3E;&#x3C;/du-checkbox&#x3E;
-                  </hljs>
-                </div>
                 <div slot="example">
                   <du-checkbox label="Standard checkbox"></du-checkbox>
                 </div>
               </examplecard>
 
               <examplecard title="Implementation examples">
-                    <div slot="code">
-                      <hljs language="html" linenumbers="true">
-    &#x3C;du-checkbox label=&#x22;Uncontrolled checkbox&#x22; on-click.bind=&#x22;onCheckboxClick&#x22; on-change.bind=&#x22;onCheckboxChange&#x22;&#x3E;&#x3C;/du-checkbox&#x3E;
-    &#x3C;du-checkbox label=&#x22;Controlled checkbox&#x22; checked.bind=&#x22;checked&#x22; on-change.bind=&#x22;onControlledChange&#x22;&#x3E;&#x3C;/du-checkbox&#x3E;
-    &#x3C;du-checkbox box-side=&#x22;end&#x22; label=&#x22;Box on end&#x22;&#x3E;&#x3C;/du-checkbox&#x3E;
-    &#x3C;du-checkbox disabled=&#x22;true&#x22; label=&#x22;Disabled&#x22;&#x3E;&#x3C;/du-checkbox&#x3E;
-                      </hljs>
-                      <hljs language="typescript" linenumbers="true">
-    public checked:boolean = false;
-
-    onCheckboxChange(event:any, isChecked: boolean)
-    {
-        console.log(`The option has been changed`);
-    }
-
-    onControlledChange(event:any, isChecked: boolean)
-    {
-        this.checked = isChecked;
-    }
-                      </hljs>
-                    </div>
                     <div slot="example">
                       <du-checkbox label="Uncontrolled checkbox" on-change.bind="onCheckboxChange"></du-checkbox>
                       <du-checkbox label="Controlled checkbox" checked.bind="checked" on-change.bind="onControlledChange"></du-checkbox>

@@ -7,7 +7,7 @@ export class search
         console.log(  'searchCommandValue = ' +  searchCommandValue);
     }
 
-    onChange2= (newValue?: string) =>
+    onChange2= (event:any, newValue?: string) =>
     {
         this.searchText = newValue;
     }
@@ -17,7 +17,7 @@ export class search
         console.log("onBlur");
     }
 
-    onChange ( newValue?: string)
+    onChange (event:any, newValue?: string)
     {
         console.log( 'onChange new value = ' + newValue);
     }

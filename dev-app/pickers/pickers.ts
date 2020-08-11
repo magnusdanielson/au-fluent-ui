@@ -1,4 +1,4 @@
-import { ITag } from 'office-ui-fabric-react/lib/Pickers';
+import { ITag } from '@fluentui/react/lib/Pickers';
 
 
 const _testTags: ITag[] = [

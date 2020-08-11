@@ -1,71 +1,27 @@
 <template>
-    
-     
-    
-    
-  
-    <div
-      class="content"
-      style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
-      <h1 class="pageTitle">Dialog</h1>
-      <div
-        role="presentation"
-        class="ms-FocusZone"
-        
-      ></div>
-    </div>
-    <div class="PageSection">
-      
-        
-          <examplecard title="Default Dialog">
-            <div slot="code">
-              <hljs language="html" linenumbers="true">
-  &lt;du-dialog on-dismiss.bind=&quot;dialogprops.onDismiss&quot; modal-props.bind=&quot;dialogprops.modalProps&quot; dialog-content-props.bind=&quot;dialogprops.dialogContentProps&quot; hidden.bind=&quot;hidden&quot;&gt;
-    &lt;du-default-button primary=&quot;true&quot; on-click.bind=&quot;dialogprops.onDismiss&quot; text=&quot;Save&quot; &gt;&lt;/du-default-button&gt;
-  &lt;/du-dialog&gt;
-              </hljs>
-              <hljs language="javascript" linenumbers="true">
-  hidden:boolean = true;
 
-  dialogprops:IDialogProps =
-  {
-    dialogContentProps : {
-      type: DialogType.normal,
-      title: &#39;A Title!&#39;,
-      subText: &#39;Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails.&#39;
-    },
-    modalProps : {
-      titleAriaId: &#39;myLabelId&#39;,
-      subtitleAriaId: &#39;mySubTextId&#39;,
-      isBlocking: false,
-      containerClassName: &#39;ms-dialogMainOverride&#39;,
-      className : &quot;magnus&quot;
-    },
-    onDismiss : ()=&gt;
-    {
-      this.dialogprops.dialogContentProps.title += &quot;!&quot;;
-      this.hidden = true;
 
-    },
-    hidden:this.hidden
-  }
 
-  actionButtonClick(this:IDuReactWrapper)
-  {
-      this.parent.hidden = ! this.parent.hidden;
-  }
-              </hljs>
-            </div>
-            <div slot="example">
-                <du-dialog on-dismiss.bind="dialogprops.onDismiss" modal-props.bind="dialogprops.modalProps" dialog-content-props.bind="dialogprops.dialogContentProps" hidden.bind="hidden">
-                    
-                        <du-default-button primary="true" on-click.bind="dialogprops.onDismiss" text="Save" ></du-default-button>
-                    
-                </du-dialog>
-                <du-default-button text="Show Dialog"
-                  on-click.bind="actionButtonClick"></du-default-button>
-            </div>
-          </examplecard>
-    </div>
-  </template>
-  
+
+
+  <div class="content" style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Dialog</h1>
+    <div role="presentation" class="ms-FocusZone"></div>
+  </div>
+  <div class="PageSection">
+
+
+    <examplecard title="Default Dialog">
+
+      <div slot="example">
+        <du-dialog on-dismiss.bind="dialogprops.onDismiss" modal-props.bind="dialogprops.modalProps"
+          dialog-content-props.bind="dialogprops.dialogContentProps" hidden.bind="hidden">
+
+          <du-default-button primary="true" on-click.bind="dialogprops.onDismiss" text="Save"></du-default-button>
+
+        </du-dialog>
+        <du-default-button text="Show Dialog" on-click.bind="actionButtonClick"></du-default-button>
+      </div>
+    </examplecard>
+  </div>
+</template>

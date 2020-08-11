@@ -1,6 +1,6 @@
-import { PersonaSize } from "office-ui-fabric-react/lib/Persona";
+import { PersonaSize } from "@fluentui/react/lib/Persona";
 import { facepilePersonas } from "./facepileexampledata";
-import { IFacepilePersona, OverflowButtonType } from "office-ui-fabric-react/lib/Facepile";
+import { IFacepilePersona, OverflowButtonType } from "@fluentui/react/lib/Facepile";
 
 export class facepile
 {

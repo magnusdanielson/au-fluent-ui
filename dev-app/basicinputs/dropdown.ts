@@ -1,4 +1,4 @@
-import {DropdownMenuItemType, IDropdownProps, IDropdownOption} from 'office-ui-fabric-react/lib/Dropdown'
+import {DropdownMenuItemType, IDropdownProps, IDropdownOption} from '@fluentui/react/lib/Dropdown'
 
 export class dropdown
 {

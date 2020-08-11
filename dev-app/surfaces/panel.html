@@ -1,69 +1,17 @@
 <template>
-    <require from="@dunite/au-office-ui/resources/elements/Surfaces/DuPanel"></require>
-    <div
-      class="content"
-      style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
-      <h1 class="pageTitle">Dialog</h1>
-      <div
-        role="presentation"
-        class="ms-FocusZone"
-        
-      ></div>
-    </div>
-    <div class="PageSection">
-      
-        
-          <examplecard title="Panel - Small Panel, Anchored Right, Fixed Width">
-                  <div slot="code">
-                    <hljs language="html" linenumbers="true">
-  &lt;du-panel hidden.bind=&quot;!isOpen&quot; is-open.bind=&quot;isOpen&quot; 
-  on-dismiss.bind=&quot;panelprops.onDismiss&quot; type.bind=&quot;panelprops.type&quot; 
-  header-text.bind=&quot;panelprops.headerText&quot; &gt;
-  &lt;du-choice-group defaultSelectedKey=&quot;B&quot; options.one-time=&quot;[
-  {
-    key: &#39;A&#39;,
-    text: &#39;Option A&#39;,
-    &#39;data-automation-id&#39;: &#39;auto1&#39;
-  },
-  {
-    key: &#39;B&#39;,
-    text: &#39;Option B&#39;
-  },
-  {
-    key: &#39;C&#39;,
-    text: &#39;Option C&#39;,
-    disabled: true
-  },
-  {
-    key: &#39;D&#39;,
-    text: &#39;Option D&#39;,
-    disabled: true
-  }
-]&quot;  label=&quot;Pick one&quot;&gt;&lt;/du-choice-group&gt; 
-&lt;/du-panel&gt;
+  <div class="content" style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Dialog</h1>
+    <div role="presentation" class="ms-FocusZone"></div>
+  </div>
+  <div class="PageSection">
 
-  &lt;du-default-button text=&quot;Show Panel&quot;
-  on-click.bind=&quot;isOpenSwap&quot;&gt;&lt;/du-default-button&gt;
-                    </hljs>
-                    <hljs language="javascript" linenumbers="true">
-  isOpen:boolean = false;
-  type :PanelType = PanelType.smallFixedFar;
-  headerText:string = "Panel - Small, right-aligned, fixed, with footer";
-  onDismiss = ()=>
-  {
-    this.isOpen = false;
-  }
-  isOpenSwap = () =>
-  {
-    this.isOpen = ! this.isOpen;
-  }
-                    </hljs>
-                  </div>
-                  <div slot="example">
-                        <du-panel hidden.bind="!isOpen" is-open.bind="isOpen" 
-                        on-dismiss.bind="onDismiss" type.bind="type" 
-                        header-text.bind="headerText" >
-                        <du-choice-group defaultSelectedKey="B" options.one-time="[
+
+    <examplecard title="Panel - Small Panel, Anchored Right, Fixed Width">
+
+      <div slot="example">
+        <du-panel hidden.bind="!isOpen" is-open.bind="isOpen" on-dismiss.bind="onDismiss" type.bind="type"
+          header-text.bind="headerText">
+          <du-choice-group defaultSelectedKey="B" options.one-time="[
                         {
                           key: 'A',
                           text: 'Option A',
@@ -83,16 +31,15 @@
                           text: 'Option D',
                           disabled: true
                         }
-                      ]"  label="Pick one"></du-choice-group> 
-                    </du-panel>
+                      ]" label="Pick one"></du-choice-group>
+        </du-panel>
 
-                        <du-default-button text="Show Panel"
-                        on-click.bind="isOpenSwap"></du-default-button>
-                  </div>
-                </examplecard>
-  
-                
-                        
-    </div>
-    
+        <du-default-button text="Show Panel" on-click.bind="isOpenSwap"></du-default-button>
+      </div>
+    </examplecard>
+
+
+
+  </div>
+
 </template>

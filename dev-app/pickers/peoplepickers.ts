@@ -1,7 +1,7 @@
-import { IPersonaProps } from 'office-ui-fabric-react/lib/Persona';
-import { people, mru } from './PeoplePickerExampleData';
-import { IBasePickerSuggestionsProps, ValidationState } from 'office-ui-fabric-react/lib/Pickers';
-import { assign } from 'office-ui-fabric-react/lib/Utilities';
+import { IPersonaProps } from '@fluentui/react/lib/Persona';
+import { people, mru } from './peoplepickerexampledata';
+import { IBasePickerSuggestionsProps, ValidationState } from '@fluentui/react/lib/Pickers';
+import { assign } from '@fluentui/react/lib/Utilities';
 
 
 export class peoplepickers

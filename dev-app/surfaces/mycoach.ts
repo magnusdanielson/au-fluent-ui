@@ -1,7 +1,7 @@
-import { Coachmark, ICoachmarkProps } from 'office-ui-fabric-react/lib/Coachmark';
+import { Coachmark, ICoachmarkProps } from '@fluentui/react/lib/Coachmark';
 import {  customElement, inject, noView, bindable } from 'aurelia-framework';
 import { addProperties, onlyAureliaBound } from './myutils';
-import { ITeachingBubbleProps, TeachingBubbleContent } from 'office-ui-fabric-react/lib/TeachingBubble';
+import { ITeachingBubbleProps, TeachingBubbleContent } from '@fluentui/react/lib/TeachingBubble';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { mybase } from './mybase';

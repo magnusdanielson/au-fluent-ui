@@ -8,7 +8,6 @@ export class examplecard
 
     toggleCode()
     {
-        console.log("toggle");
-        this.showCode = ! this.showCode; 
+        window.open("https://github.com/magnusdanielson/au-fluent-ui/tree/master/dev-app");
     }
 }

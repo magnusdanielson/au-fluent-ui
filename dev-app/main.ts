@@ -1,4 +1,4 @@
-import {Aurelia} from 'aurelia-framework';
+import {Aurelia, PLATFORM} from 'aurelia-framework';
 import environment from './environment';
 
 export function configure(aurelia: Aurelia) {
@@ -7,7 +7,10 @@ export function configure(aurelia: Aurelia) {
     .standardConfiguration()
     // load the plugin ../src
     // The "resources" is mapped to "../src" in aurelia.json "paths"
-    .feature('resources');
+    .feature('resources')
+    .globalResources([
+      PLATFORM.moduleName('./resources/elements/examplecard'),
+      PLATFORM.moduleName('./resources/elements/au-hljs')]);
 
   aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
 

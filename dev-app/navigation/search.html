@@ -12,43 +12,7 @@
   </div>
   <div class="PageSection">
     <examplecard title="Default Search">
-      <div slot="code"><hljs language="html" linenumbers="true">
-  &#x3C;du-search-box
-  placeholder=&#x22;Search&#x22;
-  on-search.bind=&#x22;onSearch&#x22;
-  on-focus.bind=&#x22;onFocus&#x22;
-  on-blur.bind=&#x22;onBlur&#x22;
-  on-change.bind=&#x22;onChange&#x22;&#x3E;&#x3C;/du-search-box&#x3E;
-      </hljs>
-      <hljs language="javascript"  linenumbers="true">
-  searchText:string = "example";
-
-  onSearch= (searchCommandValue: any) =>
-  {
-      console.log(  'searchCommandValue = ' +  searchCommandValue);
-  }
-
-  onChange2= (newValue?: string) =>
-  {
-      this.searchText = newValue;
-  }
-
-  onBlur()
-  {
-      console.log("onBlur");
-  }
-
-  onChange ( newValue?: string)
-  {
-      console.log( 'onChange new value = ' + newValue);
-  }
-
-  onFocus()
-  {
-      console.log("onfocus");
-  }
-      </hljs>
-    </div>
+      
       <div slot="example">
         <du-search-box
           placeholder="Search"
@@ -59,29 +23,7 @@
       </div>
     </examplecard>
     <examplecard title="Underlined Search">
-      <div slot="code"><hljs language="html" linenumbers="true">
-  &lt;du-search-box
-  placeholder=&quot;Search&quot;
-  on-search.bind=&quot;onSearch&quot;
-  underlined=&quot;true&quot;
-  value.bind=&quot;searchText&quot; on-change.bind=&quot;onSearch2&quot;&gt;&lt;/du-search-box&gt;
-  searchText:&#39;${'${searchText}'}&#39;
-  underlined=&#x22;true&#x22;&#x3E;&#x3C;/du-search-box&#x3E;
-      </hljs>
-      <hljs language="javascript" linenumbers="true">
-          searchText:string = "example";
-
-          onSearch= (searchCommandValue: any) =>
-          {
-              console.log(  'searchCommandValue = ' +  searchCommandValue);
-          }
-      
-          onChange2= (newValue?: string) =>
-          {
-              this.searchText = newValue;
-          }
-      </hljs>
-    </div>
+     
       <div slot="example">
         <du-search-box
           placeholder="Search"
@@ -92,12 +34,6 @@
     </examplecard>
 
     <examplecard title="Disabled Search">
-      <div slot="code"><hljs language="html" linenumbers="true">
-  &#x3C;du-search-box
-  placeholder=&#x22;Search&#x22;
-  on-search.bind=&#x22;onSearch&#x22;
-  disabled=&#x22;true&#x22;&#x3E;&#x3C;/du-search-box&#x3E;
-      </hljs></div>
       <div slot="example">
         <du-search-box
           placeholder="Search"

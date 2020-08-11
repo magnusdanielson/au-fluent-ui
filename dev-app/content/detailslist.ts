@@ -1,4 +1,4 @@
-import { Selection, IColumn, IObjectWithKey } from "office-ui-fabric-react/lib/DetailsList";
+import { Selection, IColumn, IObjectWithKey } from "@fluentui/react/lib/DetailsList";
 
 interface IRow extends IObjectWithKey {
   name: string;

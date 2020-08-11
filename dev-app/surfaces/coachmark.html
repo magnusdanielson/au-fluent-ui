@@ -1,71 +1,26 @@
 <template>
   <require from="./mycoach"></require>
   <require from="./mytext"></require>
-    <div
-      class="content"
-      style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
-      <h1 class="pageTitle">Coachmark</h1>
-      <div
-        role="presentation"
-        class="ms-FocusZone"
-        
-      ></div>
-    </div>
-    <div class="PageSection">
-      
-        
-          <examplecard title="Default Coachmark">
-            <div slot="code">
-              <hljs language="html" linenumbers="true">
-  &lt;du-coachmark hidden.bind=&quot;hideCoachmark&quot; positioning-container-props.one-time=&quot;{
-    directionalHint: 1,
-    doNotLayer: false
-  }&quot; teaching-bubble-content.bind=&quot;teachingBubble&quot; target.bind=&quot;mybutton&quot;&gt;
-  &lt;span&gt;Welcome to the land of Coachmarks!!&lt;/span&gt;
-&lt;/du-coachmark&gt;
+  <div class="content" style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Coachmark</h1>
+    <div role="presentation" class="ms-FocusZone"></div>
+  </div>
+  <div class="PageSection">
 
-  &lt;du-default-button click.delegate=&quot;showMark()&quot; ref=&quot;mybutton&quot; text=&quot;Show&quot; &gt;&lt;/du-default-button&gt;
-  
- </hljs>
-              <hljs language="javascript" linenumbers="true">
-  hideCoachmark: boolean = true;
-  teachingBubble:ITeachingBubbleProps = &lt;ITeachingBubbleProps&gt;{};
-    showMark()
-    {
-      this.hideCoachmark = ! this.hideCoachmark;
-    }
 
-    
-    constructor()
-    {
-      this.teachingBubble = {
-        headline: &#39;Example Title&#39;,
-        hasCloseIcon: true,
-        closeButtonAriaLabel: &#39;Close&#39;,
-        primaryButtonProps : {
-          text: &#39;Try it&#39; 
-        },
-        secondaryButtonProps:
-        {
-          text: &#39;Try it again&#39;
-        },
-        onDismiss: () =&gt; { console.log(this); this.hideCoachmark = true; },
-      };
-    }
-            </hljs>
-            </div>
-            <div slot="example">
-                <du-coachmark hidden.bind="hideCoachmark" positioning-container-props.one-time="{
+    <examplecard title="Default Coachmark">
+
+      <div slot="example">
+        <du-coachmark hidden.bind="hideCoachmark" positioning-container-props.one-time="{
                   directionalHint: 1,
                   doNotLayer: false
                 }" teaching-bubble-content.bind="teachingBubble" target.bind="mybutton">
-                <span>Welcome to the land of Coachmarks!!</span>
-              </du-coachmark>
+          <span>Welcome to the land of Coachmarks!!</span>
+        </du-coachmark>
 
-                <du-default-button click.delegate="showMark()" ref="mybutton" text="Show" ></du-default-button>
+        <du-default-button click.delegate="showMark()" ref="mybutton" text="Show"></du-default-button>
 
-            </div>
-          </examplecard>
-    </div>
-  </template>
-  
+      </div>
+    </examplecard>
+  </div>
+</template>

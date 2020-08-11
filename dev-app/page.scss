@@ -1,0 +1,62 @@
+.PageSection
+{
+    padding:50px;
+    max-width: 1023px;
+}
+.content {
+    padding: 0 16px 0 16px;
+    margin-bottom: 2px;
+    min-width: 800px;
+    
+}
+.pageTitle {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #f8f8f8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 48px;
+    font-weight: 100;
+    line-height: 1;
+    padding: 40px 0;
+    -webkit-transition: font-size .167s cubic-bezier(0.1, 0.9, 0.2, 1);
+    transition: font-size .167s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.steps {
+    counter-reset: li;
+    max-width: 50em;
+    margin: 60px auto;
+}
+ol, ul {
+    padding: 0;
+    list-style: none;
+}
+
+.steps li::before {
+    color: rgb(3, 131, 135);
+    content: counter(li);
+    counter-increment: li;
+    font-size: 48px;
+    font-weight: 100;
+    line-height: 38px;
+    position: absolute;
+    top: 0;
+}
+
+.steps li {
+    list-style: none;
+    position: relative;
+    padding-bottom: 24px;
+    padding-top: 56px;
+}
+
+.ms-Fabric
+{
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+/*
+font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+*/

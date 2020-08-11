@@ -1,10 +1,10 @@
-import { IColor } from 'office-ui-fabric-react/lib/utilities/color/interfaces';
+//import { IColor } from '@fluentui/react/lib/utilities';
 
 export class colorpicker
 {
     public thecolor:string = "#ffffff";
 
-    colorChanged( ev:any, colorObj: IColor)
+    colorChanged( ev:any, colorObj: any /* IColor */)
     {
         this.thecolor= colorObj.str;
     }

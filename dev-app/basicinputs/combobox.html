@@ -11,79 +11,6 @@
   </div>
   <div class="PageSection">
               <examplecard title="ChoiceGroups">
-                    <div slot="code">
-                      <hljs language="html" linenumbers="true">
-  &#x3C;du-combo-box defaultSelectedKey=&#x22;C&#x22; 
-  label=&#x22;Basic uncontrolled example (allowFreeform: true, AutoComplete: on):&#x22;
-  allow-freeform=&#x22;true&#x22;
-  auto-complete=&#x22;on&#x22;
-  options.one-time=&#x22;testOptions&#x22;&#x3E;&#x3C;/du-combo-box&#x3E;
-
-  &#x3C;du-combo-box multi-select=&#x22;true&#x22;
-  default-selected-key.one-time=&#x22;[&#x27;C&#x27;, &#x27;E&#x27;]&#x22;
-  label=&#x22;Basic uncontrolled example (allowFreeform: true, AutoComplete: on):&#x22;
-  allow-freeform=&#x22;true&#x22;
-  auto-complete=&#x22;on&#x22;
-  options.one-time=&#x22;testOptions&#x22;&#x3E;&#x3C;/du-combo-box&#x3E; 
-
-  &#x3C;du-combo-box multi-select=&#x22;true&#x22;
-  default-selected-key.one-time=&#x22;[&#x27;C&#x27;, &#x27;E&#x27;]&#x22;
-  label=&#x22;Basic controlled example (allowFreeform: true, AutoComplete: on):&#x22;
-  allow-freeform=&#x22;true&#x22;
-  auto-complete=&#x22;on&#x22;
-  options.one-time=&#x22;testOptions&#x22;
-  on-menu-open.bind=&#x22;menuOpen&#x22;
-  on-menu-dismissed.bind=&#x22;dismissed&#x22;
-  on-changed.bind=&#x22;onChangeMulti&#x22;
-  on-focus.bind=&#x22;onFocus&#x22;
-  on-blur.bind=&#x22;onBlur&#x22;
-  &#x3E;&#x3C;/du-combo-box&#x3E;
-  &lt;ul&gt;
-    &lt;li repeat.for=&quot;opt of testOptions&quot;&gt;${'${opt.key}|${opt.selected}'}&lt;/li&gt;
-  &lt;/ul&gt;
-                      </hljs>
-                      <hljs language="javascript" linenumbers="true">
-  pprivate testOptions = [
-  { key: &#39;Header&#39;, text: &#39;Theme Fonts&#39;, itemType: SelectableOptionMenuItemType.Header },
-  { key: &#39;A&#39;, text: &#39;Arial Black&#39; },
-  { key: &#39;B&#39;, text: &#39;Times New Roman&#39; },
-  { key: &#39;C&#39;, text: &#39;Comic Sans MS&#39;, selected: true },
-  { key: &#39;divider_2&#39;, text: &#39;-&#39;, itemType: SelectableOptionMenuItemType.Divider },
-  { key: &#39;Header1&#39;, text: &#39;Other Options&#39;, itemType: SelectableOptionMenuItemType.Header },
-  { key: &#39;D&#39;, text: &#39;Option d&#39; },
-  { key: &#39;E&#39;, text: &#39;Option e&#39;, selected: true },
-  { key: &#39;F&#39;, text: &#39;Option f&#39; },
-  { key: &#39;G&#39;, text: &#39;Option g&#39; },
-  { key: &#39;H&#39;, text: &#39;Option h&#39; },
-  { key: &#39;I&#39;, text: &#39;Option i&#39; },
-  { key: &#39;J&#39;, text: &#39;Option j&#39;, disabled: true }
-];
-
-  public onChange(event: any, option?: IComboBoxOption, index?: number, value?: string){
-    console.log(event);
-    console.log(option);
-    console.log(index);
-    console.log(value);
-  };
-
-    public onFocus()
-    {
-      console.log("onfocus log");
-    }
-    public onBlur()
-    {
-      console.log("onblur log");
-    }
-    public menuOpen()
-    {
-      console.log("menuopen log");
-    }
-    public dismissed()
-    {
-      console.log("dismissed log");
-    }    
-                      </hljs>
-                    </div>
                     <div slot="example">
                       <du-combo-box defaultSelectedKey="C" 
                       label="Basic uncontrolled example (allowFreeform: true, AutoComplete: on):"
@@ -110,9 +37,7 @@
                       on-blur.bind="onBlur"
                       on-change.bind="onChange"
                       ></du-combo-box>
-                      <ul>
-                        <li repeat.for="opt of testOptions">${opt.key}|${opt.selected}</li>
-                      </ul>
+
                     </div>
                   </examplecard>
   </div>

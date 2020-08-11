@@ -18,32 +18,32 @@
             </li>
             <li>
                 <p>Add the npm packages with below command.</p>
-                <hljs language="shell">
+                <au-hljs language="shell">
                     npm install @dunite/au-office-ui --save
                     npm install aurelia-bootstrapper aurelia-fetch-client bluebird@3.5.0 --save
                     npm install aurelia-webpack-plugin@2.0.0-rc.5 --save-dev
-                </hljs>
+                </au-hljs>
             </li>
             <li>
                 <p>In your webpart.ts file add the following to import necessery files.</p>
-                <hljs language="javascript" linenumbers="true">
+                <au-hljs language="javascript" linenumbers="true">
     import * as Bluebird from 'bluebird';
     import {bootstrap} from 'aurelia-bootstrapper';
     import { Aurelia,TemplatingEngine } from 'aurelia-framework';
     import { PLATFORM } from "aurelia-pal";
-                </hljs>
+                </au-hljs>
             </li>
             <li>
                 <p>Then we add a constructor to configure bluebird to handle Promise for us.</p>
-                <hljs language="javascript">
+                <au-hljs language="javascript">
                     constructor() {
                         super();
                         Bluebird.config({ warnings: { wForgottenReturn: false } });
                       }
-                </hljs>
+                </au-hljs>
 
                 <p>Replace the render function with below code.</p>
-                <hljs language="javascript">
+                <au-hljs language="javascript">
     public render(): void {
         this.domElement.innerHTML = `<div id="${this.instanceId}" class="${this.instanceId}"  >
         <helloworld>Loading...</helloworld></div>`;
@@ -81,9 +81,9 @@
             );
         
         }
-                </hljs>
+                </au-hljs>
                 <p>Add a hellowworld.ts file next to your webpart.</p>
-                <hljs language="javascript" linenumbers="true">
+                <au-hljs language="javascript" linenumbers="true">
     export class helloworld
     {
         private onFormatDate(date: Date) 
@@ -97,17 +97,17 @@
                     ].join('');
         }
     }
-                </hljs>
+                </au-hljs>
                 <p>Add a helloworld.html file next to your webpart</p>
-                <hljs language="html" linenumbers="true">
+                <au-hljs language="html" linenumbers="true">
 &lt;template&gt;
     &lt;du-date-picker format-date.bind=&quot;onFormatDate&quot; placeholder=&quot;V&#228;lj ett datum&quot; show-week-numbers=&quot;true&quot; &gt;&lt;/du-date-picker&gt;
 &lt;/template&gt;
-                </hljs>
+                </au-hljs>
             </li>
             <li>
                 <p>We also need to update gulp.js file to use the Aurelia Webpack plugin. Add below code just before the call to build.initialize(gulp);</p>
-                <hljs language="javascript" linenumbers="true">
+                <au-hljs language="javascript" linenumbers="true">
 const { AureliaPlugin } = require("aurelia-webpack-plugin");
 
 build.configureWebpack.mergeConfig({
@@ -132,7 +132,7 @@ build.configureWebpack.mergeConfig({
     return generatedConfiguration;
   }
 });
-                </hljs>
+                </au-hljs>
                 <p>Note that you need to use .one-time since Aurelia can not update the literal object.</p>
                 <p>If you add bindings to any event always use .bind with the function name, see on-click.bind example
                     above.</p>
@@ -141,12 +141,12 @@ build.configureWebpack.mergeConfig({
                     If you need to reach out to the parent element, just use this.parent. The parent property is
                     assigned on all au-office-ui elements and points to the hosting element, the parent. The parent
                     property is actually assigned to the binding context. </p>
-                <hljs language="javascript" linenumbers="true">
+                <au-hljs language="javascript" linenumbers="true">
 export class helloworld
 {
     
 }
-                </hljs>
+                </au-hljs>
             </li>
         </ol>
 

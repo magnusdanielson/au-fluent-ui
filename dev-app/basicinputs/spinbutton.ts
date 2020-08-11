@@ -1,4 +1,4 @@
-import { Position } from 'office-ui-fabric-react/lib/utilities/positioning/positioning.types';
+import { Position } from 'elements/BasicInputs/DuSpinButton';
 
 export class spinbutton
 {

@@ -1,113 +1,116 @@
 <template>
-        
-   
-  
-    <require from="./gettingstarted.css"></require>
+    <div class="content" style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+        <h1 class="pageTitle">Getting started</h1>
+        <div role="presentation" class="ms-FocusZone"></div>
+    </div>
+    <div class="PageSection">
 
-    <div
-class="content"
-style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
-<h1 class="pageTitle">Getting started</h1>
-<div
-  role="presentation"
-  class="ms-FocusZone"
-  
-></div>
-</div>
-<div class="PageSection">
+        <h2 class="ms-font-xxl">Get started with Office UI Fabric for Aurelia</h2>
+        <ol class="steps">
+            <li>
+                <p>Create your project the way you are used to, then follow below instructions if you are using
+                    RequireJS.</p>
+            </li>
+            <li>
+                <p>Add the npm package @dunite/au-office-ui with below command. We have tested with npm and yarn, if you
+                    are using anything else please give feedback if it does not work for you.</p>
+                <p>If you have issues with building refering to "text", then remove the developer dependency to
+                    requirejs/text and add that again with below command</p>
+                <au-hljs language="shell">
+                    npm install @dunite/au-office-ui --save
+                    npm install babel-eslint eslint @types/react @types/react-dom --save-dev
+                    npm install requirejs/text --save-dev
+                </au-hljs>
+            </li>
+            <li>
+                <p>Add a file called nodeprocess.js at the root of your project. Same level as the node_modules folder.
+                </p>
+                <p>Insert below content:</p>
+                <au-hljs language="javascript">
+                    var process = {} || process;
+                    process.browser = true;
+                    process.env =
+                    {
+                    NODE_ENV : 'production'
+                    }
+                </au-hljs>
+                <p>Then add below to your aurelia.json file. It is just the line refering to nodeprocess.js you need to
+                    add.</p>
+                <au-hljs language="json">
+                    "name": "vendor-bundle.js",
+                    "prepend": [
+                    "nodeprocess.js",
+                    "node_modules/requirejs/require.js"
+                    ],
+                </au-hljs>
+            </li>
+            <li>
+                <p>In your main.ts file add the following to register the plugin. Line 7 is required.</p>
+                <au-hljs language="javascript" linenumbers="true">
+                    export function configure(aurelia: Aurelia) {
+                    aurelia.use
+                    .standardConfiguration()
+                    .feature(PLATFORM.moduleName('resources/index'))
+                    // below is the new line you need
+                    .plugin(PLATFORM.moduleName("@dunite/au-office-ui"));
 
-<h2 class="ms-font-xxl">Get started with Office UI Fabric for Aurelia</h2>
-<p>
+                    aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
 
-</p>
+                    if (environment.testing) {
+                    aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
+                    }
 
-<ol class="steps">
-    <li>
-        <p>Create your project the way you are used to, then follow below instructions if you are using RequireJS.</p>
-    </li>
-    <li>
-        <p>Add the npm package @dunite/au-office-ui with below command. We have tested with npm and yarn, if you are using anything else please give feedback if it does not work for you.</p>
-        <p>If you have issues with building refering to "text", then remove the developer dependency to requirejs/text and add that again with below command</p>
-        <hljs language="shell" >
-npm install @dunite/au-office-ui --save
-npm install babel-eslint eslint @types/react @types/react-dom --save-dev
-npm install requirejs/text --save-dev 
-        </hljs>
-    </li>
-    <li>
-        <p>Add a file called nodeprocess.js at the root of your project. Same level as the node_modules folder.</p>
-         <p>Insert below content:</p>
-         <hljs language="javascript" >
-var process = {} || process;
-process.browser = true;
-process.env =
-{
-    NODE_ENV : 'production'
-}
-            </hljs>
-            <p>Then add below to your aurelia.json file. It is just the line refering to nodeprocess.js you need to add.</p>
-            <hljs language="json" >
-"name": "vendor-bundle.js",
-"prepend": [
-    "nodeprocess.js",
-    "node_modules/requirejs/require.js"
-],
-            </hljs>
-    </li>
-    <li>
-        <p>In your main.ts file add the following to register the plugin. Line 7 is required.</p>
-        <hljs language="javascript" linenumbers="true">
-export function configure(aurelia: Aurelia) {
-aurelia.use
-    .standardConfiguration()
-    .feature(PLATFORM.moduleName('resources/index'))
-    // below is the new line you need
-    .plugin(PLATFORM.moduleName("@dunite/au-office-ui"));
+                    return aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
+                    }
+                </au-hljs>
+            </li>
+            <li>
+                <p>As of version 1.2.0 no elements are registred by the plugin. That means you need to require them with
+                    the &lt;require&gt;&lt;/require&gt; or preload them with a call to globalResources(). This will
+                    bring down bundle sizes. Below line will register one component and then it will be ready to use on
+                    any page.</p>
+                <au-hljs language="javascript">
+                    aurelia.use
+                    .standardConfiguration()
+                    .plugin(PLATFORM.moduleName("@dunite/au-office-ui"))
+                    .globalResources(
+                    [ // Registrera alla komponenter som denna webpart använder här
+                    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuActionButton')
+                    ]);
+                </au-hljs>
 
-    aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
+                <p>Check out all elements in the navigation to the left and read the specific documentation for each
+                    element.</p>
+                <p>All elements use du- prefix. That means that the colorpicker element is used with the html below.</p>
+                <au-hljs language="html">
+                    &#x3C;du-color-picker alpha-slider-hidden=&#x22;true&#x22; color.bind=&#x22;thecolor&#x22;
+                    on-color-changed.bind=&#x22;colorChanged&#x22; &#x3E;&#x3C;/du-color-picker&#x3E;
+                </au-hljs>
+                <p>As always we use kebab-casing for the elements and the properties. If you read the documentation on
+                    the React Office UI Fabric site about the property onColorChanged it is used with on-color-changed.
+                </p>
+            </li>
+            <li>
+                <p>Regarding binding, it is Aurelia easy. In most cases you can set the value of the property directly
+                    in HTML like the alpha-slider-hidden property above. Sometimes though the React component does not
+                    parse the value correctly so you have to add .bind even if it is a simple number or boolean. It
+                    never seems to be an issue with strings though.</p>
+                <p>It is also possible to bind to literal objects as showed below with icon-props.</p>
+                <au-hljs language="html" linenumbers="true">
+                    &#x3C;du-command-bar-button text=&#x22;Create Account&#x22;
+                    on-click.bind=&#x22;actionButtonClick&#x22;
+                    icon-props.one-time=&#x22;{ iconName: &#x27;Add&#x27; }&#x22;
+                    menu-props.bind=&#x22;commandMenu&#x22;
+                    split.bind=&#x22;true&#x22;&#x3E;&#x3C;/du-command-bar-button&#x3E;
+                </au-hljs>
+                <p>Note that you need to use .one-time since Aurelia can not update the literal object.</p>
+                <p>If you add bindings to any event always use .bind with the function name, see on-click.bind example
+                    above.</p>
+                <p>As of version 2.0.0 of au-office-ui the 'this' keyword always points the current view model as you
+                    would expect. This is a breaking change from previous version where the 'this' keyword refered to
+                    the au-component.</p>
+            </li>
+        </ol>
 
-    if (environment.testing) {
-        aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
-    }
-    
-    return aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
-}
-        </hljs>
-    </li>
-    <li>
-        <p>As of version 1.2.0 no elements are registred by the plugin. That means you need to require them with the &lt;require&gt;&lt;/require&gt; or preload them with a call to globalResources(). This will bring down bundle sizes. Below line will register one component and then it will be ready to use on any page.</p>
-        <hljs language="javascript">
-    aurelia.use
-    .standardConfiguration()
-    .plugin(PLATFORM.moduleName("@dunite/au-office-ui"))
-    .globalResources(
-        [ // Registrera alla komponenter som denna webpart använder här
-        PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuActionButton')
-        ]);
-        </hljs>
-
-        <p>Check out all elements in the navigation to the left and read the specific documentation for each element.</p>
-        <p>All elements use du- prefix. That means that the colorpicker element is used with the html below.</p>
-        <hljs language="html">
-&#x3C;du-color-picker  alpha-slider-hidden=&#x22;true&#x22; color.bind=&#x22;thecolor&#x22; on-color-changed.bind=&#x22;colorChanged&#x22;  &#x3E;&#x3C;/du-color-picker&#x3E;
-        </hljs>
-        <p>As always we use kebab-casing for the elements and the properties. If you read the documentation on the React Office UI Fabric site about the property onColorChanged it is used with on-color-changed.</p>
-    </li>
-    <li>
-        <p>Regarding binding, it is Aurelia easy. In most cases you can set the value of the property directly in HTML like the alpha-slider-hidden property above. Sometimes though the React component does not parse the value correctly so you have to add .bind even if it is a simple number or boolean. It never seems to be an issue with strings though.</p>
-        <p>It is also possible to bind to literal objects as showed below with icon-props.</p>
-        <hljs language="html" linenumbers="true">
-&#x3C;du-command-bar-button text=&#x22;Create Account&#x22;
-on-click.bind=&#x22;actionButtonClick&#x22;
-icon-props.one-time=&#x22;{ iconName: &#x27;Add&#x27; }&#x22;
-menu-props.bind=&#x22;commandMenu&#x22;
-split.bind=&#x22;true&#x22;&#x3E;&#x3C;/du-command-bar-button&#x3E;
-        </hljs>
-        <p>Note that you need to use .one-time since Aurelia can not update the literal object.</p>
-        <p>If you add bindings to any event always use .bind with the function name, see on-click.bind example above.</p>
-        <p>As of version 2.0.0 of au-office-ui the 'this' keyword always points the current view model as you would expect. This is a breaking change from previous version where the 'this' keyword refered to the au-component.</p>
-    </li>
-</ol>
-
-</div>
+    </div>
 </template>

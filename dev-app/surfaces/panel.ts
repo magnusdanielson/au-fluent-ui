@@ -1,4 +1,4 @@
-import { IPanelProps,PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { IPanelProps,PanelType } from '@fluentui/react/lib/Panel';
 
 export class panel {
 

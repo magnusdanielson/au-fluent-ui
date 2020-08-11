@@ -1,5 +1,5 @@
 import { customElement, inject, noView, inlineView} from 'aurelia-framework';
-import { IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
+import { IDialogProps } from '@fluentui/react/lib/Dialog';
 import { bindable, bindingMode } from 'aurelia-framework';
 
 //@noView()

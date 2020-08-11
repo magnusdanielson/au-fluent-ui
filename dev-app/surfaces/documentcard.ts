@@ -1,6 +1,6 @@
-import { IDocumentCardPreviewProps, DocumentCardType } from 'office-ui-fabric-react/lib/DocumentCard';
+import { IDocumentCardPreviewProps, DocumentCardType } from '@fluentui/react/lib/DocumentCard';
 import { TestImages } from '../testimages';
-import { ImageFit } from 'office-ui-fabric-react/lib/Image';
+import { ImageFit } from '@fluentui/react/lib/Image';
 
 
 export class documentcard
