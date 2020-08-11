@@ -1,5 +1,5 @@
 {
-  "name": "au-fluent-ui",
+  "name": "@dunite/au-fluent-ui",
   "description": "An Aurelia plugin project that wraps Microsoft Fluent UI React components.",
   "keywords": [
     "aurelia",
