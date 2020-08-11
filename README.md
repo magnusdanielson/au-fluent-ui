@@ -5,7 +5,7 @@ An Aurelia plugin that wraps React components from Microsoft Fluent UI.
 Install with
 `au install @dunite/au-fluent-ui`
 
-It is necessery to calling the .plugin method. All components must also be manually loaded with a call to .globalResources() or by adding a `<require from="@dunite/au-fluent-ui/resources/elements/Surfaces/DuPanel"></require>` tag to your html view.
+It is necessery to calling the .plugin method. All components must also be manually loaded with a call to .globalResources() or by adding a `<require from="@dunite/au-fluent-ui/elements/Surfaces/DuPanel"></require>` tag to your html view.
 
 ```
 export function configure(aurelia: Aurelia) {
@@ -15,8 +15,8 @@ export function configure(aurelia: Aurelia) {
     .feature('resources')
     .globalResources(
       [ // Registrer all components here
-        PLATFORM.moduleName('@dunite/au-fluent-ui/resources/elements/BasicInputs/DuActionButton'),
-        PLATFORM.moduleName('@dunite/au-fluent-ui/resources/elements/BasicInputs/DuCheckbox')
+        PLATFORM.moduleName('@dunite/au-fluent-ui/elements/BasicInputs/DuActionButton'),
+        PLATFORM.moduleName('@dunite/au-fluent-ui/elements/BasicInputs/DuCheckbox')
       ]);
     
 
