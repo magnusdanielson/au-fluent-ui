@@ -249,7 +249,7 @@ export class App {
   }
 
   public configureRouter(config: RouterConfiguration, router: Router){
-    config.title = 'au-office-ui';
+    config.title = 'au-fluent-ui';
     config.map([
       { route: ['','/gettingstarted'],  moduleId: PLATFORM.moduleName('./gettingstarted'), name:'gettingstarted', nav: true,   title: 'Getting started' },
       { route: '/why',  moduleId: PLATFORM.moduleName('./why'), name:'why', nav: true,   title: 'Why' },

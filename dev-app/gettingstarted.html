@@ -12,15 +12,15 @@
   </div>
   <div class="PageSection">
 
-    <h2 class="ms-font-xxl">Get started with Office UI Fabric for Aurelia</h2>
+    <h2 class="ms-font-xxl">Get started with Fluent UI for Aurelia</h2>
     <ol class="steps">
         <li>
             <p>Create your project the way you are used to. We have tested with Webpack and RequireJS only but any other loader should just work. If you are using RequireJS, follow specific instructions.</p>
         </li>
         <li>
-            <p>Add the npm package @dunite/au-office-ui with below command. We have tested with npm and yarn, if you are using anything else please give feedback if it does not work for you.</p>
+            <p>Add the npm package @dunite/au-fluent-ui with below command. We have tested with npm and yarn, if you are using anything else please give feedback if it does not work for you.</p>
             <pre><code class="shell">
-npm install @dunite/au-office-ui --save
+npm install @dunite/au-fluent-ui --save
             </code></pre>
         </li>
         <li>
@@ -31,7 +31,7 @@ aurelia.use
     .standardConfiguration()
     .feature(PLATFORM.moduleName('resources/index'))
     // below is the new line you need
-    .plugin(PLATFORM.moduleName("@dunite/au-office-ui"));
+    .plugin(PLATFORM.moduleName("@dunite/au-fluent-ui"));
 
     aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
 
@@ -48,10 +48,10 @@ aurelia.use
             <pre><code class="javascript">
 aurelia.use
 .standardConfiguration()
-.plugin(PLATFORM.moduleName("@dunite/au-office-ui"))
+.plugin(PLATFORM.moduleName("@dunite/au-fluent-ui"))
 .globalResources(
     [ // Registrera alla komponenter som denna webpart använder här
-    PLATFORM.moduleName('@dunite/au-office-ui/resources/elements/BasicInputs/DuActionButton')
+    PLATFORM.moduleName('@dunite/au-fluent-ui/resources/elements/BasicInputs/DuActionButton')
     ]);
         </code></pre>
 
@@ -61,7 +61,7 @@ aurelia.use
     &#x3C;du-color-picker  alpha-slider-hidden=&#x22;true&#x22; color.bind=&#x22;thecolor&#x22; 
     on-color-changed.bind=&#x22;colorChanged&#x22;  &#x3E;&#x3C;/du-color-picker&#x3E;
             </code></pre>
-            <p>As always we use kebab-casing for the elements and the properties. If you read the documentation on the React Office UI Fabric site about the property onColorChanged it is used with on-color-changed.</p>
+            <p>As always we use kebab-casing for the elements and the properties. If you read the documentation on the React Fluent UI site about the property onColorChanged it is used with on-color-changed.</p>
         </li>
         <li>
             <p>Regarding binding, it is Aurelia easy. In most cases you can set the value of the property directly in HTML like the alpha-slider-hidden property above. Sometimes though the React component does not parse the value correctly so you have to add .bind even if it is a simple number or boolean. It never seems to be an issue with strings though.</p>
