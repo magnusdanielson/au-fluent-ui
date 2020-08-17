@@ -29,3 +29,8 @@ Added dist folder
 ## [v0.1.3](https://github.com/magnusdanielson/au-fluent-ui/releases/tag/v0.1.3) (2020-08-11)
 
 First complete release
+
+<!--------------------------------[ v0.1.4 ]------------------------------- -->
+## [v0.1.4](https://github.com/magnusdanielson/au-fluent-ui/releases/tag/v0.1.4) (2020-08-17)
+
+Fix combobox bug

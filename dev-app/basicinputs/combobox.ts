@@ -1,49 +1,76 @@
 import { IComboBoxOption, SelectableOptionMenuItemType } from '@fluentui/react/lib/ComboBox';
 import { DuComboBox } from 'elements/BasicInputs/DuComboBox';
 
-export class combobox
-{
+export class combobox {
 
-  private mycombo:DuComboBox;
+  selectedItems: string[] = [];
+  selectedItem: string;
+  errorMessage: string;
 
-    private testOptions = [
-      { key: 'Header', text: 'Theme Fonts', itemType: SelectableOptionMenuItemType.Header },
-      { key: 'A', text: 'Arial Black' },
-      { key: 'B', text: 'Times New Roman' },
-      { key: 'C', text: 'Comic Sans MS', selected: true },
-      { key: 'divider_2', text: '-', itemType: SelectableOptionMenuItemType.Divider },
-      { key: 'Header1', text: 'Other Options', itemType: SelectableOptionMenuItemType.Header },
-      { key: 'D', text: 'Option d' },
-      { key: 'E', text: 'Option e', selected: true },
-      { key: 'F', text: 'Option f' },
-      { key: 'G', text: 'Option g' },
-      { key: 'H', text: 'Option h' },
-      { key: 'I', text: 'Option i' },
-      { key: 'J', text: 'Option j', disabled: true }
-    ];
+  public fruits: any = [
+    { key: 'Header2', text: 'Fruits', itemType: SelectableOptionMenuItemType.Header },
+    { key: 'Apple', text: 'apple' },
+    { key: 'Banana', text: 'banana' },
+    { key: 'Orange', text: 'orange', disabled: true },
+    { key: 'Grape', text: 'grape', disabled: true },
+    { key: 'divider_1', text: '-', itemType: SelectableOptionMenuItemType.Divider },
+    { key: 'Header3', text: 'Lanuages', itemType: SelectableOptionMenuItemType.Header },
+    { key: 'English', text: 'english' },
+    { key: 'French', text: 'french' },
+    { key: 'Germany', text: 'germany' }
+  ];
 
-    public onChange = (event: any, option?: IComboBoxOption, index?: number)=>{
-      console.log(event);
-      console.log(option);
-      console.log(index);
-    };
+  setApple() {
+    this.selectedItem = "Apple";
+  }
 
-
-    public onFocus()
-    {
-      console.log("onfocus log");
+  public onChange = (event: any, option?: IComboBoxOption, index?: number) => {
+    console.log("The option has been changed to Object:");
+    console.log(option);
+    console.log(index);
+    if (option.key != 'English') {
+      this.errorMessage = "An error, only English is valid";
     }
-    public onBlur()
-    {
-      console.log("onblur log");
+    else {
+      this.errorMessage = "";
     }
-    public menuOpen()
-    {
-      console.log("menuopen log");
+    if (option.key != 'Banana') {
+      this.selectedItem = <string>option.key;
+      this.selectedItems.push(<string>option.key);
     }
-    public dismissed()
-    {
-      console.log("dismissed log");
-    }    
+    else {
+      this.selectedItem = "undefined"; // Yes, a string
+    }
+  };
+
+  public onMultiChange = (event: any, option?: IComboBoxOption, index?: number) => {
+    console.log("The option has been changed to Object:");
+    console.log(option);
+    console.log(index);
+    
+    if (option.selected) {
+      this.selectedItems.push(<string>option.key);
+      this.selectedItems = this.selectedItems.reverse();
+
+    }
+    else {
+      this.selectedItems.splice(this.selectedItems.indexOf(<string>option.key), 1);
+    }
+
+  };
+  
+
+  public onFocus() {
+    console.log("onfocus log");
+  }
+  public onBlur() {
+    console.log("onblur log");
+  }
+  public menuOpen() {
+    console.log("menuopen log");
+  }
+  public dismissed() {
+    console.log("dismissed log");
+  }
 
 }

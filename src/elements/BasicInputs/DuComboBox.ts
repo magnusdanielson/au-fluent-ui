@@ -7,6 +7,7 @@ reactprops.buttonIconProps = <any>{};
 reactprops.caretDownButtonStyles = <any>{};
 reactprops.comboBoxOptionStyles = <any>{};
 reactprops.dropdownMaxWidth = <any>{};
+reactprops.errorMessage = <any>{};
 reactprops.keytipProps = <any>{};
 reactprops.onItemClick = onlyAureliaBound;
 reactprops.isButtonAriaHidden = <any>{};
@@ -19,6 +20,8 @@ reactprops.options = <any>{};
 reactprops.onChange = onlyAureliaBound;
 reactprops.defaultSelectedKey = <any>{};
 reactprops.selectedKey = <any>{};
+//@ts-ignore
+reactprops.selectedKeys = <any>{};
 reactprops.onMenuOpen = onlyAureliaBound;
 reactprops.onMenuDismissed = onlyAureliaBound;
 reactprops.onResolveOptions = <any>onlyAureliaBound;

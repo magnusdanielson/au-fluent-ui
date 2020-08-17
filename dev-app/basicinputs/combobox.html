@@ -1,44 +1,31 @@
 <template>
-  <div
-    class="content"
-    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+  <div class="content" style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
     <h1 class="pageTitle">Combobox</h1>
-    <div
-      role="presentation"
-      class="ms-FocusZone"
-      
-    ></div>
+    <div role="presentation" class="ms-FocusZone"></div>
   </div>
   <div class="PageSection">
-              <examplecard title="ChoiceGroups">
-                    <div slot="example">
-                      <du-combo-box defaultSelectedKey="C" 
-                      label="Basic uncontrolled example (allowFreeform: true, AutoComplete: on):"
-                      allow-freeform="true"
-                      auto-complete="on"
-                      options.one-time="testOptions"></du-combo-box>
+    <examplecard title="Combobox controlled, single select">
+      <div slot="example">
+        <du-combo-box placeholder="Select an Option" selected-key.bind="selectedItem"
+          label="Dropdown, controlled no-banana, with error message for anything but English" id="dropDefaultKey"
+          options.one-time="fruits" on-change.bind="onChange" on-blur.bind="onBlur" on-focus.bind="onFocus"
+          error-message.bind="errorMessage"></du-combo-box>
+        <div>SelectedItem: ${selectedItem}</div>
+        <du-default-button click.trigger="setApple()">Set Apple</button>
+      </div>
+    </examplecard>
+    <examplecard title="Combobox multi select">
+      <div slot="example">
+        <du-combo-box placeholder="Select an Option" selected-keys.bind="selectedItems"
+          label="Dropdown, controlled (allowFreeform: true, AutoComplete: on)" id="dropDefaultKey"
+          options.one-time="fruits" on-change.bind="onMultiChange" on-blur.bind="onBlur" on-focus.bind="onFocus"
+          error-message.bind="errorMessage" multi-select="true" allow-freeform="true"></du-combo-box>
 
-                      <du-combo-box multi-select="true"
-                      default-selected-key.one-time="['C', 'E']"
-                      label="Basic uncontrolled example (allowFreeform: true, AutoComplete: on):"
-                      allow-freeform="true"
-                      auto-complete="on"
-                      options.one-time="testOptions"></du-combo-box> 
-
-                      <du-combo-box multi-select="true"
-                      default-selected-key.one-time="['C', 'E']"
-                      label="Basic controlled example (allowFreeform: true, AutoComplete: on):"
-                      allow-freeform="true"
-                      auto-complete="on"
-                      options.bind="testOptions"
-                      on-menu-open.bind="menuOpen"
-                      on-menu-dismissed.bind="dismissed"
-                      on-focus.bind="onFocus"
-                      on-blur.bind="onBlur"
-                      on-change.bind="onChange"
-                      ></du-combo-box>
-
-                    </div>
-                  </examplecard>
+          <div>Multi selected items:</div>
+          <div>
+            <div repeat.for="item of selectedItems">${item}</div>
+          </div>
+      </div>
+    </examplecard>
   </div>
 </template>
