@@ -1014,6 +1014,7 @@ define('__dot_dot__/src/elements/BasicInputs/DuTextField',["require", "exports",
     reactprops.onNotifyValidationResult = au_react_wrapper_1.onlyAureliaBound;
     reactprops.onGetErrorMessage = au_react_wrapper_1.onlyAureliaBound;
     reactprops.prefix = {};
+    reactprops.suffix = {};
     reactprops.readOnly = {};
     reactprops.resizable = {};
     reactprops.underlined = {};

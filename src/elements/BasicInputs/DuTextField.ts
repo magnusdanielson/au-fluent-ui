@@ -28,6 +28,7 @@ reactprops.onChange = function (that: any, _event: any, newValue?: string)
 reactprops.onNotifyValidationResult = onlyAureliaBound;
 reactprops.onGetErrorMessage = <any>onlyAureliaBound;
 reactprops.prefix = <any>{};
+reactprops.suffix = <any>{};
 reactprops.readOnly = <any>{};
 reactprops.resizable = <any>{};
 reactprops.underlined = <any>{};
