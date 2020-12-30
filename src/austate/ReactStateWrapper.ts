@@ -1,30 +1,13 @@
 import * as React from 'react';
+import { ReactSimpleWrapper } from './ReactSimpleWrapper';
 
-export class ReactStateWrapper extends React.Component {
+export class ReactStateWrapper extends ReactSimpleWrapper {
     inneridReact: string;
-    state: any;
-    aureliaHost: any;
-    reactClass: any;
-    innerReactComponent:any;
 
     constructor(props: any) {
         super(props);
         this.state = {...props};
         this.inneridReact = 'du' + Math.round( Math.random() * 10000000000000000);
-        this.aureliaHost = props.aureliaHost;
-        this.reactClass = props.reactClass;
-    }
-
-    componentWillUnmount() {
-        if (typeof this.aureliaHost.reactComponentWillUnmount === 'function') {
-            this.aureliaHost.reactComponentWillUnmount();
-        }
-    }
-
-    componentDidMount() {
-        if (typeof this.aureliaHost.reactComponentDidMount === 'function') {
-            this.aureliaHost.reactComponentDidMount();
-        }
     }
 
     render() {
@@ -33,7 +16,7 @@ export class ReactStateWrapper extends React.Component {
             return null;
         }
 
-        this.innerReactComponent = React.createElement(
+        var innerReactComponent = React.createElement(
             this.reactClass,
             this.state,
             React.createElement('span', {
@@ -66,6 +49,6 @@ export class ReactStateWrapper extends React.Component {
                 }
             })
         );
-        return this.innerReactComponent;
+        return innerReactComponent;
     }
 }
