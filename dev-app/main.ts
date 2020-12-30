@@ -25,6 +25,7 @@ export function configure(aurelia: Aurelia) {
       PLATFORM.moduleName('./elements/BasicInputs/DuSlider'),
       PLATFORM.moduleName('./elements/BasicInputs/DuSpinButton'),
       PLATFORM.moduleName('./elements/BasicInputs/DuTextField'),
+      PLATFORM.moduleName('./elements/BasicInputs/DuTextField2'),
       PLATFORM.moduleName('./elements/BasicInputs/DuToggle'),
       PLATFORM.moduleName('./elements/Content/DuDetailsList'),
       PLATFORM.moduleName('./elements/Content/DuFacepile'),

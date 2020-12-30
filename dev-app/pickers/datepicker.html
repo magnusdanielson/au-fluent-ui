@@ -13,6 +13,8 @@
         <examplecard title="Default DatePicker">
 
                 <div slot="example">
+                    <du-date-picker  placeholder="Select a date!" first-day-of-week.one-time="0" strings.one-time="DayPickerStrings" ></du-date-picker>
+                    
                     <du-date-picker on-select-date.bind="selected" value.bind="mydate" placeholder="Select a date" show-week-numbers="true" ></du-date-picker>
                     !${mydate}!
                   </div>

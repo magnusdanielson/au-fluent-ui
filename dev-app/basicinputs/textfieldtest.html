@@ -1,0 +1,28 @@
+<template>
+  <div
+    class="content"
+    style="bottom: unset; top: 0px; background-color: rgb(3, 131, 135);">
+    <h1 class="pageTitle">Textfield</h1>
+    <div
+      role="presentation"
+      class="ms-FocusZone"
+      
+    ></div>
+  </div>
+  <div class="PageSection">
+
+
+              <examplecard title="Implementation examples">
+                    <div slot="example">
+                      myvalue: ${myvalue} <br/>
+                      ignoreReactUpdate: ${ignoreReactUpdate} <br/>
+                        <input value.bind="myvalue"></input>
+                        <div id="myreact"></div>
+
+                        <du-text-field2 value.bind="myvalue" label="text-field23" suffix.one-time="com"></du-text-field2>
+                        
+                      
+                      </div>
+                  </examplecard>
+  </div>
+</template>

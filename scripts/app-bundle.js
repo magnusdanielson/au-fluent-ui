@@ -11,6 +11,801 @@ define('DuTest',["require", "exports"], function (require, exports) {
 });
 ;
 define('text!DuTest.html',[],function(){return "<template>Test Hello</template>";});;
+define('__dot_dot__/src/austate/AuReactNoStateWrapper',["require", "exports", "react-dom", "aurelia-framework"], function (require, exports, ReactDom, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.AuReactNoStateWrapper = void 0;
+    var AuReactNoStateWrapper = (function () {
+        function AuReactNoStateWrapper(element) {
+            this.element = element;
+            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
+        }
+        AuReactNoStateWrapper.prototype.bind = function (bindingContext) {
+            if (bindingContext !== null) {
+                this.parent = bindingContext;
+            }
+            this.render();
+        };
+        AuReactNoStateWrapper.prototype.unbind = function () {
+            ReactDom.unmountComponentAtNode(this.element);
+        };
+        AuReactNoStateWrapper.prototype.createState = function (reactprops) {
+            var reactpropNames = Object.getOwnPropertyNames(reactprops);
+            var a = {};
+            var _loop_1 = function (i) {
+                var renderPropName = reactpropNames[i];
+                if (typeof reactprops[renderPropName] === 'function') {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
+                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
+                    if (typeof this_1[renderPropName] === 'function') {
+                        console.log('bound function, go aurelia');
+                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
+                    }
+                    else {
+                        console.log('function is not bound, check for default implementation on React template');
+                        var funcNames = [
+                            'defaultOnChangeEvent',
+                            'defaultActionEvent',
+                            'onlyAureliaBound'
+                        ];
+                        if (!funcNames.includes(reactprops[renderPropName].name)) {
+                            console.log('React template has default implementation, call it.');
+                            that = this_1;
+                            a[renderPropName] = function () {
+                                var argLength = arguments.length;
+                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
+                            };
+                        }
+                        else {
+                            console.log('React template has empty implementation, do nothing.');
+                        }
+                    }
+                }
+                else {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
+                    if (typeof this_1[renderPropName] !== 'undefined') {
+                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
+                        a[renderPropName] = this_1[renderPropName];
+                    }
+                    else {
+                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
+                    }
+                }
+            };
+            var this_1 = this, that;
+            for (var i = 0; i < reactpropNames.length; i++) {
+                _loop_1(i);
+            }
+            return a;
+        };
+        return AuReactNoStateWrapper;
+    }());
+    exports.AuReactNoStateWrapper = AuReactNoStateWrapper;
+});
+;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('__dot_dot__/src/austate/AuReactStateWrapper',["require", "exports", "react", "react-dom", "aurelia-framework", "./ReactStateWrapper"], function (require, exports, React, ReactDom, aurelia_framework_1, ReactStateWrapper_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.AuReactStateWrapper = void 0;
+    var AuReactStateWrapper = (function () {
+        function AuReactStateWrapper(element) {
+            console.log("ctor AuReactStateWrapper");
+            this.element = element;
+            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
+            this.inneridAurelia = 'du' + Math.round(Math.random() * 10000000000000000);
+        }
+        AuReactStateWrapper.prototype.createState = function (reactprops) {
+            console.log("createState AuReactStateWrapper");
+            var reactpropNames = Object.getOwnPropertyNames(reactprops);
+            var a = {};
+            var _loop_1 = function (i) {
+                var renderPropName = reactpropNames[i];
+                if (typeof reactprops[renderPropName] === 'function') {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
+                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
+                    if (typeof this_1[renderPropName] === 'function') {
+                        console.log('bound function, go aurelia');
+                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
+                    }
+                    else {
+                        console.log('function is not bound, check for default implementation on React template');
+                        var funcNames = ['defaultOnChangeEvent', 'defaultActionEvent', 'onlyAureliaBound'];
+                        if (!funcNames.includes(reactprops[renderPropName].name)) {
+                            console.log('React template has default implementation, call it.');
+                            that = this_1;
+                            a[renderPropName] = function () {
+                                var argLength = arguments.length;
+                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
+                            };
+                        }
+                        else {
+                            console.log('React template has empty implementation, do nothing.');
+                        }
+                    }
+                }
+                else {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
+                    if (typeof this_1[renderPropName] !== 'undefined') {
+                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
+                        a[renderPropName] = this_1[renderPropName];
+                    }
+                    else {
+                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
+                    }
+                }
+            };
+            var this_1 = this, that;
+            for (var i = 0; i < reactpropNames.length; i++) {
+                _loop_1(i);
+            }
+            return a;
+        };
+        AuReactStateWrapper.prototype.isHidden = function () {
+            return this.hiddenIsHidden ? this[this.hiddenName] : !this[this.hiddenName];
+        };
+        AuReactStateWrapper.prototype.bind = function (bindingContext) {
+            console.log('bind AuReactStateWrapper');
+            if (bindingContext !== null) {
+                this.parent = bindingContext;
+            }
+        };
+        AuReactStateWrapper.prototype.unbind = function () {
+            console.log('unbind AuReactStateWrapper');
+            if (this.container != null)
+                ReactDom.unmountComponentAtNode(this.container);
+        };
+        AuReactStateWrapper.prototype.propertyChanged = function (name, newValue, oldValue) {
+            if (newValue == oldValue) {
+                console.log('AuReactStateWrapper: propertySame');
+                return;
+            }
+            console.log('AuReactStateWrapper: propertyChanged');
+            console.log(this);
+            console.log(newValue);
+            console.log(oldValue);
+            var obj = {};
+            obj[name] = newValue;
+            if (this.changeState == true) {
+                console.log("AuReactStateWrapper: changeState == true");
+                this.reactComponent.innerReactComponent.setState(obj);
+            }
+            this.changeState = true;
+            return;
+            if (name == this.hiddenName) {
+                if (this.hiddenIsHidden ? newValue : !newValue) {
+                    this.moveBack();
+                }
+            }
+            console.log(this);
+            if (this.changeState == false) {
+                console.log("AuReactStateWrapper changeState == false");
+            }
+            else {
+                console.log("AuReactStateWrapper changeState == true");
+            }
+            this.reactComponent.setState(obj);
+            this.changeState = true;
+        };
+        AuReactStateWrapper.prototype.moveBack = function () {
+            console.log('moveBack AuReactStateWrapper');
+            var auelement = document.getElementById(this.inneridAurelia);
+            var oldParent = document.getElementById(this.reactComponent.inneridReact);
+            if (oldParent == null || auelement == null) {
+                return;
+            }
+            while (oldParent.childNodes.length > 0) {
+                auelement.appendChild(oldParent.childNodes[0]);
+            }
+        };
+        AuReactStateWrapper.prototype.renderReact = function (reactClass, a) {
+            console.log('renderReact AuReactStateWrapper');
+            ReactDom.unmountComponentAtNode(this.element);
+            this.container = this.element.querySelector('.au-react-root');
+            if (this.container != null) {
+                this.container.remove();
+            }
+            this.container = document.createElement('span');
+            this.container.setAttribute('class', 'au-react-root');
+            this.element.appendChild(this.container);
+            a.aureliaHost = this;
+            a.reactClass = reactClass;
+            var reactElement = React.createElement(ReactStateWrapper_1.ReactStateWrapper, a);
+            var reactComponent = ReactDom.render(reactElement, this.container);
+            this.reactComponent = reactComponent;
+            console.log('renderReact complete AuReactStateWrapper');
+        };
+        AuReactStateWrapper = __decorate([
+            aurelia_framework_1.inlineView('<template><span id.bind="inneridAurelia" show.bind="!hidden"><slot></slot></span></template>'),
+            __metadata("design:paramtypes", [Object])
+        ], AuReactStateWrapper);
+        return AuReactStateWrapper;
+    }());
+    exports.AuReactStateWrapper = AuReactStateWrapper;
+});
+;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('__dot_dot__/src/austate/AuReactStateWrapper copy',["require", "exports", "react", "react-dom", "aurelia-framework", "./ReactStateWrapper"], function (require, exports, React, ReactDom, aurelia_framework_1, ReactStateWrapper_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.AuReactStateWrapper = void 0;
+    var AuReactStateWrapper = (function () {
+        function AuReactStateWrapper(element) {
+            console.log("ctor AuReactStateWrapper");
+            this.element = element;
+            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
+            this.inneridAurelia = 'du' + Math.round(Math.random() * 10000000000000000);
+        }
+        AuReactStateWrapper.prototype.createState = function (reactprops) {
+            console.log("createState AuReactStateWrapper");
+            var reactpropNames = Object.getOwnPropertyNames(reactprops);
+            var a = {};
+            var _loop_1 = function (i) {
+                var renderPropName = reactpropNames[i];
+                if (typeof reactprops[renderPropName] === 'function') {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
+                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
+                    if (typeof this_1[renderPropName] === 'function') {
+                        console.log('bound function, go aurelia');
+                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
+                    }
+                    else {
+                        console.log('function is not bound, check for default implementation on React template');
+                        var funcNames = ['defaultOnChangeEvent', 'defaultActionEvent', 'onlyAureliaBound'];
+                        if (!funcNames.includes(reactprops[renderPropName].name)) {
+                            console.log('React template has default implementation, call it.');
+                            that = this_1;
+                            a[renderPropName] = function () {
+                                var argLength = arguments.length;
+                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
+                            };
+                        }
+                        else {
+                            console.log('React template has empty implementation, do nothing.');
+                        }
+                    }
+                }
+                else {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
+                    if (typeof this_1[renderPropName] !== 'undefined') {
+                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
+                        a[renderPropName] = this_1[renderPropName];
+                    }
+                    else {
+                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
+                    }
+                }
+            };
+            var this_1 = this, that;
+            for (var i = 0; i < reactpropNames.length; i++) {
+                _loop_1(i);
+            }
+            return a;
+        };
+        AuReactStateWrapper.prototype.isHidden = function () {
+            return this.hiddenIsHidden ? this[this.hiddenName] : !this[this.hiddenName];
+        };
+        AuReactStateWrapper.prototype.bind = function (bindingContext) {
+            console.log('bind AuReactStateWrapper');
+            if (bindingContext !== null) {
+                this.parent = bindingContext;
+            }
+        };
+        AuReactStateWrapper.prototype.unbind = function () {
+            console.log('unbind AuReactStateWrapper');
+            if (this.container != null)
+                ReactDom.unmountComponentAtNode(this.container);
+        };
+        AuReactStateWrapper.prototype.propertyChanged = function (name, newValue, oldValue) {
+            if (newValue == oldValue) {
+                console.log('AuReactStateWrapper: propertySame');
+                return;
+            }
+            console.log('AuReactStateWrapper: propertyChanged');
+            console.log(this);
+            console.log(newValue);
+            console.log(oldValue);
+            var obj = {};
+            obj[name] = newValue;
+            if (this.changeState == true) {
+                console.log("AuReactStateWrapper: changeState == true");
+                this.reactComponent.innerReactComponent.setState(obj);
+            }
+            this.changeState = true;
+            return;
+            if (name == this.hiddenName) {
+                if (this.hiddenIsHidden ? newValue : !newValue) {
+                    this.moveBack();
+                }
+            }
+            console.log(this);
+            if (this.changeState == false) {
+                console.log("AuReactStateWrapper changeState == false");
+            }
+            else {
+                console.log("AuReactStateWrapper changeState == true");
+            }
+            this.reactComponent.setState(obj);
+            this.changeState = true;
+        };
+        AuReactStateWrapper.prototype.moveBack = function () {
+            console.log('moveBack AuReactStateWrapper');
+            var auelement = document.getElementById(this.inneridAurelia);
+            var oldParent = document.getElementById(this.reactComponent.inneridReact);
+            if (oldParent == null || auelement == null) {
+                return;
+            }
+            while (oldParent.childNodes.length > 0) {
+                auelement.appendChild(oldParent.childNodes[0]);
+            }
+        };
+        AuReactStateWrapper.prototype.renderReact = function (reactClass, a) {
+            console.log('renderReact AuReactStateWrapper');
+            ReactDom.unmountComponentAtNode(this.element);
+            this.container = this.element.querySelector('.au-react-root');
+            if (this.container != null) {
+                this.container.remove();
+            }
+            this.container = document.createElement('span');
+            this.container.setAttribute('class', 'au-react-root');
+            this.element.appendChild(this.container);
+            a.aureliaHost = this;
+            a.reactClass = reactClass;
+            var reactElement = React.createElement(ReactStateWrapper_1.ReactStateWrapper, a);
+            var reactComponent = ReactDom.render(reactElement, this.container);
+            this.reactComponent = reactComponent;
+            console.log('renderReact complete AuReactStateWrapper');
+        };
+        AuReactStateWrapper = __decorate([
+            aurelia_framework_1.inlineView('<template><span id.bind="inneridAurelia" show.bind="!hidden"><slot></slot></span></template>'),
+            __metadata("design:paramtypes", [Object])
+        ], AuReactStateWrapper);
+        return AuReactStateWrapper;
+    }());
+    exports.AuReactStateWrapper = AuReactStateWrapper;
+});
+;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+define('__dot_dot__/src/austate/AuReactStateWrapperNoChildren',["require", "exports", "react", "react-dom", "./AuReactStateWrapper", "./ReactStateWrapperNoChildren"], function (require, exports, React, ReactDom, AuReactStateWrapper_1, ReactStateWrapperNoChildren_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.AuReactStateWrapperNoChildren = void 0;
+    var AuReactStateWrapperNoChildren = (function (_super) {
+        __extends(AuReactStateWrapperNoChildren, _super);
+        function AuReactStateWrapperNoChildren() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        AuReactStateWrapperNoChildren.prototype.renderReact = function (reactClass, a) {
+            console.log("AuReactStateWrapperNoChildren: renderReact");
+            ReactDom.unmountComponentAtNode(this.element);
+            this.container = this.element.querySelector('.au-react-root');
+            if (this.container != null) {
+                console.log("AuReactStateWrapperNoChildren: remove");
+                this.container.remove();
+            }
+            this.container = document.createElement('span');
+            this.container.setAttribute('class', 'au-react-root');
+            this.element.appendChild(this.container);
+            a.aureliaHost = this;
+            a.reactClass = reactClass;
+            var reactElement = React.createElement(ReactStateWrapperNoChildren_1.ReactStateWrapperNoChildren, a);
+            var reactComponent = ReactDom.render(reactElement, this.container);
+            this.reactComponent = reactComponent;
+            console.log(reactComponent);
+            console.log("AuReactStateWrapperNoChildren: renderReact return");
+        };
+        return AuReactStateWrapperNoChildren;
+    }(AuReactStateWrapper_1.AuReactStateWrapper));
+    exports.AuReactStateWrapperNoChildren = AuReactStateWrapperNoChildren;
+});
+;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('__dot_dot__/src/austate/AuReactStateWrapperNoChildren2',["require", "exports", "react", "react-dom", "aurelia-framework", "./ReactStateWrapperNoChildren"], function (require, exports, React, ReactDom, aurelia_framework_1, ReactStateWrapperNoChildren_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.AuReactStateWrapperNoChildren2 = void 0;
+    var AuReactStateWrapperNoChildren2 = (function () {
+        function AuReactStateWrapperNoChildren2(element, tq) {
+            this.tq = tq;
+            this.ignoreReactUpdate = false;
+            console.log("ctor AuReactStateWrapperNoChildren2");
+            this.element = element;
+            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
+        }
+        AuReactStateWrapperNoChildren2.prototype.createState = function (reactprops) {
+            console.log("createState AuReactStateWrapperNoChildren2");
+            var reactpropNames = Object.getOwnPropertyNames(reactprops);
+            var a = {};
+            var _loop_1 = function (i) {
+                var renderPropName = reactpropNames[i];
+                if (typeof reactprops[renderPropName] === 'function') {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
+                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
+                    if (typeof this_1[renderPropName] === 'function') {
+                        console.log('bound function, go aurelia');
+                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
+                    }
+                    else {
+                        console.log('function is not bound, check for default implementation on React template');
+                        var funcNames = ['defaultOnChangeEvent', 'defaultActionEvent', 'onlyAureliaBound'];
+                        if (!funcNames.includes(reactprops[renderPropName].name)) {
+                            console.log('React template has default implementation, call it.');
+                            that = this_1;
+                            a[renderPropName] = function () {
+                                var argLength = arguments.length;
+                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
+                            };
+                        }
+                        else {
+                            console.log('React template has empty implementation, do nothing.');
+                        }
+                    }
+                }
+                else {
+                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
+                    if (typeof this_1[renderPropName] !== 'undefined') {
+                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
+                        a[renderPropName] = this_1[renderPropName];
+                    }
+                    else {
+                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
+                    }
+                }
+            };
+            var this_1 = this, that;
+            for (var i = 0; i < reactpropNames.length; i++) {
+                _loop_1(i);
+            }
+            return a;
+        };
+        AuReactStateWrapperNoChildren2.prototype.isHidden = function () {
+            return this.hiddenIsHidden ? this[this.hiddenName] : !this[this.hiddenName];
+        };
+        AuReactStateWrapperNoChildren2.prototype.bind = function (bindingContext) {
+            console.log('bind AuReactStateWrapperNoChildren2');
+            if (bindingContext !== null) {
+                this.parent = bindingContext;
+            }
+        };
+        AuReactStateWrapperNoChildren2.prototype.unbind = function () {
+            console.log('unbind AuReactStateWrapperNoChildren2');
+            if (this.element != null)
+                ReactDom.unmountComponentAtNode(this.element);
+        };
+        AuReactStateWrapperNoChildren2.prototype.propertyChanged = function (name, newValue, oldValue) {
+            var _this = this;
+            if (newValue == oldValue) {
+                console.log('AuReactStateWrapperNoChildren2: propertySame');
+                return;
+            }
+            console.log('AuReactStateWrapperNoChildren2: propertyChanged');
+            if (!this.ignoreReactUpdate) {
+                var obj = {};
+                obj[name] = newValue;
+                this.reactComponent.setState(obj);
+            }
+            this.tq.queueMicroTask(function () {
+                console.log("microTask");
+                console.log(_this);
+                _this.ignoreReactUpdate = false;
+            });
+            console.log("textfield: valueChanged Leaving");
+        };
+        AuReactStateWrapperNoChildren2.prototype.attached = function () {
+            this.renderReact();
+        };
+        AuReactStateWrapperNoChildren2.prototype.renderReact = function () {
+            console.log('renderReact AuReactStateWrapperNoChildren2');
+            var a = this.createState(this.orignalProp);
+            a.aureliaHost = this;
+            a.reactClass = this.reactClass;
+            var reactElement = React.createElement(ReactStateWrapperNoChildren_1.ReactStateWrapperNoChildren, a, null);
+            var reactComponent = ReactDom.render(reactElement, this.element);
+            this.reactComponent = reactComponent;
+            console.log('renderReact complete AuReactStateWrapperNoChildren2');
+        };
+        AuReactStateWrapperNoChildren2 = __decorate([
+            aurelia_framework_1.noView(),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
+        ], AuReactStateWrapperNoChildren2);
+        return AuReactStateWrapperNoChildren2;
+    }());
+    exports.AuReactStateWrapperNoChildren2 = AuReactStateWrapperNoChildren2;
+});
+;
+define('__dot_dot__/src/austate/IAuReactWrapper',["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+});
+;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+define('__dot_dot__/src/austate/ReactSimpleWrapper',["require", "exports", "react"], function (require, exports, React) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ReactSimpleWrapper = void 0;
+    var ReactSimpleWrapper = (function (_super) {
+        __extends(ReactSimpleWrapper, _super);
+        function ReactSimpleWrapper(props) {
+            var _this = _super.call(this, props) || this;
+            _this.state = __assign({}, props);
+            _this.reactClass = props.reactClass;
+            return _this;
+        }
+        ReactSimpleWrapper.prototype.render = function () {
+            console.log("ReactStateWrapper: render");
+            this.innerReactComponent = React.createElement(this.reactClass, this.state);
+            return this.innerReactComponent;
+        };
+        return ReactSimpleWrapper;
+    }(React.Component));
+    exports.ReactSimpleWrapper = ReactSimpleWrapper;
+});
+;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+define('__dot_dot__/src/austate/ReactStateWrapper',["require", "exports", "react"], function (require, exports, React) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ReactStateWrapper = void 0;
+    var ReactStateWrapper = (function (_super) {
+        __extends(ReactStateWrapper, _super);
+        function ReactStateWrapper(props) {
+            var _this = _super.call(this, props) || this;
+            _this.state = __assign({}, props);
+            _this.inneridReact = 'du' + Math.round(Math.random() * 10000000000000000);
+            _this.aureliaHost = props.aureliaHost;
+            _this.reactClass = props.reactClass;
+            return _this;
+        }
+        ReactStateWrapper.prototype.componentWillUnmount = function () {
+            if (typeof this.aureliaHost.reactComponentWillUnmount === 'function') {
+                this.aureliaHost.reactComponentWillUnmount();
+            }
+        };
+        ReactStateWrapper.prototype.componentDidMount = function () {
+            if (typeof this.aureliaHost.reactComponentDidMount === 'function') {
+                this.aureliaHost.reactComponentDidMount();
+            }
+        };
+        ReactStateWrapper.prototype.render = function () {
+            var _this = this;
+            console.log("ReactStateWrapper: render");
+            if (this.aureliaHost.isHidden()) {
+                return null;
+            }
+            this.innerReactComponent = React.createElement(this.reactClass, this.state, React.createElement('span', {
+                id: this.inneridReact,
+                ref: function (newParent) {
+                    if (newParent == null) {
+                        newParent = document.getElementById(_this.inneridReact.toString());
+                        if (newParent == null) {
+                            return;
+                        }
+                    }
+                    if (_this.aureliaHost.isHidden()) {
+                        return;
+                    }
+                    var auelement = document.getElementById(_this.aureliaHost.inneridAurelia);
+                    if (auelement == null) {
+                        return;
+                    }
+                    while (auelement.childNodes.length > 0) {
+                        newParent.appendChild(auelement.childNodes[0]);
+                    }
+                }
+            }));
+            return this.innerReactComponent;
+        };
+        return ReactStateWrapper;
+    }(React.Component));
+    exports.ReactStateWrapper = ReactStateWrapper;
+});
+;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+define('__dot_dot__/src/austate/ReactStateWrapperNoChildren',["require", "exports", "react", "./ReactStateWrapper"], function (require, exports, React, ReactStateWrapper_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ReactStateWrapperNoChildren = void 0;
+    var ReactStateWrapperNoChildren = (function (_super) {
+        __extends(ReactStateWrapperNoChildren, _super);
+        function ReactStateWrapperNoChildren() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        ReactStateWrapperNoChildren.prototype.render = function () {
+            console.log("ReactStateWrapperNoChildren render");
+            if (this.aureliaHost.isHidden()) {
+                return null;
+            }
+            this.innerReactComponent = React.createElement(this.reactClass, this.state);
+            console.log(this.innerReactComponent);
+            return this.innerReactComponent;
+        };
+        return ReactStateWrapperNoChildren;
+    }(ReactStateWrapper_1.ReactStateWrapper));
+    exports.ReactStateWrapperNoChildren = ReactStateWrapperNoChildren;
+});
+;
+define('__dot_dot__/src/austate/addPropertiesNoState',["require", "exports", "aurelia-framework", "./camelToKebab"], function (require, exports, aurelia_framework_1, camelToKebab_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.addPropertiesNoState = void 0;
+    function addPropertiesNoState(aureliaClass, reactprops) {
+        var reactpropNames = Object.getOwnPropertyNames(reactprops);
+        for (var i = 0; i < reactpropNames.length; i++) {
+            var renderPropName = reactpropNames[i];
+            aurelia_framework_1.bindable({
+                name: renderPropName,
+                attribute: camelToKebab_1.camelToKebab(renderPropName),
+                changeHandler: 'render',
+                defaultBindingMode: aurelia_framework_1.bindingMode.twoWay
+            })(aureliaClass);
+        }
+    }
+    exports.addPropertiesNoState = addPropertiesNoState;
+});
+;
+define('__dot_dot__/src/austate/addPropertiesState',["require", "exports", "aurelia-framework", "./camelToKebab"], function (require, exports, aurelia_framework_1, camelToKebab_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.addPropertiesState = void 0;
+    function addPropertiesState(aureliaClass, reactprops) {
+        var reactpropNames = Object.getOwnPropertyNames(reactprops);
+        for (var i = 0; i < reactpropNames.length; i++) {
+            var renderPropName = reactpropNames[i];
+            aurelia_framework_1.bindable({
+                name: renderPropName,
+                attribute: camelToKebab_1.camelToKebab(renderPropName),
+                defaultBindingMode: aurelia_framework_1.bindingMode.twoWay
+            })(aureliaClass);
+        }
+    }
+    exports.addPropertiesState = addPropertiesState;
+});
+;
+define('__dot_dot__/src/austate/camelToKebab',["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.camelToKebab = void 0;
+    function camelToKebab(str) {
+        return str
+            .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+            .replace(/([A-Z])([A-Z])(?=[a-z])/g, '$1-$2')
+            .toLowerCase();
+    }
+    exports.camelToKebab = camelToKebab;
+});
+;
+define('__dot_dot__/src/austate/events',["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.onlyAureliaBound = exports.defaultOnChangeEvent = exports.defaultActionEvent = void 0;
+    function defaultActionEvent() { }
+    exports.defaultActionEvent = defaultActionEvent;
+    function defaultOnChangeEvent() { }
+    exports.defaultOnChangeEvent = defaultOnChangeEvent;
+    function onlyAureliaBound() { }
+    exports.onlyAureliaBound = onlyAureliaBound;
+});
+;
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+};
+define('__dot_dot__/src/austate/index',["require", "exports", "./addPropertiesNoState", "./addPropertiesState", "./AuReactNoStateWrapper", "./AuReactStateWrapper", "./AuReactStateWrapperNoChildren", "./camelToKebab", "./events", "./IAuReactWrapper", "./ReactStateWrapper", "./ReactStateWrapperNoChildren"], function (require, exports, addPropertiesNoState_1, addPropertiesState_1, AuReactNoStateWrapper_1, AuReactStateWrapper_1, AuReactStateWrapperNoChildren_1, camelToKebab_1, events_1, IAuReactWrapper_1, ReactStateWrapper_1, ReactStateWrapperNoChildren_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    __exportStar(addPropertiesNoState_1, exports);
+    __exportStar(addPropertiesState_1, exports);
+    __exportStar(AuReactNoStateWrapper_1, exports);
+    __exportStar(AuReactStateWrapper_1, exports);
+    __exportStar(AuReactStateWrapperNoChildren_1, exports);
+    __exportStar(camelToKebab_1, exports);
+    __exportStar(events_1, exports);
+    __exportStar(IAuReactWrapper_1, exports);
+    __exportStar(ReactStateWrapper_1, exports);
+    __exportStar(ReactStateWrapperNoChildren_1, exports);
+});
+;
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -1076,6 +1871,153 @@ define('__dot_dot__/src/elements/BasicInputs/DuTextField',["require", "exports",
     }(au_react_wrapper_1.AuReactStateWrapperNoChildren));
     exports.DuTextField = DuTextField;
     au_react_wrapper_1.addPropertiesState(DuTextField, reactprops);
+});
+;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('__dot_dot__/src/elements/BasicInputs/DuTextField2',["require", "exports", "react", "react-dom", "aurelia-framework", "@fluentui/react/lib/TextField", "@dunite/au-react-wrapper"], function (require, exports, React, ReactDom, aurelia_framework_1, TextField_1, au_react_wrapper_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.T2 = exports.DuTextField2 = void 0;
+    var reactprops = {};
+    reactprops.ariaLabel = {};
+    reactprops.autoAdjustHeight = {};
+    reactprops.autoComplete = {};
+    reactprops.borderless = {};
+    reactprops.className = {};
+    reactprops.defaultValue = {};
+    reactprops.deferredValidationTime = {};
+    reactprops.description = {};
+    reactprops.disabled = {};
+    reactprops.errorMessage = {};
+    reactprops.iconProps = {};
+    reactprops.inputClassName = {};
+    reactprops.label = {};
+    reactprops.mask = {};
+    reactprops.maskChar = {};
+    reactprops.maskFormat = {};
+    reactprops.multiline = {};
+    reactprops.onChange = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.onNotifyValidationResult = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.onGetErrorMessage = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.prefix = {};
+    reactprops.suffix = {};
+    reactprops.readOnly = {};
+    reactprops.resizable = {};
+    reactprops.underlined = {};
+    reactprops.validateOnFocusIn = {};
+    reactprops.validateOnFocusOut = {};
+    reactprops.validateOnLoad = {};
+    reactprops.value = {};
+    reactprops.required = {};
+    reactprops.placeholder = {};
+    var DuTextField2 = (function () {
+        function DuTextField2(element, tq) {
+            this.tq = tq;
+            this.orignalProp = reactprops;
+            this.hidden = false;
+            this.ignoreReactUpdate = false;
+            this.element = element;
+        }
+        DuTextField2.prototype.attached = function () {
+            this.renderReact();
+        };
+        DuTextField2.prototype.renderReact = function () {
+            var _this = this;
+            console.log("DuTextField2: renderReact");
+            var a = {
+                "label": "mylabel2",
+                "value": this.value,
+                "onChange": function (event, newValue) {
+                    console.log("DuTextField2: [renderReact] onChange Entering");
+                    _this.ignoreReactUpdate = true;
+                    _this.value = newValue;
+                    _this.reactComponent.setState({ "value": newValue || '' });
+                    console.log("DuTextField2: [renderReact] onChange Leaving");
+                }
+            };
+            var reactElement = React.createElement(T2, a, null);
+            this.reactComponent = ReactDom.render(reactElement, document.getElementById("myreact"));
+        };
+        DuTextField2.prototype.valueChanged = function (newValue, oldValue, more) {
+            var _this = this;
+            console.log("DuTextField2: valueChanged Entering");
+            console.log(this);
+            console.log(newValue);
+            console.log(oldValue);
+            console.log(more);
+            if (!this.ignoreReactUpdate) {
+                this.reactComponent.setState({ "value": newValue || '' });
+            }
+            this.tq.queueMicroTask(function () {
+                console.log("microTask");
+                console.log(_this);
+                _this.ignoreReactUpdate = false;
+            });
+            console.log("DuTextField2: valueChanged Leaving");
+        };
+        DuTextField2 = __decorate([
+            aurelia_framework_1.customElement('du-text-field2'),
+            aurelia_framework_1.noView(),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
+        ], DuTextField2);
+        return DuTextField2;
+    }());
+    exports.DuTextField2 = DuTextField2;
+    aurelia_framework_1.bindable({
+        name: "value",
+        attribute: "value",
+        changeHandler: 'valueChanged',
+        defaultBindingMode: aurelia_framework_1.bindingMode.twoWay
+    })(DuTextField2);
+    var T2 = (function (_super) {
+        __extends(T2, _super);
+        function T2(props) {
+            var _this = _super.call(this, props) || this;
+            console.log("T2:ctor");
+            _this.state = __assign({}, props);
+            return _this;
+        }
+        T2.prototype.render = function () {
+            console.log("T2:render");
+            console.log(this);
+            return React.createElement(TextField_1.TextField, this.state, null);
+        };
+        return T2;
+    }(React.Component));
+    exports.T2 = T2;
 });
 ;
 var __extends = (this && this.__extends) || (function () {
@@ -3603,6 +4545,7 @@ define('app',["require", "exports", "aurelia-framework", "@fluentui/react/lib/Ic
                 { route: '/slider', moduleId: aurelia_framework_1.PLATFORM.moduleName('./basicinputs/slider'), name: 'slider', nav: true, title: 'Slider' },
                 { route: '/spinbutton', moduleId: aurelia_framework_1.PLATFORM.moduleName('./basicinputs/spinbutton'), name: 'spinbutton', nav: true, title: 'Spinbutton' },
                 { route: '/textfield', moduleId: aurelia_framework_1.PLATFORM.moduleName('./basicinputs/textfield'), name: 'textfield', nav: true, title: 'Textfield' },
+                { route: '/textfieldtest', moduleId: aurelia_framework_1.PLATFORM.moduleName('./basicinputs/textfieldtest'), name: 'textfieldtest', nav: true, title: 'Textfieldtest' },
                 { route: '/toggle', moduleId: aurelia_framework_1.PLATFORM.moduleName('./basicinputs/toggle'), name: 'toggle', nav: true, title: 'Toggle' },
                 { route: '/breadcrumb', moduleId: aurelia_framework_1.PLATFORM.moduleName('./navigation/breadcrumb'), name: 'breadcrumb', nav: true, title: 'Breadcrumb' },
                 { route: '/commandbar', moduleId: aurelia_framework_1.PLATFORM.moduleName('./navigation/commandbar'), name: 'commandbar', nav: true, title: 'Commandbar' },
@@ -3986,7 +4929,140 @@ define('basicinputs/textfield',["require", "exports"], function (require, export
     exports.textfield = textfield;
 });
 ;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('basicinputs/textfield copy',["require", "exports", "elements/BasicInputs/DuTextField2", "react", "react-dom", "aurelia-framework"], function (require, exports, DuTextField2_1, React, ReactDom, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.textfield = void 0;
+    var textfield = (function () {
+        function textfield(tq) {
+            var _this = this;
+            this.tq = tq;
+            this.ignoreReactUpdate = false;
+            this.onGetErrorMessage = function (value) {
+                console.log('onGetErrorMessage');
+                console.log(value);
+                return value.length < 3 ? '' : "Input value length must be less than 3. Actual length is " + value.length + ".";
+            };
+            this.onGetErrorMessagePromise = function (value) {
+                return new Promise(function (resolve) {
+                    setTimeout(function () { return resolve(_this.onGetErrorMessage(value)); }, 5000);
+                });
+            };
+        }
+        textfield.prototype.attached = function () {
+            this.renderReact();
+        };
+        textfield.prototype.renderReact = function () {
+            var _this = this;
+            console.log("textfield: renderReact");
+            var a = {
+                "label": "mylabel",
+                "value": this.myvalue,
+                "onChange": function (event, newValue) {
+                    console.log("textfield: [renderReact] onChange Entering");
+                    _this.ignoreReactUpdate = true;
+                    _this.myvalue = newValue;
+                    _this.reactComponent.setState({ "value": newValue || '' });
+                    console.log("textfield: [renderReact] onChange Leaving");
+                }
+            };
+            var reactElement = React.createElement(DuTextField2_1.T2, a, null);
+            this.reactComponent = ReactDom.render(reactElement, document.getElementById("myreact"));
+        };
+        textfield.prototype.valueChanged = function (newValue, oldValue) {
+            var _this = this;
+            console.log("textfield: valueChanged Entering");
+            if (!this.ignoreReactUpdate) {
+                this.reactComponent.setState({ "value": newValue || '' });
+            }
+            this.tq.queueMicroTask(function () {
+                console.log("microTask");
+                console.log(_this);
+                _this.ignoreReactUpdate = false;
+            });
+            console.log("textfield: valueChanged Leaving");
+        };
+        textfield = __decorate([
+            aurelia_framework_1.observable({ name: 'myvalue', changeHandler: 'valueChanged' }),
+            aurelia_framework_1.autoinject(),
+            __metadata("design:paramtypes", [aurelia_framework_1.TaskQueue])
+        ], textfield);
+        return textfield;
+    }());
+    exports.textfield = textfield;
+});
+;
+define('text!basicinputs/textfield copy.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Textfield</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Implementation examples\"><div slot=example>myvalue: ${myvalue} <br>ignoreReactUpdate: ${ignoreReactUpdate} <br><input value.bind=myvalue><div id=myreact></div></div></examplecard></div></template>";});;
 define('text!basicinputs/textfield.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Textfield</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Implementation examples\"><div slot=example>name: ${name} <br><input value.bind=myvalue><du-text-field value.bind=myvalue validate.bind=onchange label=\"Standard bound to ${myvalue}\"></du-text-field><du-text-field label=Disabled disabled.one-time=true></du-text-field><du-text-field label=\"Read Only\" read-only.one-time=true></du-text-field><du-text-field label=Required required.one-time=true></du-text-field><du-text-field label=\"With error message\" error-message=\"Error message\"></du-text-field><du-text-field label=\"With placeholder message\" placeholder=\"I am a placeholder.\"></du-text-field><du-text-field label=\"Multiline resizable\" multiline=true rows=4 resizable.bind=true></du-text-field><du-text-field label=\"Multiline auto adjust\" multiline=true auto-adjust-height.bind=true rows=4></du-text-field><du-text-field label=\"Multiline non resizable\" multiline=true rows=4 resizable.bind=false></du-text-field><du-text-field label=Underlined underlined=true></du-text-field><du-text-field label=Borderless borderless=true></du-text-field><du-text-field label=AutoComplete auto-complete=true></du-text-field><du-text-field label=Prefix prefix=https:// ></du-text-field><du-text-field label=Suffix suffix=.com></du-text-field><du-text-field label=\"With icon\" icon-props.one-time=\"{ iconName: 'Calendar' }\"></du-text-field><du-text-field label=\"With description\" description=\"A description\"></du-text-field><du-text-field label=\"TextField with a string-based validator.\" on-get-error-message.bind=onGetErrorMessage></du-text-field><du-text-field on-before-change.bind=onchange on-changed.bind=onchange validate.bind=onchange label=\"TextField with a Promise-based validator.\" on-get-error-message.bind=onGetErrorMessagePromise></du-text-field></div></examplecard></div></template>";});;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('basicinputs/textfieldtest',["require", "exports", "elements/BasicInputs/DuTextField2", "react", "react-dom", "aurelia-framework"], function (require, exports, DuTextField2_1, React, ReactDom, aurelia_framework_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.textfieldtest = void 0;
+    var textfieldtest = (function () {
+        function textfieldtest(tq) {
+            this.tq = tq;
+            this.ignoreReactUpdate = false;
+        }
+        textfieldtest.prototype.attached = function () {
+        };
+        textfieldtest.prototype.renderReact = function () {
+            var _this = this;
+            console.log("textfield: renderReact");
+            var a = {
+                "label": "mylabel",
+                "value": this.myvalue,
+                "onChange": function (event, newValue) {
+                    console.log("textfield: [renderReact] onChange Entering");
+                    _this.ignoreReactUpdate = true;
+                    _this.myvalue = newValue;
+                    _this.reactComponent.setState({ "value": newValue || '' });
+                    console.log("textfield: [renderReact] onChange Leaving");
+                }
+            };
+            var reactElement = React.createElement(DuTextField2_1.T2, a, null);
+            this.reactComponent = ReactDom.render(reactElement, document.getElementById("myreact"));
+        };
+        textfieldtest.prototype.valueChanged = function (newValue, oldValue) {
+            var _this = this;
+            console.log("textfield: valueChanged Entering");
+            if (!this.ignoreReactUpdate) {
+                this.reactComponent.setState({ "value": newValue || '' });
+            }
+            this.tq.queueMicroTask(function () {
+                console.log("microTask");
+                console.log(_this);
+                _this.ignoreReactUpdate = false;
+            });
+            console.log("textfield: valueChanged Leaving");
+        };
+        textfieldtest = __decorate([
+            aurelia_framework_1.autoinject(),
+            __metadata("design:paramtypes", [aurelia_framework_1.TaskQueue])
+        ], textfieldtest);
+        return textfieldtest;
+    }());
+    exports.textfieldtest = textfieldtest;
+});
+;
+define('text!basicinputs/textfieldtest.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Textfield</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Implementation examples\"><div slot=example>myvalue: ${myvalue} <br>ignoreReactUpdate: ${ignoreReactUpdate} <br><input value.bind=myvalue><div id=myreact></div><du-text-field2 value.bind=myvalue label=text-field23 suffix.one-time=com></du-text-field2></div></examplecard></div></template>";});;
 define('basicinputs/toggle',["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -4328,6 +5404,7 @@ define('main',["require", "exports", "aurelia-framework", "./environment"], func
             aurelia_framework_1.PLATFORM.moduleName('./elements/BasicInputs/DuSlider'),
             aurelia_framework_1.PLATFORM.moduleName('./elements/BasicInputs/DuSpinButton'),
             aurelia_framework_1.PLATFORM.moduleName('./elements/BasicInputs/DuTextField'),
+            aurelia_framework_1.PLATFORM.moduleName('./elements/BasicInputs/DuTextField2'),
             aurelia_framework_1.PLATFORM.moduleName('./elements/BasicInputs/DuToggle'),
             aurelia_framework_1.PLATFORM.moduleName('./elements/Content/DuDetailsList'),
             aurelia_framework_1.PLATFORM.moduleName('./elements/Content/DuFacepile'),
@@ -4723,6 +5800,31 @@ define('pickers/datepicker',["require", "exports", "@fluentui/date-time-utilitie
     exports.datepicker = void 0;
     var datepicker = (function () {
         function datepicker() {
+            this.DayPickerStrings = {
+                months: [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December',
+                ],
+                shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                shortDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+                goToToday: 'Go to today',
+                prevMonthAriaLabel: 'Go to previous month',
+                nextMonthAriaLabel: 'Go to next month',
+                prevYearAriaLabel: 'Go to previous year',
+                nextYearAriaLabel: 'Go to next year',
+                closeButtonAriaLabel: 'Close date picker',
+            };
             this.onFormatDate = function (date) {
                 return date.getDate() + '/' + (date.getMonth() + 1) + '/' + (date.getFullYear() % 100);
             };
@@ -4738,7 +5840,7 @@ define('pickers/datepicker',["require", "exports", "@fluentui/date-time-utilitie
     exports.datepicker = datepicker;
 });
 ;
-define('text!pickers/datepicker.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>DatePicker</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Default DatePicker\"><div slot=example><du-date-picker on-select-date.bind=selected value.bind=mydate placeholder=\"Select a date\" show-week-numbers=true></du-date-picker>!${mydate}!</div></examplecard><examplecard title=\"No month picker in DatePicker\"><div slot=example><du-date-picker is-month-picker-visible.one-time=false></du-date-picker></div></examplecard><examplecard title=\"Required DatePicker\"><div slot=example><du-date-picker is-required.one-time=true></du-date-picker></div></examplecard><examplecard title=\"DatePicker allows dates to be formatted\"><div slot=example><du-date-picker format-date.bind=onFormatDate></du-date-picker></div></examplecard><examplecard title=\"DatePicker with date boundary (minDate, maxDate)\"><div slot=example><du-date-picker min-date.bind=minDate max-date.bind=maxDate></du-date-picker></div></examplecard></div></template>";});;
+define('text!pickers/datepicker.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>DatePicker</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Default DatePicker\"><div slot=example><du-date-picker placeholder=\"Select a date!\" first-day-of-week.one-time=0 strings.one-time=DayPickerStrings></du-date-picker><du-date-picker on-select-date.bind=selected value.bind=mydate placeholder=\"Select a date\" show-week-numbers=true></du-date-picker>!${mydate}!</div></examplecard><examplecard title=\"No month picker in DatePicker\"><div slot=example><du-date-picker is-month-picker-visible.one-time=false></du-date-picker></div></examplecard><examplecard title=\"Required DatePicker\"><div slot=example><du-date-picker is-required.one-time=true></du-date-picker></div></examplecard><examplecard title=\"DatePicker allows dates to be formatted\"><div slot=example><du-date-picker format-date.bind=onFormatDate></du-date-picker></div></examplecard><examplecard title=\"DatePicker with date boundary (minDate, maxDate)\"><div slot=example><du-date-picker min-date.bind=minDate max-date.bind=maxDate></du-date-picker></div></examplecard></div></template>";});;
 define('pickers/peoplepickerexampledata',["require", "exports", "@fluentui/react/lib/Persona", "../testimages"], function (require, exports, Persona_1, testimages_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });

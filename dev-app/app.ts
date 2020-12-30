@@ -266,6 +266,7 @@ export class App {
       { route: '/slider',  moduleId: PLATFORM.moduleName('./basicinputs/slider'), name:'slider', nav: true,   title: 'Slider' },
       { route: '/spinbutton',  moduleId: PLATFORM.moduleName('./basicinputs/spinbutton'), name:'spinbutton', nav: true,   title: 'Spinbutton' },
       { route: '/textfield',  moduleId: PLATFORM.moduleName('./basicinputs/textfield'), name:'textfield', nav: true,   title: 'Textfield' },
+      { route: '/textfieldtest',  moduleId: PLATFORM.moduleName('./basicinputs/textfieldtest'), name:'textfieldtest', nav: true,   title: 'Textfieldtest' },
       { route: '/toggle',  moduleId: PLATFORM.moduleName('./basicinputs/toggle'), name:'toggle', nav: true,   title: 'Toggle' },
 
       // Navigation
