@@ -57,10 +57,9 @@ reactprops.selectionPreservedOnEmptyClick = {};
 reactprops.items = {};
 var DuDetailsList = (function (_super) {
     __extends(DuDetailsList, _super);
-    function DuDetailsList(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuDetailsList(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuDetailsList.prototype.scrollToIndex = function (index) {
@@ -79,12 +78,12 @@ var DuDetailsList = (function (_super) {
         return this.reactComponent.getStartItemIndexInView();
     };
     DuDetailsList = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-details-list'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDetailsList);
     return DuDetailsList;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDetailsList = DuDetailsList;
 au_react_wrapper_1.addPropertiesState(DuDetailsList, reactprops);
 

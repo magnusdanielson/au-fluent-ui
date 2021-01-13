@@ -59,23 +59,22 @@ reactprops.onFocus = au_react_wrapper_1.onlyAureliaBound;
 reactprops.onBlur = au_react_wrapper_1.onlyAureliaBound;
 var DuComboBox = (function (_super) {
     __extends(DuComboBox, _super);
-    function DuComboBox(element) {
-        var _this = _super.call(this, element) || this;
+    function DuComboBox(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuComboBox.prototype.attached = function () {
         this.renderReact(ComboBox_1.ComboBox, this.createState(reactprops));
     };
     DuComboBox = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-combo-box'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuComboBox);
     return DuComboBox;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuComboBox = DuComboBox;
 au_react_wrapper_1.addPropertiesState(DuComboBox, reactprops);
 

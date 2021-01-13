@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { CompactPeoplePicker } from '@fluentui/react/lib/Pickers';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.items = {};
 reactprops.onResolveSuggestions = onlyAureliaBound;
@@ -51,23 +51,22 @@ reactprops.onDismiss = onlyAureliaBound;
 reactprops.enableSelectedSuggestionAlert = {};
 var DuCompactPeoplePicker = (function (_super) {
     __extends(DuCompactPeoplePicker, _super);
-    function DuCompactPeoplePicker(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuCompactPeoplePicker(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuCompactPeoplePicker.prototype.attached = function () {
         this.renderReact(CompactPeoplePicker, this.createState(reactprops));
     };
     DuCompactPeoplePicker = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-compact-people-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuCompactPeoplePicker);
     return DuCompactPeoplePicker;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuCompactPeoplePicker };
 addPropertiesState(DuCompactPeoplePicker, reactprops);
 

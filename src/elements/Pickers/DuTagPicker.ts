@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { TagPicker, IBasePickerProps, ITag } from '@fluentui/react/lib/Pickers';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IBasePickerProps<ITag> = <IBasePickerProps<ITag>>{};
 reactprops.onResolveSuggestions = <any>onlyAureliaBound;
@@ -31,14 +31,14 @@ reactprops.enableSelectedSuggestionAlert = <any>{};
 reactprops.items = <any>{};
 reactprops.selectedItems = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-tag-picker')
-export class DuTagPicker extends  AuReactStateWrapper {
+export class DuTagPicker extends AuReactWrapper  {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

@@ -55,23 +55,22 @@ reactprops.initialPickerDate = {};
 reactprops.onAfterMenuDismiss = au_react_wrapper_1.onlyAureliaBound;
 var DuDatePicker = (function (_super) {
     __extends(DuDatePicker, _super);
-    function DuDatePicker(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDatePicker(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDatePicker.prototype.attached = function () {
         this.renderReact(DatePicker_1.DatePicker, this.createState(reactprops));
     };
     DuDatePicker = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-date-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDatePicker);
     return DuDatePicker;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDatePicker = DuDatePicker;
 au_react_wrapper_1.addPropertiesState(DuDatePicker, reactprops);
 

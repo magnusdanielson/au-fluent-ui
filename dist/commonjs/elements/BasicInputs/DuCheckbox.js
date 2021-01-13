@@ -45,23 +45,22 @@ reactprops.onClick = au_react_wrapper_1.onlyAureliaBound;
 reactprops.checked = {};
 var DuCheckbox = (function (_super) {
     __extends(DuCheckbox, _super);
-    function DuCheckbox(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCheckbox(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuCheckbox.prototype.attached = function () {
         this.renderReact(Checkbox_1.Checkbox, this.createState(reactprops));
     };
     DuCheckbox = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-checkbox'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuCheckbox);
     return DuCheckbox;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuCheckbox = DuCheckbox;
 au_react_wrapper_1.addPropertiesState(DuCheckbox, reactprops);
 

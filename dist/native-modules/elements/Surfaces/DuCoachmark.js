@@ -21,11 +21,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Coachmark } from '@fluentui/react/lib/Coachmark';
-import { customElement, inject, bindable } from 'aurelia-framework';
+import { TaskQueue, customElement, inject, bindable } from 'aurelia-framework';
 import { TeachingBubbleContent } from '@fluentui/react/lib/TeachingBubble';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { AuReactStateWrapperNoChildren, addPropertiesState, onlyAureliaBound, ReactStateWrapper, ReactStateWrapperNoChildren } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound, ReactWrapper, ReactSimpleWrapper } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.beaconColorOne = {};
 reactprops.beaconColorTwo = {};
@@ -46,33 +46,29 @@ reactprops.preventDismissOnLostFocus = {};
 reactprops.preventFocusOnMount = {};
 var DuCoachmark = (function (_super) {
     __extends(DuCoachmark, _super);
-    function DuCoachmark(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCoachmark(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.teachingBubbleElement = {};
-        _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+        _this.hidden = true;
         return _this;
     }
     DuCoachmark.prototype.attached = function () {
-        this.renderReact2(reactprops);
+        this.renderReact2(this.createState(reactprops));
     };
-    DuCoachmark.prototype.renderReact2 = function (reactprops) {
-        ReactDom.unmountComponentAtNode(this.element);
+    DuCoachmark.prototype.renderReact2 = function (a) {
         this.container = this.element.querySelector('.au-react-root');
-        if (this.container != null) {
-            this.container.remove();
+        if (this.container == null) {
+            this.container = document.createElement('span');
+            this.container.setAttribute('class', 'au-react-root');
+            this.element.appendChild(this.container);
         }
-        this.container = document.createElement('span');
-        this.container.setAttribute('class', 'au-react-root');
-        this.element.appendChild(this.container);
         this.teachingBubbleContent.aureliaHost = this;
         this.teachingBubbleContent.reactClass = TeachingBubbleContent;
-        var reactTeachingBubbleElement = React.createElement(ReactStateWrapper, this.teachingBubbleContent);
-        var a = this.createState(reactprops);
+        var reactTeachingBubbleElement = React.createElement(ReactWrapper, this.teachingBubbleContent);
         a.aureliaHost = this;
         a.reactClass = Coachmark;
-        var reactElement = React.createElement(ReactStateWrapperNoChildren, a, reactTeachingBubbleElement);
+        var reactElement = React.createElement(ReactSimpleWrapper, a, reactTeachingBubbleElement);
         this.reactComponent = ReactDom.render(reactElement, this.container);
     };
     __decorate([
@@ -84,12 +80,12 @@ var DuCoachmark = (function (_super) {
         __metadata("design:type", Boolean)
     ], DuCoachmark.prototype, "hidden", void 0);
     DuCoachmark = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-coachmark'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuCoachmark);
     return DuCoachmark;
-}(AuReactStateWrapperNoChildren));
+}(AuReactWrapper));
 export { DuCoachmark };
 addPropertiesState(DuCoachmark, reactprops);
 

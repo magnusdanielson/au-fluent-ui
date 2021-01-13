@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { ComboBox } from '@fluentui/react/lib/ComboBox';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.buttonIconProps = {};
 reactprops.caretDownButtonStyles = {};
@@ -56,23 +56,22 @@ reactprops.onFocus = onlyAureliaBound;
 reactprops.onBlur = onlyAureliaBound;
 var DuComboBox = (function (_super) {
     __extends(DuComboBox, _super);
-    function DuComboBox(element) {
-        var _this = _super.call(this, element) || this;
+    function DuComboBox(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuComboBox.prototype.attached = function () {
         this.renderReact(ComboBox, this.createState(reactprops));
     };
     DuComboBox = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-combo-box'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuComboBox);
     return DuComboBox;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuComboBox };
 addPropertiesState(DuComboBox, reactprops);
 

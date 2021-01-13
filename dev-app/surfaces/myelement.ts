@@ -1,10 +1,10 @@
-import { customElement, inject, noView, inlineView} from 'aurelia-framework';
+import { customElement, TaskQueue, inject, noView, inlineView} from 'aurelia-framework';
 import { IDialogProps } from '@fluentui/react/lib/Dialog';
 import { bindable, bindingMode } from 'aurelia-framework';
 
 //@noView()
 //@inlineView('<template><div if.bind="ho"><slot></slot></div></template>')
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('myelement')
 export class myelement
 {

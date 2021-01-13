@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { TextField } from '@fluentui/react/lib/TextField';
-import { AuReactStateWrapperNoChildren, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapperNoChildren, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.ariaLabel = {};
 reactprops.autoAdjustHeight = {};
@@ -41,9 +41,11 @@ reactprops.mask = {};
 reactprops.maskChar = {};
 reactprops.maskFormat = {};
 reactprops.multiline = {};
-reactprops.onChange = function (that, _event, newValue) {
-    that['value'] = newValue;
-};
+reactprops.onChange = (function (that, event, newValue) {
+    that.ignoreReactUpdate = true;
+    that.value = newValue;
+    that.reactComponent.setState({ "value": newValue || '' });
+});
 reactprops.onNotifyValidationResult = onlyAureliaBound;
 reactprops.onGetErrorMessage = onlyAureliaBound;
 reactprops.prefix = {};
@@ -59,11 +61,12 @@ reactprops.required = {};
 reactprops.placeholder = {};
 var DuTextField = (function (_super) {
     __extends(DuTextField, _super);
-    function DuTextField(element) {
-        var _this = _super.call(this, element) || this;
+    function DuTextField(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
+        _this.orignalProp = reactprops;
+        _this.reactClass = TextField;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuTextField.prototype.attached = function () {
@@ -101,12 +104,12 @@ var DuTextField = (function (_super) {
         this.reactComponent.setSelectionStart(value);
     };
     DuTextField = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-text-field'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuTextField);
     return DuTextField;
-}(AuReactStateWrapperNoChildren));
+}(AuReactWrapperNoChildren));
 export { DuTextField };
 addPropertiesState(DuTextField, reactprops);
 

@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { DatePicker, IDatePickerProps  } from '@fluentui/react/lib/DatePicker';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IDatePickerProps = <IDatePickerProps>{};
 reactprops.onSelectDate = <any>onlyAureliaBound;
@@ -31,14 +31,14 @@ reactprops.initialPickerDate = <any>{};
 reactprops.onAfterMenuDismiss = onlyAureliaBound;
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-date-picker')
-export class DuDatePicker extends  AuReactStateWrapper {
+export class DuDatePicker extends AuReactWrapper  {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

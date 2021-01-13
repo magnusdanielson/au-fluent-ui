@@ -1,4 +1,4 @@
-import { customElement, bindable, containerless, DOM } from 'aurelia-framework';
+import { customElement, TaskQueue, bindable, containerless, DOM } from 'aurelia-framework';
 // import { HttpClient } from 'aurelia-fetch-client';
 // import {highlight, highlightAuto, fixMarkup} from 'highlight.js';
 

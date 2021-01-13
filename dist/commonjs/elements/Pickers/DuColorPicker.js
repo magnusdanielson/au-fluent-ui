@@ -39,23 +39,22 @@ reactprops.onChange = function (that, _event, newValue) {
 reactprops.redLabel = {};
 var DuColorPicker = (function (_super) {
     __extends(DuColorPicker, _super);
-    function DuColorPicker(element) {
-        var _this = _super.call(this, element) || this;
+    function DuColorPicker(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuColorPicker.prototype.attached = function () {
         this.renderReact(ColorPicker_1.ColorPicker, this.createState(reactprops));
     };
     DuColorPicker = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-color-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuColorPicker);
     return DuColorPicker;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuColorPicker = DuColorPicker;
 au_react_wrapper_1.addPropertiesState(DuColorPicker, reactprops);
 

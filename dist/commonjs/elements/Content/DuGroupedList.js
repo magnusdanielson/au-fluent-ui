@@ -43,10 +43,9 @@ reactprops.usePageCache = {};
 reactprops.key = {};
 var DuGroupedList = (function (_super) {
     __extends(DuGroupedList, _super);
-    function DuGroupedList(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuGroupedList(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuGroupedList.prototype.toggleCollapseAll = function (allCollapsed) {
@@ -59,12 +58,12 @@ var DuGroupedList = (function (_super) {
         this.renderReact(GroupedList_1.GroupedList, this.createState(reactprops));
     };
     DuGroupedList = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-grouped-list'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuGroupedList);
     return DuGroupedList;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuGroupedList = DuGroupedList;
 au_react_wrapper_1.addPropertiesState(DuGroupedList, reactprops);
 

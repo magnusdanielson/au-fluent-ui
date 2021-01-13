@@ -1,7 +1,9 @@
+import { TaskQueue } from 'aurelia-framework';
 import { IButtonProps } from '@fluentui/react/lib/Button';
-import { AuReactStateWrapper } from '@dunite/au-react-wrapper';
-export declare class DuActionButton extends AuReactStateWrapper implements IButtonProps {
-    constructor(element: any);
+import { AuReactWrapper } from '@dunite/au-react-wrapper';
+export declare class DuActionButton extends AuReactWrapper implements IButtonProps {
+    protected tq: TaskQueue;
+    constructor(element: any, tq: TaskQueue);
     hidden: boolean;
     attached(): void;
 }

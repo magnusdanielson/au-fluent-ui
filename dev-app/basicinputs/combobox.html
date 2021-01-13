@@ -16,7 +16,7 @@
     </examplecard>
     <examplecard title="Combobox multi select">
       <div slot="example">
-        <du-combo-box placeholder="Select an Option" selected-keys.bind="selectedItems"
+        <du-combo-box view-model.ref="cbx" placeholder="Select an Option" selected-keys.bind="selectedItems"
           label="Dropdown, controlled (allowFreeform: true, AutoComplete: on)" id="dropDefaultKey"
           options.one-time="fruits" on-change.bind="onMultiChange" on-blur.bind="onBlur" on-focus.bind="onFocus"
           error-message.bind="errorMessage" multi-select="true" allow-freeform="true"></du-combo-box>

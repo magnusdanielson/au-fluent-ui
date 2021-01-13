@@ -44,9 +44,11 @@ reactprops.mask = {};
 reactprops.maskChar = {};
 reactprops.maskFormat = {};
 reactprops.multiline = {};
-reactprops.onChange = function (that, _event, newValue) {
-    that['value'] = newValue;
-};
+reactprops.onChange = (function (that, event, newValue) {
+    that.ignoreReactUpdate = true;
+    that.value = newValue;
+    that.reactComponent.setState({ "value": newValue || '' });
+});
 reactprops.onNotifyValidationResult = au_react_wrapper_1.onlyAureliaBound;
 reactprops.onGetErrorMessage = au_react_wrapper_1.onlyAureliaBound;
 reactprops.prefix = {};
@@ -62,11 +64,12 @@ reactprops.required = {};
 reactprops.placeholder = {};
 var DuTextField = (function (_super) {
     __extends(DuTextField, _super);
-    function DuTextField(element) {
-        var _this = _super.call(this, element) || this;
+    function DuTextField(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
+        _this.orignalProp = reactprops;
+        _this.reactClass = TextField_1.TextField;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuTextField.prototype.attached = function () {
@@ -104,12 +107,12 @@ var DuTextField = (function (_super) {
         this.reactComponent.setSelectionStart(value);
     };
     DuTextField = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-text-field'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuTextField);
     return DuTextField;
-}(au_react_wrapper_1.AuReactStateWrapperNoChildren));
+}(au_react_wrapper_1.AuReactWrapperNoChildren));
 exports.DuTextField = DuTextField;
 au_react_wrapper_1.addPropertiesState(DuTextField, reactprops);
 

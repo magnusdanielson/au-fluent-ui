@@ -1,20 +1,20 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { MarqueeSelection } from '@fluentui/react/lib/MarqueeSelection';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 let reactprops = <any>{};
 reactprops.hidden = <any>{};
 
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-marquee-selection')
-export class DuMarqueeSelection  extends AuReactStateWrapper
+export class DuMarqueeSelection extends AuReactWrapper
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;

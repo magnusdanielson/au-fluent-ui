@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { SearchBox, ISearchBox, ISearchBoxProps } from '@fluentui/react/lib/SearchBox';
-import { AuReactStateWrapperNoChildren, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapperNoChildren, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: ISearchBoxProps = <ISearchBoxProps & ISearchBox>{};
 reactprops.disabled = <any>{};
@@ -25,21 +25,23 @@ reactprops.underlined =  <any>{};
 reactprops.iconProps =  <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-search-box')
-export class DuSearchBox extends  AuReactStateWrapperNoChildren implements ISearchBoxProps {
+export class DuSearchBox extends AuReactWrapperNoChildren implements ISearchBoxProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
-  }
+  orignalProp = reactprops;
+  reactClass:any = SearchBox;
+  // constructor(element, protected tq: TaskQueue) {
+  //   super(element, tq);
+  //   
+  //   // this.hiddenName = 'hidden';
+  // }
 
   hidden: boolean = false;
 
-  attached() {
-    this.renderReact(SearchBox, this.createState(reactprops));
-  }
+  // attached() {
+  //   this.renderReact(SearchBox, this.createState(reactprops));
+  // }
 }
 
 addPropertiesState(DuSearchBox, reactprops);

@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { ComboBox, IComboBoxProps, IComboBoxOption } from '@fluentui/react/lib/ComboBox';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IComboBoxProps = <IComboBoxProps>{};
 reactprops.buttonIconProps = <any>{};
@@ -36,14 +36,14 @@ reactprops.onFocus = onlyAureliaBound;
 reactprops.onBlur = onlyAureliaBound;
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-combo-box')
-export class DuComboBox extends  AuReactStateWrapper implements IComboBoxProps {
+export class DuComboBox extends AuReactWrapper  implements IComboBoxProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

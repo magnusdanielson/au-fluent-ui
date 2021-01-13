@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Toggle, IToggleProps } from '@fluentui/react/lib/Toggle';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 let reactprops: IToggleProps = {} as IToggleProps;
 reactprops.ariaLabel = <any>{}; 
@@ -18,14 +18,14 @@ reactprops.className = <any>{};
 reactprops.keytipProps  = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-toggle')
-export class DuToggle extends  AuReactStateWrapper implements IToggleProps {
+export class DuToggle extends AuReactWrapper  implements IToggleProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

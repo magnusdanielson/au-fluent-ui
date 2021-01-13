@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { ContextualMenu, IContextualMenuProps, IContextualMenuItem  } from '@fluentui/react/lib/ContextualMenu';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IContextualMenuProps = <IContextualMenuProps>{};
 reactprops.beakWidth = <any>{};
@@ -35,14 +35,14 @@ reactprops.useTargetAsMinWidth = <any>{};
 reactprops.useTargetWidth = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-contextual-menu')
-export class DuContextualMenu extends  AuReactStateWrapper implements IContextualMenuProps {
+export class DuContextualMenu extends AuReactWrapper  implements IContextualMenuProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

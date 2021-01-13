@@ -55,23 +55,22 @@ reactprops.enableSelectedSuggestionAlert = {};
 reactprops.selectedItems = {};
 var DuNormalPeoplePicker = (function (_super) {
     __extends(DuNormalPeoplePicker, _super);
-    function DuNormalPeoplePicker(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuNormalPeoplePicker(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuNormalPeoplePicker.prototype.attached = function () {
         this.renderReact(Pickers_1.NormalPeoplePicker, this.createState(reactprops));
     };
     DuNormalPeoplePicker = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-normal-people-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuNormalPeoplePicker);
     return DuNormalPeoplePicker;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuNormalPeoplePicker = DuNormalPeoplePicker;
 au_react_wrapper_1.addPropertiesState(DuNormalPeoplePicker, reactprops);
 

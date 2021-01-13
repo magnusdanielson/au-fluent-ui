@@ -1,6 +1,6 @@
-import {   customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { Callout, ICalloutProps } from '@fluentui/react/lib/Callout';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 // IMPORTANT
 // any function defined here will be called with _this as first parameter
@@ -34,14 +34,14 @@ reactprops.preventDismissOnScroll = <any>{};
 reactprops.setInitialFocus = <any>{};
 reactprops.target = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-callout')
-export class DuCallout extends  AuReactStateWrapper implements ICalloutProps {
+export class DuCallout extends AuReactWrapper  implements ICalloutProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;
@@ -49,6 +49,7 @@ export class DuCallout extends  AuReactStateWrapper implements ICalloutProps {
   attached() {
     this.renderReact(Callout, this.createState(reactprops));
   }
+
 }
 
 addPropertiesState(DuCallout, reactprops);

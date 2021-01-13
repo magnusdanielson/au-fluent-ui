@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { DetailsList } from '@fluentui/react/lib/DetailsList';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.checkButtonAriaLabel = {};
 reactprops.checkboxCellClassName = {};
@@ -54,10 +54,9 @@ reactprops.selectionPreservedOnEmptyClick = {};
 reactprops.items = {};
 var DuDetailsList = (function (_super) {
     __extends(DuDetailsList, _super);
-    function DuDetailsList(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuDetailsList(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuDetailsList.prototype.scrollToIndex = function (index) {
@@ -76,12 +75,12 @@ var DuDetailsList = (function (_super) {
         return this.reactComponent.getStartItemIndexInView();
     };
     DuDetailsList = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-details-list'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuDetailsList);
     return DuDetailsList;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuDetailsList };
 addPropertiesState(DuDetailsList, reactprops);
 

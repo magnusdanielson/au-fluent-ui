@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { HoverCard } from '@fluentui/react/lib/HoverCard';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.cardDismissDelay = {};
 reactprops.hidden = {};
@@ -44,22 +44,21 @@ reactprops.trapFocus = {};
 reactprops.type = {};
 var DuHoverCard = (function (_super) {
     __extends(DuHoverCard, _super);
-    function DuHoverCard(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuHoverCard(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuHoverCard.prototype.attached = function () {
         this.renderReact(HoverCard, this.createState(reactprops));
     };
     DuHoverCard = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-hover-card'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuHoverCard);
     return DuHoverCard;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuHoverCard };
 addPropertiesState(DuHoverCard, reactprops);
 

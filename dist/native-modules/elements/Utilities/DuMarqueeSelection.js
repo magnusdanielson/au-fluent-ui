@@ -20,29 +20,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { MarqueeSelection } from '@fluentui/react/lib/MarqueeSelection';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.hidden = {};
 var DuMarqueeSelection = (function (_super) {
     __extends(DuMarqueeSelection, _super);
-    function DuMarqueeSelection(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuMarqueeSelection(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuMarqueeSelection.prototype.attached = function () {
         this.renderReact(MarqueeSelection, this.createState(reactprops));
     };
     DuMarqueeSelection = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-marquee-selection'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuMarqueeSelection);
     return DuMarqueeSelection;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuMarqueeSelection };
 addPropertiesState(DuMarqueeSelection, reactprops);
 

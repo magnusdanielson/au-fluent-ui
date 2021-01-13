@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Persona } from '@fluentui/react/lib/Persona';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.allowPhoneInitials = {};
 reactprops.coinProps = {};
@@ -53,22 +53,21 @@ reactprops.onRenderSecondaryText = onlyAureliaBound;
 reactprops.onRenderTertiaryText = onlyAureliaBound;
 var DuPersona = (function (_super) {
     __extends(DuPersona, _super);
-    function DuPersona(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuPersona(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuPersona.prototype.attached = function () {
         this.renderReact(Persona, this.createState(reactprops));
     };
     DuPersona = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-persona'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuPersona);
     return DuPersona;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuPersona };
 addPropertiesState(DuPersona, reactprops);
 

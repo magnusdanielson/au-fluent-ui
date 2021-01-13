@@ -20,31 +20,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { DocumentCardActions } from '@fluentui/react/lib/DocumentCard';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.actions = {};
 reactprops.views = {};
 var DuDocumentCardActions = (function (_super) {
     __extends(DuDocumentCardActions, _super);
-    function DuDocumentCardActions(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDocumentCardActions(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDocumentCardActions.prototype.attached = function () {
         this.renderReact(DocumentCardActions, this.createState(reactprops));
     };
     DuDocumentCardActions = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-document-card-actions'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuDocumentCardActions);
     return DuDocumentCardActions;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuDocumentCardActions };
 addPropertiesState(DuDocumentCardActions, reactprops);
 

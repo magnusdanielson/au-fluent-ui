@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue,customElement, inject } from 'aurelia-framework';
 import { TextField, ITextFieldProps } from '@fluentui/react/lib/TextField';
-import { AuReactStateWrapperNoChildren, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapperNoChildren, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: ITextFieldProps = {} as ITextFieldProps;
 
@@ -21,10 +21,16 @@ reactprops.mask = <any>{};
 reactprops.maskChar = <any>{};
 reactprops.maskFormat = <any>{};
 reactprops.multiline = <any>{};
-reactprops.onChange = function (that: any, _event: any, newValue?: string)
-{
-  that['value'] = newValue; 
-};
+reactprops.onChange = <any> ((that:any, event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+  
+  // line below is necessery to update the viewmodel
+  that.ignoreReactUpdate = true;
+  that.value = newValue;
+
+  // line below is necessery to update the React viewmodel
+  that.reactComponent.setState( {"value":newValue || ''});
+  
+});
 reactprops.onNotifyValidationResult = onlyAureliaBound;
 reactprops.onGetErrorMessage = <any>onlyAureliaBound;
 reactprops.prefix = <any>{};
@@ -42,20 +48,23 @@ reactprops.required = <any>{};
 reactprops.placeholder = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-text-field')
-export class DuTextField extends  AuReactStateWrapperNoChildren implements ITextFieldProps {
+export class DuTextField extends AuReactWrapperNoChildren implements ITextFieldProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  orignalProp = reactprops;
+  reactClass:any = TextField;
+
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;
 
   attached() {
-    this.renderReact(TextField, this.createState(reactprops));
+    this.renderReact( TextField, this.createState(reactprops));
     // Fixing issue with autoAdjustHeight
     //@ts-ignore
     if (this.autoAdjustHeight == true)

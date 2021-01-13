@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Nav, INavProps } from '@fluentui/react/lib/Nav';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: INavProps = <INavProps>{};
 reactprops.groups = <any>{};
@@ -12,14 +12,14 @@ reactprops.selectedKey = <any>{};
 
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-nav')
-export class DuNav extends  AuReactStateWrapper {
+export class DuNav extends AuReactWrapper  {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

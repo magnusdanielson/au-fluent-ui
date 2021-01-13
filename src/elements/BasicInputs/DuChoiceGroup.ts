@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { ChoiceGroup, IChoiceGroupProps } from '@fluentui/react/lib/ChoiceGroup';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IChoiceGroupProps = <IChoiceGroupProps>{};
 reactprops.ariaLabelledBy = <any>{};
@@ -20,14 +20,14 @@ reactprops.value = <any>{};
 
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-choice-group')
-export class DuChoiceGroup extends  AuReactStateWrapper implements IChoiceGroupProps {
+export class DuChoiceGroup extends AuReactWrapper  implements IChoiceGroupProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

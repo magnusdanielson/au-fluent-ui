@@ -40,22 +40,21 @@ reactprops.targetElement = {};
 reactprops.illustrationImage = {};
 var DuTeachingBubbleContent = (function (_super) {
     __extends(DuTeachingBubbleContent, _super);
-    function DuTeachingBubbleContent(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuTeachingBubbleContent(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuTeachingBubbleContent.prototype.attached = function () {
         this.renderReact(TeachingBubble_1.TeachingBubbleContent, this.createState(reactprops));
     };
     DuTeachingBubbleContent = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-teaching-bubble-content'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuTeachingBubbleContent);
     return DuTeachingBubbleContent;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuTeachingBubbleContent = DuTeachingBubbleContent;
 au_react_wrapper_1.addPropertiesState(DuTeachingBubbleContent, reactprops);
 

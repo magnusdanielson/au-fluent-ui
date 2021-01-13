@@ -20,31 +20,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { DocumentCardActivity } from '@fluentui/react/lib/DocumentCard';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.activity = {};
 reactprops.people = {};
 var DuDocumentCardActivity = (function (_super) {
     __extends(DuDocumentCardActivity, _super);
-    function DuDocumentCardActivity(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDocumentCardActivity(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDocumentCardActivity.prototype.attached = function () {
         this.renderReact(DocumentCardActivity, this.createState(reactprops));
     };
     DuDocumentCardActivity = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-document-card-activity'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuDocumentCardActivity);
     return DuDocumentCardActivity;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuDocumentCardActivity };
 addPropertiesState(DuDocumentCardActivity, reactprops);
 

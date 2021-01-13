@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { MessageBar } from '@fluentui/react/lib/MessageBar';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.className = {};
 reactprops.isMultiline = {};
@@ -34,23 +34,22 @@ reactprops.overflowButtonAriaLabel = {};
 reactprops.actions = {};
 var DuMessageBar = (function (_super) {
     __extends(DuMessageBar, _super);
-    function DuMessageBar(element) {
-        var _this = _super.call(this, element) || this;
+    function DuMessageBar(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuMessageBar.prototype.attached = function () {
         this.renderReact(MessageBar, this.createState(reactprops));
     };
     DuMessageBar = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-message-bar'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuMessageBar);
     return DuMessageBar;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuMessageBar };
 addPropertiesState(DuMessageBar, reactprops);
 

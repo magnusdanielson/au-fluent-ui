@@ -1,6 +1,6 @@
-import {  customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { DialogFooter, IDialogFooterProps } from '@fluentui/react/lib/Dialog';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 // IMPORTANT
 // any function defined here will be called with _this as first parameter
@@ -10,14 +10,14 @@ let reactprops: IDialogFooterProps = <IDialogFooterProps>{};
 reactprops.className = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-dialog-footer')
-export class DuDialogFooter extends AuReactStateWrapper {
+export class DuDialogFooter extends AuReactWrapper {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

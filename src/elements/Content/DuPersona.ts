@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Persona, IPersonaProps } from '@fluentui/react/lib/Persona';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IPersonaProps = <IPersonaProps>{};
 
@@ -32,14 +32,14 @@ reactprops.onRenderPrimaryText = <any>onlyAureliaBound;
 reactprops.onRenderSecondaryText = <any>onlyAureliaBound;
 reactprops.onRenderTertiaryText = <any>onlyAureliaBound;
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-persona')
-export class DuPersona  extends AuReactStateWrapper implements IPersonaProps
+export class DuPersona  extends AuReactWrapper implements IPersonaProps
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;

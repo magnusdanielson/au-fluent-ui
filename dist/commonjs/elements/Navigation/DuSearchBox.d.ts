@@ -1,7 +1,7 @@
 import { ISearchBoxProps } from '@fluentui/react/lib/SearchBox';
-import { AuReactStateWrapperNoChildren } from '@dunite/au-react-wrapper';
-export declare class DuSearchBox extends AuReactStateWrapperNoChildren implements ISearchBoxProps {
-    constructor(element: any);
+import { AuReactWrapperNoChildren } from '@dunite/au-react-wrapper';
+export declare class DuSearchBox extends AuReactWrapperNoChildren implements ISearchBoxProps {
+    orignalProp: ISearchBoxProps;
+    reactClass: any;
     hidden: boolean;
-    attached(): void;
 }

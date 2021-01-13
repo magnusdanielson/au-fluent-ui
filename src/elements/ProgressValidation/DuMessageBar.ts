@@ -1,6 +1,6 @@
-import {  customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { MessageBar, IMessageBarProps } from '@fluentui/react/lib/MessageBar';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IMessageBarProps = <IMessageBarProps>{};
 reactprops.className = <any>{};
@@ -12,14 +12,14 @@ reactprops.truncated = <any>{};
 reactprops.overflowButtonAriaLabel = <any>{};
 reactprops.actions = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-message-bar')
-export class DuMessageBar extends  AuReactStateWrapper {
+export class DuMessageBar extends AuReactWrapper  {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

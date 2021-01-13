@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { ActionButton, IButtonProps  } from '@fluentui/react/lib/Button';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IButtonProps = <IButtonProps>{};
 reactprops.allowDisabledFocus = <any>{};
@@ -34,15 +34,15 @@ reactprops.onClick = onlyAureliaBound;
 reactprops.secondaryText = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-action-button')
-export class DuActionButton extends AuReactStateWrapper implements IButtonProps
+export class DuActionButton extends AuReactWrapper implements IButtonProps
 {
 
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { SpinButton } from '@fluentui/react/lib/SpinButton';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 export var Position;
 (function (Position) {
     Position[Position["top"] = 0] = "top";
@@ -73,23 +73,22 @@ reactprops.onDecrement = function (_this, value) {
 reactprops.precision = {};
 var DuSpinButton = (function (_super) {
     __extends(DuSpinButton, _super);
-    function DuSpinButton(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuSpinButton(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuSpinButton.prototype.attached = function () {
         this.renderReact(SpinButton, this.createState(reactprops));
     };
     DuSpinButton = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-spin-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuSpinButton);
     return DuSpinButton;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuSpinButton };
 addPropertiesState(DuSpinButton, reactprops);
 

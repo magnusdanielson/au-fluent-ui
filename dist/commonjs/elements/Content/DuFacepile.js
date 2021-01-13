@@ -38,10 +38,9 @@ reactprops.personaSize = {};
 reactprops.showAddButton = {};
 var DuFacepile = (function (_super) {
     __extends(DuFacepile, _super);
-    function DuFacepile(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuFacepile(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuFacepile.prototype.getPersonaProps = function (persona) {
@@ -51,12 +50,12 @@ var DuFacepile = (function (_super) {
         this.renderReact(Facepile_1.Facepile, this.createState(reactprops));
     };
     DuFacepile = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-facepile'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuFacepile);
     return DuFacepile;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuFacepile = DuFacepile;
 au_react_wrapper_1.addPropertiesState(DuFacepile, reactprops);
 

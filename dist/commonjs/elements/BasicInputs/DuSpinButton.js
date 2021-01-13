@@ -76,23 +76,22 @@ reactprops.onDecrement = function (_this, value) {
 reactprops.precision = {};
 var DuSpinButton = (function (_super) {
     __extends(DuSpinButton, _super);
-    function DuSpinButton(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuSpinButton(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuSpinButton.prototype.attached = function () {
         this.renderReact(SpinButton_1.SpinButton, this.createState(reactprops));
     };
     DuSpinButton = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-spin-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuSpinButton);
     return DuSpinButton;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuSpinButton = DuSpinButton;
 au_react_wrapper_1.addPropertiesState(DuSpinButton, reactprops);
 

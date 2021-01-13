@@ -34,23 +34,22 @@ reactprops.overflowButtonProps = {};
 reactprops.className = {};
 var DuCommandBar = (function (_super) {
     __extends(DuCommandBar, _super);
-    function DuCommandBar(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCommandBar(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuCommandBar.prototype.attached = function () {
         this.renderReact(CommandBar_1.CommandBar, this.createState(reactprops));
     };
     DuCommandBar = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-command-bar'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuCommandBar);
     return DuCommandBar;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuCommandBar = DuCommandBar;
 au_react_wrapper_1.addPropertiesState(DuCommandBar, reactprops);
 

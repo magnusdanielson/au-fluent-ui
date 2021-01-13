@@ -1,7 +1,11 @@
+import { TaskQueue } from 'aurelia-framework';
 import { ITextFieldProps } from '@fluentui/react/lib/TextField';
-import { AuReactStateWrapperNoChildren } from '@dunite/au-react-wrapper';
-export declare class DuTextField extends AuReactStateWrapperNoChildren implements ITextFieldProps {
-    constructor(element: any);
+import { AuReactWrapperNoChildren } from '@dunite/au-react-wrapper';
+export declare class DuTextField extends AuReactWrapperNoChildren implements ITextFieldProps {
+    protected tq: TaskQueue;
+    orignalProp: ITextFieldProps;
+    reactClass: any;
+    constructor(element: any, tq: TaskQueue);
     hidden: boolean;
     attached(): void;
     blur(): void;

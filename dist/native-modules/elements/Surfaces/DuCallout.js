@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { Callout } from '@fluentui/react/lib/Callout';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.backgroundColor = {};
 reactprops.beakWidth = {};
@@ -52,23 +52,22 @@ reactprops.setInitialFocus = {};
 reactprops.target = {};
 var DuCallout = (function (_super) {
     __extends(DuCallout, _super);
-    function DuCallout(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCallout(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuCallout.prototype.attached = function () {
         this.renderReact(Callout, this.createState(reactprops));
     };
     DuCallout = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-callout'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuCallout);
     return DuCallout;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuCallout };
 addPropertiesState(DuCallout, reactprops);
 

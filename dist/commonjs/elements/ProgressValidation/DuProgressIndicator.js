@@ -35,23 +35,22 @@ reactprops.percentComplete = {};
 reactprops.progressHidden = {};
 var DuProgressIndicator = (function (_super) {
     __extends(DuProgressIndicator, _super);
-    function DuProgressIndicator(element) {
-        var _this = _super.call(this, element) || this;
+    function DuProgressIndicator(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuProgressIndicator.prototype.attached = function () {
         this.renderReact(ProgressIndicator_1.ProgressIndicator, this.createState(reactprops));
     };
     DuProgressIndicator = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-progress-indicator'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuProgressIndicator);
     return DuProgressIndicator;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuProgressIndicator = DuProgressIndicator;
 au_react_wrapper_1.addPropertiesState(DuProgressIndicator, reactprops);
 

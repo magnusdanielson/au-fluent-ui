@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Checkbox, ICheckboxProps } from '@fluentui/react/lib/Checkbox';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 // IMPORTANT
 // any function defined here will be called with _this as first parameter
@@ -24,14 +24,14 @@ reactprops.boxSide = <any>{};
 reactprops.onClick = onlyAureliaBound;
 reactprops.checked = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-checkbox')
-export class DuCheckbox extends  AuReactStateWrapper implements ICheckboxProps {
+export class DuCheckbox extends AuReactWrapper  implements ICheckboxProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

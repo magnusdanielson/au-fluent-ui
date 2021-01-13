@@ -35,23 +35,22 @@ reactprops.onLinkExpandClick = au_react_wrapper_1.onlyAureliaBound;
 reactprops.selectedKey = {};
 var DuNav = (function (_super) {
     __extends(DuNav, _super);
-    function DuNav(element) {
-        var _this = _super.call(this, element) || this;
+    function DuNav(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuNav.prototype.attached = function () {
         this.renderReact(Nav_1.Nav, this.createState(reactprops));
     };
     DuNav = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-nav'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuNav);
     return DuNav;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuNav = DuNav;
 au_react_wrapper_1.addPropertiesState(DuNav, reactprops);
 

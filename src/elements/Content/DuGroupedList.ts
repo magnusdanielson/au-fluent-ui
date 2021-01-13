@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { GroupedList, IGroupedListProps } from '@fluentui/react/lib/GroupedList';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IGroupedListProps = <IGroupedListProps>{};
 reactprops.items = <any>{};
@@ -19,15 +19,15 @@ reactprops.usePageCache = <any>{};
 reactprops.key = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-grouped-list')
 //@ts-ignore Due to onRenderCell
-export class DuGroupedList  extends AuReactStateWrapper implements IGroupedListProps
+export class DuGroupedList  extends AuReactWrapper implements IGroupedListProps
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;

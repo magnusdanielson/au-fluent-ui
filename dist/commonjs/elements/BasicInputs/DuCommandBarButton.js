@@ -41,23 +41,22 @@ reactprops.onClick = au_react_wrapper_1.onlyAureliaBound;
 reactprops.secondaryText = {};
 var DuCommandBarButton = (function (_super) {
     __extends(DuCommandBarButton, _super);
-    function DuCommandBarButton(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCommandBarButton(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuCommandBarButton.prototype.attached = function () {
         this.renderReact(Button_1.CommandBarButton, this.createState(reactprops));
     };
     DuCommandBarButton = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-command-bar-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuCommandBarButton);
     return DuCommandBarButton;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuCommandBarButton = DuCommandBarButton;
 au_react_wrapper_1.addPropertiesState(DuCommandBarButton, reactprops);
 

@@ -1,6 +1,6 @@
-import {  customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { DocumentCardLocation, IDocumentCardLocationProps } from '@fluentui/react/lib/DocumentCard';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 // IMPORTANT
 // any function defined here will be called with _this as first parameter
@@ -13,14 +13,14 @@ reactprops.locationHref = <any>{};
 reactprops.onClick = onlyAureliaBound;
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-document-card-location')
-export class DuDocumentCardLocation extends  AuReactStateWrapper {
+export class DuDocumentCardLocation extends AuReactWrapper  {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

@@ -47,22 +47,21 @@ reactprops.trapFocus = {};
 reactprops.type = {};
 var DuHoverCard = (function (_super) {
     __extends(DuHoverCard, _super);
-    function DuHoverCard(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuHoverCard(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuHoverCard.prototype.attached = function () {
         this.renderReact(HoverCard_1.HoverCard, this.createState(reactprops));
     };
     DuHoverCard = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-hover-card'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuHoverCard);
     return DuHoverCard;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuHoverCard = DuHoverCard;
 au_react_wrapper_1.addPropertiesState(DuHoverCard, reactprops);
 

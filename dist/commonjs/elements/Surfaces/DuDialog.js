@@ -34,22 +34,21 @@ reactprops.modalProps = {};
 reactprops.onDismiss = {};
 var DuDialog = (function (_super) {
     __extends(DuDialog, _super);
-    function DuDialog(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuDialog(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuDialog.prototype.attached = function () {
         this.renderReact(Dialog_1.Dialog, this.createState(reactprops));
     };
     DuDialog = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-dialog'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDialog);
     return DuDialog;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDialog = DuDialog;
 au_react_wrapper_1.addPropertiesState(DuDialog, reactprops);
 

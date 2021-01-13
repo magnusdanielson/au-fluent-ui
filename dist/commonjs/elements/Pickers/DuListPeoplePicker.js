@@ -56,23 +56,22 @@ reactprops.enableSelectedSuggestionAlert = {};
 reactprops.selectedItems = {};
 var DuListPeoplePicker = (function (_super) {
     __extends(DuListPeoplePicker, _super);
-    function DuListPeoplePicker(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuListPeoplePicker(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuListPeoplePicker.prototype.attached = function () {
         this.renderReact(Pickers_1.ListPeoplePicker, this.createState(reactprops));
     };
     DuListPeoplePicker = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-list-people-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuListPeoplePicker);
     return DuListPeoplePicker;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuListPeoplePicker = DuListPeoplePicker;
 au_react_wrapper_1.addPropertiesState(DuListPeoplePicker, reactprops);
 

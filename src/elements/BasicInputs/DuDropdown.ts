@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Dropdown, IDropdownProps, IDropdownOption  } from '@fluentui/react/lib/Dropdown';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IDropdownProps = <IDropdownProps>{};
 reactprops.placeholder = <any>{};
@@ -23,14 +23,14 @@ reactprops.required  = <any>{};
 reactprops.selectedKey = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-dropdown')
-export class DuDropdown extends  AuReactStateWrapper implements IDropdownProps {
+export class DuDropdown extends AuReactWrapper  implements IDropdownProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

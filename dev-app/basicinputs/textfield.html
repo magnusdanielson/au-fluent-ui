@@ -14,9 +14,10 @@
 
               <examplecard title="Implementation examples">
                     <div slot="example">
-                      name: ${name} <br/>
+                      Standard input element: ${myvalue} <br/>
                         <input value.bind="myvalue"></input>
-                        <du-text-field value.bind="myvalue" validate.bind="onchange" label="Standard bound to ${myvalue}" ></du-text-field>
+                        <du-text-field value.bind="myvalue" label="Standard bound to ${myvalue}" ></du-text-field>
+                        <du-text-field view-model.ref="controlledText" value.bind="myvalue" on-change.bind="onchange" label="Controlled onChange" ></du-text-field>
                         <du-text-field label="Disabled" disabled.one-time="true" ></du-text-field>
                         <du-text-field label="Read Only" read-only.one-time="true" ></du-text-field>
                         <du-text-field label="Required" required.one-time="true" ></du-text-field>

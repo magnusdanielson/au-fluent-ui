@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { NormalPeoplePicker } from '@fluentui/react/lib/Pickers';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.items = {};
 reactprops.onResolveSuggestions = onlyAureliaBound;
@@ -52,23 +52,22 @@ reactprops.enableSelectedSuggestionAlert = {};
 reactprops.selectedItems = {};
 var DuNormalPeoplePicker = (function (_super) {
     __extends(DuNormalPeoplePicker, _super);
-    function DuNormalPeoplePicker(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuNormalPeoplePicker(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuNormalPeoplePicker.prototype.attached = function () {
         this.renderReact(NormalPeoplePicker, this.createState(reactprops));
     };
     DuNormalPeoplePicker = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-normal-people-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuNormalPeoplePicker);
     return DuNormalPeoplePicker;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuNormalPeoplePicker };
 addPropertiesState(DuNormalPeoplePicker, reactprops);
 

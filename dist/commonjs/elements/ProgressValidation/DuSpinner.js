@@ -33,23 +33,22 @@ reactprops.label = {};
 reactprops.labelPosition = {};
 var DuSpinner = (function (_super) {
     __extends(DuSpinner, _super);
-    function DuSpinner(element) {
-        var _this = _super.call(this, element) || this;
+    function DuSpinner(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuSpinner.prototype.attached = function () {
         this.renderReact(Spinner_1.Spinner, this.createState(reactprops));
     };
     DuSpinner = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-spinner'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuSpinner);
     return DuSpinner;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuSpinner = DuSpinner;
 au_react_wrapper_1.addPropertiesState(DuSpinner, reactprops);
 

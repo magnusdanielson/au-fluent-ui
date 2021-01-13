@@ -49,33 +49,29 @@ reactprops.preventDismissOnLostFocus = {};
 reactprops.preventFocusOnMount = {};
 var DuCoachmark = (function (_super) {
     __extends(DuCoachmark, _super);
-    function DuCoachmark(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCoachmark(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.teachingBubbleElement = {};
-        _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+        _this.hidden = true;
         return _this;
     }
     DuCoachmark.prototype.attached = function () {
-        this.renderReact2(reactprops);
+        this.renderReact2(this.createState(reactprops));
     };
-    DuCoachmark.prototype.renderReact2 = function (reactprops) {
-        ReactDom.unmountComponentAtNode(this.element);
+    DuCoachmark.prototype.renderReact2 = function (a) {
         this.container = this.element.querySelector('.au-react-root');
-        if (this.container != null) {
-            this.container.remove();
+        if (this.container == null) {
+            this.container = document.createElement('span');
+            this.container.setAttribute('class', 'au-react-root');
+            this.element.appendChild(this.container);
         }
-        this.container = document.createElement('span');
-        this.container.setAttribute('class', 'au-react-root');
-        this.element.appendChild(this.container);
         this.teachingBubbleContent.aureliaHost = this;
         this.teachingBubbleContent.reactClass = TeachingBubble_1.TeachingBubbleContent;
-        var reactTeachingBubbleElement = React.createElement(au_react_wrapper_1.ReactStateWrapper, this.teachingBubbleContent);
-        var a = this.createState(reactprops);
+        var reactTeachingBubbleElement = React.createElement(au_react_wrapper_1.ReactWrapper, this.teachingBubbleContent);
         a.aureliaHost = this;
         a.reactClass = Coachmark_1.Coachmark;
-        var reactElement = React.createElement(au_react_wrapper_1.ReactStateWrapperNoChildren, a, reactTeachingBubbleElement);
+        var reactElement = React.createElement(au_react_wrapper_1.ReactSimpleWrapper, a, reactTeachingBubbleElement);
         this.reactComponent = ReactDom.render(reactElement, this.container);
     };
     __decorate([
@@ -87,12 +83,12 @@ var DuCoachmark = (function (_super) {
         __metadata("design:type", Boolean)
     ], DuCoachmark.prototype, "hidden", void 0);
     DuCoachmark = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-coachmark'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuCoachmark);
     return DuCoachmark;
-}(au_react_wrapper_1.AuReactStateWrapperNoChildren));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuCoachmark = DuCoachmark;
 au_react_wrapper_1.addPropertiesState(DuCoachmark, reactprops);
 

@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Spinner, ISpinnerProps } from '@fluentui/react/lib/Spinner';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 let reactprops: ISpinnerProps = <ISpinnerProps>{};
 reactprops.className = <any>{};
@@ -9,14 +9,14 @@ reactprops.label = <any>{};
 reactprops.labelPosition = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-spinner')
-export class DuSpinner extends  AuReactStateWrapper implements ISpinnerProps {
+export class DuSpinner extends AuReactWrapper  implements ISpinnerProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

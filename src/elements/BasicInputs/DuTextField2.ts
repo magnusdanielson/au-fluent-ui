@@ -1,9 +1,7 @@
-//import * as React from 'react';
 import { TaskQueue, noView,customElement, inject } from 'aurelia-framework';
 import { TextField, ITextFieldProps } from '@fluentui/react/lib/TextField';
-import { addPropertiesState } from '../../austate/addPropertiesState';
-import { onlyAureliaBound } from '@dunite/au-react-wrapper';
-import { AuReactStateWrapperNoChildren } from '../../austate/AuReactStateWrapperNoChildren';
+//import { addPropertiesState } from '../../austate/addPropertiesState';
+import { addPropertiesState, AuReactWrapperNoChildren, onlyAureliaBound } from '@dunite/au-react-wrapper';
 let reactprops: ITextFieldProps = {} as ITextFieldProps;
 
 
@@ -26,7 +24,7 @@ reactprops.maskFormat = <any>{};
 reactprops.multiline = <any>{};
 //reactprops.onChange = <any>onlyAureliaBound;
 reactprops.onChange = <any> ((that:any, event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-      console.log("DuTextField2: [renderReact] onChange Entering")
+      //console.log("DuTextField2: [renderReact] onChange Entering")
       
       // line below is necessery to update the viewmodel
       that.ignoreReactUpdate = true;
@@ -34,7 +32,7 @@ reactprops.onChange = <any> ((that:any, event: React.FormEvent<HTMLInputElement 
 
       // line below is necessery to update the React viewmodel
       that.reactComponent.setState( {"value":newValue || ''});
-      console.log("DuTextField2: [renderReact] onChange Leaving")
+      //console.log("DuTextField2: [renderReact] onChange Leaving")
       
       
     });
@@ -57,7 +55,7 @@ reactprops.placeholder = <any>{};
 @customElement('du-text-field2')
 @noView()
 @inject(Element,TaskQueue)
-export class DuTextField2 extends AuReactStateWrapperNoChildren {
+export class DuTextField2 extends AuReactWrapperNoChildren {
 
   orignalProp = reactprops;
   reactClass:any = TextField;
@@ -173,31 +171,3 @@ addPropertiesState(DuTextField2, reactprops);
 
 
 
-// export class T2 extends React.Component {
-
-//   constructor(props: any) {
-    
-
-//     super(props);
-//     console.log("T2:ctor");
-//     // props is a (object) sent to React.createElement(T2,a,null)
-//     //console.log(props);
-
-
-//     // this.state == "undefined"
-//     //console.log(this.state);
-    
-//     this.state = {...props};
-
-//     //this.state is now a
-//     //console.log(this.state);
-
-// }
-//   render() {
-//     console.log("T2:render");
-//     console.log(this);
-//     return React.createElement(TextField, this.state, null);
-//   }
-
-  
-// }

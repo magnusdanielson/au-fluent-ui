@@ -46,23 +46,22 @@ reactprops.valueFormat = au_react_wrapper_1.onlyAureliaBound;
 reactprops.vertical = {};
 var DuSlider = (function (_super) {
     __extends(DuSlider, _super);
-    function DuSlider(element) {
-        var _this = _super.call(this, element) || this;
+    function DuSlider(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuSlider.prototype.attached = function () {
         this.renderReact(Slider_1.Slider, this.createState(reactprops));
     };
     DuSlider = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-slider'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuSlider);
     return DuSlider;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuSlider = DuSlider;
 au_react_wrapper_1.addPropertiesState(DuSlider, reactprops);
 

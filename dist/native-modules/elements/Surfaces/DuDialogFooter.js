@@ -20,30 +20,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { DialogFooter } from '@fluentui/react/lib/Dialog';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.className = {};
 var DuDialogFooter = (function (_super) {
     __extends(DuDialogFooter, _super);
-    function DuDialogFooter(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDialogFooter(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDialogFooter.prototype.attached = function () {
         this.renderReact(DialogFooter, this.createState(reactprops));
     };
     DuDialogFooter = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-dialog-footer'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuDialogFooter);
     return DuDialogFooter;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuDialogFooter };
 addPropertiesState(DuDialogFooter, reactprops);
 

@@ -37,23 +37,22 @@ reactprops.overflowButtonAriaLabel = {};
 reactprops.actions = {};
 var DuMessageBar = (function (_super) {
     __extends(DuMessageBar, _super);
-    function DuMessageBar(element) {
-        var _this = _super.call(this, element) || this;
+    function DuMessageBar(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuMessageBar.prototype.attached = function () {
         this.renderReact(MessageBar_1.MessageBar, this.createState(reactprops));
     };
     DuMessageBar = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-message-bar'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuMessageBar);
     return DuMessageBar;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuMessageBar = DuMessageBar;
 au_react_wrapper_1.addPropertiesState(DuMessageBar, reactprops);
 

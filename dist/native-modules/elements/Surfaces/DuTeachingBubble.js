@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject, bindable } from 'aurelia-framework';
+import { customElement, TaskQueue, inject, bindable } from 'aurelia-framework';
 import { TeachingBubble } from '@fluentui/react/lib/TeachingBubble';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.calloutProps = {};
 reactprops.hasCloseIcon = {};
@@ -37,10 +37,9 @@ reactprops.targetElement = {};
 reactprops.illustrationImage = {};
 var DuTeachingBubble = (function (_super) {
     __extends(DuTeachingBubble, _super);
-    function DuTeachingBubble(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuTeachingBubble(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuTeachingBubble.prototype.attached = function () {
@@ -51,12 +50,12 @@ var DuTeachingBubble = (function (_super) {
         __metadata("design:type", Boolean)
     ], DuTeachingBubble.prototype, "hidden", void 0);
     DuTeachingBubble = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-teaching-bubble'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuTeachingBubble);
     return DuTeachingBubble;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuTeachingBubble };
 addPropertiesState(DuTeachingBubble, reactprops);
 

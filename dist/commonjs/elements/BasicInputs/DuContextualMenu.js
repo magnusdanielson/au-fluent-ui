@@ -59,23 +59,22 @@ reactprops.useTargetAsMinWidth = {};
 reactprops.useTargetWidth = {};
 var DuContextualMenu = (function (_super) {
     __extends(DuContextualMenu, _super);
-    function DuContextualMenu(element) {
-        var _this = _super.call(this, element) || this;
+    function DuContextualMenu(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuContextualMenu.prototype.attached = function () {
         this.renderReact(ContextualMenu_1.ContextualMenu, this.createState(reactprops));
     };
     DuContextualMenu = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-contextual-menu'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuContextualMenu);
     return DuContextualMenu;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuContextualMenu = DuContextualMenu;
 au_react_wrapper_1.addPropertiesState(DuContextualMenu, reactprops);
 

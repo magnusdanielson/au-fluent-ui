@@ -1,9 +1,9 @@
 import { Coachmark, ICoachmarkProps } from '@fluentui/react/lib/Coachmark';
-import {  customElement, inject, bindable } from 'aurelia-framework';
+import {  TaskQueue, customElement, inject, bindable } from 'aurelia-framework';
 import { ITeachingBubbleProps, TeachingBubbleContent } from '@fluentui/react/lib/TeachingBubble';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { AuReactStateWrapperNoChildren, addPropertiesState, onlyAureliaBound, ReactStateWrapper, ReactStateWrapperNoChildren } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound, ReactWrapper, ReactSimpleWrapper, AuReactWrapperNoChildren } from '@dunite/au-react-wrapper';
 
 let reactprops: ICoachmarkProps = <ICoachmarkProps>{};
 reactprops.beaconColorOne = <any>{};
@@ -24,16 +24,14 @@ reactprops.positioningContainerProps = <any>{};
 reactprops.preventDismissOnLostFocus = <any>{};
 reactprops.preventFocusOnMount = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-coachmark')
-export class DuCoachmark extends AuReactStateWrapperNoChildren {
+export class DuCoachmark extends AuReactWrapper {
 
   container: HTMLElement | null;
   
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) {
+    super(element, tq);
   }
 
   public teachingBubbleElement: any = {};
@@ -42,46 +40,34 @@ export class DuCoachmark extends AuReactStateWrapperNoChildren {
   public teachingBubbleContent: ITeachingBubbleProps;
 
   @bindable()
-  hidden: boolean = false;
+  hidden: boolean = true;
 
   attached() {
-
-    
-    this.renderReact2(reactprops);
+    this.renderReact2(this.createState(reactprops));
   }
 
-  public renderReact2( reactprops: any) {
-    ReactDom.unmountComponentAtNode(this.element);
+  public renderReact2( a: any) {
 
-    // this is bound to Aurelia class
     this.container = this.element.querySelector('.au-react-root');
 
-    if (this.container != null)
-    {
-      this.container.remove();
+    if (this.container == null) {
+      this.container = document.createElement('span');
+      this.container.setAttribute('class', 'au-react-root');
+      this.element.appendChild(this.container);
+
     }
-
-    this.container = document.createElement('span');
-    this.container.setAttribute('class', 'au-react-root');
-    this.element.appendChild(this.container);
-
-
     //@ts-ignore
     this.teachingBubbleContent.aureliaHost = this;
     //@ts-ignore
     this.teachingBubbleContent.reactClass = TeachingBubbleContent
 
     //let reactTeachingBubbleElement = React.createElement(TeachingBubbleContent, this.teachingBubbleContent);
-    let reactTeachingBubbleElement = React.createElement(ReactStateWrapper , this.teachingBubbleContent);
+    let reactTeachingBubbleElement = React.createElement(ReactWrapper , this.teachingBubbleContent);
     
-    var a = this.createState(reactprops);
     a.aureliaHost = this;
     a.reactClass = Coachmark
-
-
-
-    const reactElement = React.createElement(ReactStateWrapperNoChildren, a, reactTeachingBubbleElement);
-    this.reactComponent = ReactDom.render(reactElement, this.container);
+    const reactElement = React.createElement(ReactSimpleWrapper, a, reactTeachingBubbleElement);
+    this.reactComponent = ReactDom.render(reactElement, this.container );
   }
 }
 

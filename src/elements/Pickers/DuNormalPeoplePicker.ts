@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { IPeoplePickerProps, NormalPeoplePicker } from '@fluentui/react/lib/Pickers';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IPeoplePickerProps   = <IPeoplePickerProps>{};
 
@@ -33,14 +33,14 @@ reactprops.onDismiss = <any>onlyAureliaBound;
 reactprops.enableSelectedSuggestionAlert = <any>{};
 reactprops.selectedItems = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-normal-people-picker')
-export class DuNormalPeoplePicker extends  AuReactStateWrapper {
+export class DuNormalPeoplePicker extends AuReactWrapper  {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

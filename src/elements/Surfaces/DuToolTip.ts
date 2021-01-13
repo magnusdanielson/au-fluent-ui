@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Tooltip, ITooltipProps } from '@fluentui/react/lib/Tooltip';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: ITooltipProps = <ITooltipProps>{};
 
@@ -14,14 +14,14 @@ reactprops.targetElement = <any>{};
 reactprops.hidden = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-tool-tip')
-export class DuToolTip  extends AuReactStateWrapper implements ITooltipProps
+export class DuToolTip  extends AuReactWrapper implements ITooltipProps
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;

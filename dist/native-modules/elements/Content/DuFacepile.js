@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Facepile } from '@fluentui/react/lib/Facepile';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.personas = {};
 reactprops.addButtonProps = {};
@@ -35,10 +35,9 @@ reactprops.personaSize = {};
 reactprops.showAddButton = {};
 var DuFacepile = (function (_super) {
     __extends(DuFacepile, _super);
-    function DuFacepile(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuFacepile(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuFacepile.prototype.getPersonaProps = function (persona) {
@@ -48,12 +47,12 @@ var DuFacepile = (function (_super) {
         this.renderReact(Facepile, this.createState(reactprops));
     };
     DuFacepile = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-facepile'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuFacepile);
     return DuFacepile;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuFacepile };
 addPropertiesState(DuFacepile, reactprops);
 

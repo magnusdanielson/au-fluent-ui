@@ -1,19 +1,30 @@
-import { customElement, inject } from 'aurelia-framework';
-import { Panel, IPanelProps } from '@fluentui/react/lib/Panel';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
+import { Panel, IPanel, IPanelProps } from '@fluentui/react/lib/Panel';
+import { onlyAureliaBound, AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
-var reactprops: IPanelProps = {};
+var reactprops: IPanelProps & IPanel = <any>{};
 reactprops.isOpen = <any>{};
-reactprops.onDismiss = <any>{};
+reactprops.onDismiss = <any>onlyAureliaBound;
+reactprops.onDismissed = <any>onlyAureliaBound;
+reactprops.onOpen = <any>onlyAureliaBound;
+reactprops.onOpened = <any>onlyAureliaBound;
+reactprops.onOuterClick = <any>onlyAureliaBound;
 reactprops.headerText = <any>{};
 reactprops.type = <any>{};
+reactprops.isBlocking = <any>{};
+reactprops.hasCloseButton = <any>{};
+reactprops.isHiddenOnDismiss = <any>{};
+reactprops.customWidth = <any>{};
+reactprops.open = <any>onlyAureliaBound;
+reactprops.dismiss = <any>onlyAureliaBound;
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-panel')
-export class DuPanel extends AuReactStateWrapper implements IPanelProps
+export class DuPanel extends AuReactWrapper implements IPanelProps
 {
-  constructor(element) {
-    super(element);
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
     this.hiddenIsHidden = false;
     this.hiddenName = 'isOpen';
   }

@@ -1,8 +1,10 @@
+import { TaskQueue } from 'aurelia-framework';
 import { IDetailsListProps } from '@fluentui/react/lib/DetailsList';
-import { AuReactStateWrapper } from '@dunite/au-react-wrapper';
+import { AuReactWrapper } from '@dunite/au-react-wrapper';
 import { ScrollToMode } from '@fluentui/react/lib/List';
-export declare class DuDetailsList extends AuReactStateWrapper implements IDetailsListProps {
-    constructor(element: any);
+export declare class DuDetailsList extends AuReactWrapper implements IDetailsListProps {
+    protected tq: TaskQueue;
+    constructor(element: any, tq: TaskQueue);
     hidden: boolean;
     items: any[];
     scrollToIndex(index: number): void;

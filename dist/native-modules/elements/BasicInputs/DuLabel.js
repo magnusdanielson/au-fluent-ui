@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Label } from '@fluentui/react/lib/Label';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.disabled = {};
 reactprops.className = {};
@@ -30,23 +30,22 @@ reactprops.required = {};
 reactprops.htmlFor = {};
 var DuLabel = (function (_super) {
     __extends(DuLabel, _super);
-    function DuLabel(element) {
-        var _this = _super.call(this, element) || this;
+    function DuLabel(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuLabel.prototype.attached = function () {
         this.renderReact(Label, this.createState(reactprops));
     };
     DuLabel = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-label'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuLabel);
     return DuLabel;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuLabel };
 addPropertiesState(DuLabel, reactprops);
 

@@ -58,23 +58,22 @@ reactprops.onClick = au_react_wrapper_1.onlyAureliaBound;
 reactprops.secondaryText = {};
 var DuCompoundButton = (function (_super) {
     __extends(DuCompoundButton, _super);
-    function DuCompoundButton(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCompoundButton(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuCompoundButton.prototype.attached = function () {
         this.renderReact(Button_1.CompoundButton, this.createState(reactprops));
     };
     DuCompoundButton = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-compound-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuCompoundButton);
     return DuCompoundButton;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuCompoundButton = DuCompoundButton;
 au_react_wrapper_1.addPropertiesState(DuCompoundButton, reactprops);
 

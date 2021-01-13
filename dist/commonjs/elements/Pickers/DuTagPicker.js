@@ -54,23 +54,22 @@ reactprops.items = {};
 reactprops.selectedItems = {};
 var DuTagPicker = (function (_super) {
     __extends(DuTagPicker, _super);
-    function DuTagPicker(element) {
-        var _this = _super.call(this, element) || this;
+    function DuTagPicker(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuTagPicker.prototype.attached = function () {
         this.renderReact(Pickers_1.TagPicker, this.createState(reactprops));
     };
     DuTagPicker = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-tag-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuTagPicker);
     return DuTagPicker;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuTagPicker = DuTagPicker;
 au_react_wrapper_1.addPropertiesState(DuTagPicker, reactprops);
 

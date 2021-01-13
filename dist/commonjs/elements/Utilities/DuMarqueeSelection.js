@@ -30,22 +30,21 @@ var reactprops = {};
 reactprops.hidden = {};
 var DuMarqueeSelection = (function (_super) {
     __extends(DuMarqueeSelection, _super);
-    function DuMarqueeSelection(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuMarqueeSelection(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuMarqueeSelection.prototype.attached = function () {
         this.renderReact(MarqueeSelection_1.MarqueeSelection, this.createState(reactprops));
     };
     DuMarqueeSelection = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-marquee-selection'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuMarqueeSelection);
     return DuMarqueeSelection;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuMarqueeSelection = DuMarqueeSelection;
 au_react_wrapper_1.addPropertiesState(DuMarqueeSelection, reactprops);
 

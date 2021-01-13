@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { CommandBar, ICommandBarProps  } from '@fluentui/react/lib/CommandBar';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 let reactprops: ICommandBarProps = <ICommandBarProps>{};
 reactprops.items = <any>{};
@@ -10,14 +10,14 @@ reactprops.overflowButtonProps = <any>{};
 reactprops.className = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-command-bar')
-export class DuCommandBar extends  AuReactStateWrapper {
+export class DuCommandBar extends AuReactWrapper  {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

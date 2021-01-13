@@ -46,8 +46,9 @@ reactprops.iconProps = <any>{};
 @customElement('mytext')
 export class mytext extends  mybasenochild implements ITextFieldProps {
 
-  constructor(element) {
-  super(element);
+  constructor(element) 
+  {
+    super(element);
     this.hiddenIsHidden = true;
     this.hiddenName = 'hidden';
   }

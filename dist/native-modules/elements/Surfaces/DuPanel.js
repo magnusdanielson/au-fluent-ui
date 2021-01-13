@@ -20,18 +20,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Panel } from '@fluentui/react/lib/Panel';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { onlyAureliaBound, AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.isOpen = {};
-reactprops.onDismiss = {};
+reactprops.onDismiss = onlyAureliaBound;
+reactprops.onDismissed = onlyAureliaBound;
+reactprops.onOpen = onlyAureliaBound;
+reactprops.onOpened = onlyAureliaBound;
+reactprops.onOuterClick = onlyAureliaBound;
 reactprops.headerText = {};
 reactprops.type = {};
+reactprops.isBlocking = {};
+reactprops.hasCloseButton = {};
+reactprops.isHiddenOnDismiss = {};
+reactprops.customWidth = {};
+reactprops.open = onlyAureliaBound;
+reactprops.dismiss = onlyAureliaBound;
 var DuPanel = (function (_super) {
     __extends(DuPanel, _super);
-    function DuPanel(element) {
-        var _this = _super.call(this, element) || this;
+    function DuPanel(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hiddenIsHidden = false;
         _this.hiddenName = 'isOpen';
         return _this;
@@ -40,12 +51,12 @@ var DuPanel = (function (_super) {
         this.renderReact(Panel, this.createState(reactprops));
     };
     DuPanel = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-panel'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuPanel);
     return DuPanel;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuPanel };
 addPropertiesState(DuPanel, reactprops);
 

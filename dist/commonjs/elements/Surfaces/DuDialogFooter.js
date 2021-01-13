@@ -30,23 +30,22 @@ var reactprops = {};
 reactprops.className = {};
 var DuDialogFooter = (function (_super) {
     __extends(DuDialogFooter, _super);
-    function DuDialogFooter(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDialogFooter(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDialogFooter.prototype.attached = function () {
         this.renderReact(Dialog_1.DialogFooter, this.createState(reactprops));
     };
     DuDialogFooter = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-dialog-footer'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDialogFooter);
     return DuDialogFooter;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDialogFooter = DuDialogFooter;
 au_react_wrapper_1.addPropertiesState(DuDialogFooter, reactprops);
 

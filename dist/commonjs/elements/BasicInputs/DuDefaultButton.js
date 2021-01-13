@@ -58,8 +58,9 @@ reactprops.onClick = au_react_wrapper_1.onlyAureliaBound;
 reactprops.secondaryText = {};
 var DuDefaultButton = (function (_super) {
     __extends(DuDefaultButton, _super);
-    function DuDefaultButton(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDefaultButton(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
         _this.hiddenIsHidden = true;
         _this.hiddenName = 'hidden';
@@ -69,12 +70,12 @@ var DuDefaultButton = (function (_super) {
         this.renderReact(Button_1.DefaultButton, this.createState(reactprops));
     };
     DuDefaultButton = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-default-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDefaultButton);
     return DuDefaultButton;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDefaultButton = DuDefaultButton;
 au_react_wrapper_1.addPropertiesState(DuDefaultButton, reactprops);
 

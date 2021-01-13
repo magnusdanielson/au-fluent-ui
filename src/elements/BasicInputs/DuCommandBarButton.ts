@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { CommandBarButton, IButtonProps  } from '@fluentui/react/lib/Button';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IButtonProps = <IButtonProps>{};
 reactprops.href = <any>{};
@@ -17,14 +17,14 @@ reactprops.onClick = onlyAureliaBound;
 reactprops.secondaryText = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-command-bar-button')
-export class DuCommandBarButton extends  AuReactStateWrapper implements IButtonProps {
+export class DuCommandBarButton extends AuReactWrapper  implements IButtonProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

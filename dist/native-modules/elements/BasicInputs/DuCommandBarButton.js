@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { CommandBarButton } from '@fluentui/react/lib/Button';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.href = {};
 reactprops.primary = {};
@@ -38,23 +38,22 @@ reactprops.onClick = onlyAureliaBound;
 reactprops.secondaryText = {};
 var DuCommandBarButton = (function (_super) {
     __extends(DuCommandBarButton, _super);
-    function DuCommandBarButton(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCommandBarButton(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuCommandBarButton.prototype.attached = function () {
         this.renderReact(CommandBarButton, this.createState(reactprops));
     };
     DuCommandBarButton = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-command-bar-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuCommandBarButton);
     return DuCommandBarButton;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuCommandBarButton };
 addPropertiesState(DuCommandBarButton, reactprops);
 

@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Slider, ISliderProps } from '@fluentui/react/lib/Slider';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: ISliderProps = {} as ISliderProps;
 reactprops.value = <any>{};
@@ -21,14 +21,14 @@ reactprops.vertical = <any>{};
 reactprops.valueFormat = <any>onlyAureliaBound;
 reactprops.vertical  = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-slider')
-export class DuSlider extends  AuReactStateWrapper implements ISliderProps {
+export class DuSlider extends AuReactWrapper  implements ISliderProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

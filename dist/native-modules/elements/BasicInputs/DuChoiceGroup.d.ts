@@ -1,7 +1,9 @@
+import { TaskQueue } from 'aurelia-framework';
 import { IChoiceGroupProps } from '@fluentui/react/lib/ChoiceGroup';
-import { AuReactStateWrapper } from '@dunite/au-react-wrapper';
-export declare class DuChoiceGroup extends AuReactStateWrapper implements IChoiceGroupProps {
-    constructor(element: any);
+import { AuReactWrapper } from '@dunite/au-react-wrapper';
+export declare class DuChoiceGroup extends AuReactWrapper implements IChoiceGroupProps {
+    protected tq: TaskQueue;
+    constructor(element: any, tq: TaskQueue);
     hidden: boolean;
     attached(): void;
 }

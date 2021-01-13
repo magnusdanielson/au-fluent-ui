@@ -32,23 +32,22 @@ reactprops.showAsSecondaryTitle = {};
 reactprops.title = {};
 var DuDocumentCardTitle = (function (_super) {
     __extends(DuDocumentCardTitle, _super);
-    function DuDocumentCardTitle(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDocumentCardTitle(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDocumentCardTitle.prototype.attached = function () {
         this.renderReact(DocumentCard_1.DocumentCardTitle, this.createState(reactprops));
     };
     DuDocumentCardTitle = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-document-card-title'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDocumentCardTitle);
     return DuDocumentCardTitle;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDocumentCardTitle = DuDocumentCardTitle;
 au_react_wrapper_1.addPropertiesState(DuDocumentCardTitle, reactprops);
 

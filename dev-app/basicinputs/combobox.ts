@@ -1,11 +1,14 @@
 import { IComboBoxOption, SelectableOptionMenuItemType } from '@fluentui/react/lib/ComboBox';
 import { DuComboBox } from 'elements/BasicInputs/DuComboBox';
+import { threadId } from 'worker_threads';
 
 export class combobox {
 
   selectedItems: string[] = [];
   selectedItem: string;
   errorMessage: string;
+
+  cbx:DuComboBox;
 
   public fruits: any = [
     { key: 'Header2', text: 'Fruits', itemType: SelectableOptionMenuItemType.Header },
@@ -36,7 +39,6 @@ export class combobox {
     }
     if (option.key != 'Banana') {
       this.selectedItem = <string>option.key;
-      this.selectedItems.push(<string>option.key);
     }
     else {
       this.selectedItem = "undefined"; // Yes, a string
@@ -47,15 +49,20 @@ export class combobox {
     console.log("The option has been changed to Object:");
     console.log(option);
     console.log(index);
-    
-    if (option.selected) {
-      this.selectedItems.push(<string>option.key);
-      this.selectedItems = this.selectedItems.reverse();
+    // line below is necessery to update the viewmodel
+  // this.cbx.ignoreReactUpdate = true;
+  // this.value = newValue;
 
-    }
-    else {
-      this.selectedItems.splice(this.selectedItems.indexOf(<string>option.key), 1);
-    }
+  // // line below is necessery to update the React viewmodel
+  // this.cbx.reactComponent.setState( {"value":newValue || ''});
+  //   if (option.selected) {
+  //     this.selectedItems.push(<string>option.key);
+  //     this.selectedItems = this.selectedItems.reverse();
+
+  //   }
+  //   else {
+  //     this.selectedItems.splice(this.selectedItems.indexOf(<string>option.key), 1);
+  //   }
 
   };
   

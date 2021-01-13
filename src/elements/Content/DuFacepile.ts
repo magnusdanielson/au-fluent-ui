@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Facepile, IFacepileProps, IFacepilePersona } from '@fluentui/react/lib/Facepile';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 let reactprops: IFacepileProps = <IFacepileProps>{};
 
@@ -14,14 +14,14 @@ reactprops.overflowPersonas = <any>{};
 reactprops.personaSize = <any>{};
 reactprops.showAddButton = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-facepile')
-export class DuFacepile  extends AuReactStateWrapper implements IFacepileProps
+export class DuFacepile  extends AuReactWrapper implements IFacepileProps
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;

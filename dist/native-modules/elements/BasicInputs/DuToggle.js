@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Toggle } from '@fluentui/react/lib/Toggle';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.ariaLabel = {};
 reactprops.label = {};
@@ -38,23 +38,22 @@ reactprops.className = {};
 reactprops.keytipProps = {};
 var DuToggle = (function (_super) {
     __extends(DuToggle, _super);
-    function DuToggle(element) {
-        var _this = _super.call(this, element) || this;
+    function DuToggle(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuToggle.prototype.attached = function () {
         this.renderReact(Toggle, this.createState(reactprops));
     };
     DuToggle = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-toggle'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuToggle);
     return DuToggle;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuToggle };
 addPropertiesState(DuToggle, reactprops);
 

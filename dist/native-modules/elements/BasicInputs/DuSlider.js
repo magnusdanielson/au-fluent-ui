@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Slider } from '@fluentui/react/lib/Slider';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.value = {};
 reactprops.ariaLabel = {};
@@ -43,23 +43,22 @@ reactprops.valueFormat = onlyAureliaBound;
 reactprops.vertical = {};
 var DuSlider = (function (_super) {
     __extends(DuSlider, _super);
-    function DuSlider(element) {
-        var _this = _super.call(this, element) || this;
+    function DuSlider(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuSlider.prototype.attached = function () {
         this.renderReact(Slider, this.createState(reactprops));
     };
     DuSlider = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-slider'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuSlider);
     return DuSlider;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuSlider };
 addPropertiesState(DuSlider, reactprops);
 

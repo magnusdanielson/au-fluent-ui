@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { ListPeoplePicker } from '@fluentui/react/lib/Pickers';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.items = {};
 reactprops.onResolveSuggestions = onlyAureliaBound;
@@ -53,23 +53,22 @@ reactprops.enableSelectedSuggestionAlert = {};
 reactprops.selectedItems = {};
 var DuListPeoplePicker = (function (_super) {
     __extends(DuListPeoplePicker, _super);
-    function DuListPeoplePicker(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuListPeoplePicker(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuListPeoplePicker.prototype.attached = function () {
         this.renderReact(ListPeoplePicker, this.createState(reactprops));
     };
     DuListPeoplePicker = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-list-people-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuListPeoplePicker);
     return DuListPeoplePicker;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuListPeoplePicker };
 addPropertiesState(DuListPeoplePicker, reactprops);
 

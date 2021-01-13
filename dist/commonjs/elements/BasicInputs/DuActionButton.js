@@ -58,23 +58,22 @@ reactprops.onClick = au_react_wrapper_1.onlyAureliaBound;
 reactprops.secondaryText = {};
 var DuActionButton = (function (_super) {
     __extends(DuActionButton, _super);
-    function DuActionButton(element) {
-        var _this = _super.call(this, element) || this;
+    function DuActionButton(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuActionButton.prototype.attached = function () {
         this.renderReact(Button_1.ActionButton, this.createState(reactprops));
     };
     DuActionButton = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-action-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuActionButton);
     return DuActionButton;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuActionButton = DuActionButton;
 au_react_wrapper_1.addPropertiesState(DuActionButton, reactprops);
 

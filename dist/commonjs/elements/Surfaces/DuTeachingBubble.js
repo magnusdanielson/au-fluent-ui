@@ -40,10 +40,9 @@ reactprops.targetElement = {};
 reactprops.illustrationImage = {};
 var DuTeachingBubble = (function (_super) {
     __extends(DuTeachingBubble, _super);
-    function DuTeachingBubble(element) {
-        var _this = _super.call(this, element) || this;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
+    function DuTeachingBubble(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         return _this;
     }
     DuTeachingBubble.prototype.attached = function () {
@@ -54,12 +53,12 @@ var DuTeachingBubble = (function (_super) {
         __metadata("design:type", Boolean)
     ], DuTeachingBubble.prototype, "hidden", void 0);
     DuTeachingBubble = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-teaching-bubble'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuTeachingBubble);
     return DuTeachingBubble;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuTeachingBubble = DuTeachingBubble;
 au_react_wrapper_1.addPropertiesState(DuTeachingBubble, reactprops);
 

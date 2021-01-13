@@ -1,6 +1,6 @@
-import {  customElement, inject } from 'aurelia-framework';
+import { TaskQueue, customElement, inject } from 'aurelia-framework';
 import { DocumentCardTitle, IDocumentCardTitleProps } from '@fluentui/react/lib/DocumentCard';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 // IMPORTANT
 // any function defined here will be called with _this as first parameter
@@ -12,14 +12,14 @@ reactprops.showAsSecondaryTitle = <any>{};
 reactprops.title = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-document-card-title')
-export class DuDocumentCardTitle extends  AuReactStateWrapper implements IDocumentCardTitleProps {
+export class DuDocumentCardTitle extends AuReactWrapper  implements IDocumentCardTitleProps {
 
-  constructor(element) {
-  super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean = false;

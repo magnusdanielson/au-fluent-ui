@@ -11,549 +11,37 @@ define('DuTest',["require", "exports"], function (require, exports) {
 });
 ;
 define('text!DuTest.html',[],function(){return "<template>Test Hello</template>";});;
-define('__dot_dot__/src/austate/AuReactNoStateWrapper',["require", "exports", "react-dom", "aurelia-framework"], function (require, exports, ReactDom, aurelia_framework_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AuReactNoStateWrapper = void 0;
-    var AuReactNoStateWrapper = (function () {
-        function AuReactNoStateWrapper(element) {
-            this.element = element;
-            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
-        }
-        AuReactNoStateWrapper.prototype.bind = function (bindingContext) {
-            if (bindingContext !== null) {
-                this.parent = bindingContext;
-            }
-            this.render();
-        };
-        AuReactNoStateWrapper.prototype.unbind = function () {
-            ReactDom.unmountComponentAtNode(this.element);
-        };
-        AuReactNoStateWrapper.prototype.createState = function (reactprops) {
-            var reactpropNames = Object.getOwnPropertyNames(reactprops);
-            var a = {};
-            var _loop_1 = function (i) {
-                var renderPropName = reactpropNames[i];
-                if (typeof reactprops[renderPropName] === 'function') {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
-                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
-                    if (typeof this_1[renderPropName] === 'function') {
-                        console.log('bound function, go aurelia');
-                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
-                    }
-                    else {
-                        console.log('function is not bound, check for default implementation on React template');
-                        var funcNames = [
-                            'defaultOnChangeEvent',
-                            'defaultActionEvent',
-                            'onlyAureliaBound'
-                        ];
-                        if (!funcNames.includes(reactprops[renderPropName].name)) {
-                            console.log('React template has default implementation, call it.');
-                            that = this_1;
-                            a[renderPropName] = function () {
-                                var argLength = arguments.length;
-                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
-                            };
-                        }
-                        else {
-                            console.log('React template has empty implementation, do nothing.');
-                        }
-                    }
-                }
-                else {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
-                    if (typeof this_1[renderPropName] !== 'undefined') {
-                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
-                        a[renderPropName] = this_1[renderPropName];
-                    }
-                    else {
-                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
-                    }
-                }
-            };
-            var this_1 = this, that;
-            for (var i = 0; i < reactpropNames.length; i++) {
-                _loop_1(i);
-            }
-            return a;
-        };
-        return AuReactNoStateWrapper;
-    }());
-    exports.AuReactNoStateWrapper = AuReactNoStateWrapper;
-});
+
+
+define("__dot_dot__/src/austate/AuReactNoStateWrapper", function(){});
 ;
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('__dot_dot__/src/austate/AuReactStateWrapper',["require", "exports", "react", "react-dom", "aurelia-framework", "./ReactStateWrapper"], function (require, exports, React, ReactDom, aurelia_framework_1, ReactStateWrapper_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AuReactStateWrapper = void 0;
-    var AuReactStateWrapper = (function () {
-        function AuReactStateWrapper(element) {
-            console.log("ctor AuReactStateWrapper");
-            this.element = element;
-            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
-            this.inneridAurelia = 'du' + Math.round(Math.random() * 10000000000000000);
-        }
-        AuReactStateWrapper.prototype.createState = function (reactprops) {
-            console.log("createState AuReactStateWrapper");
-            var reactpropNames = Object.getOwnPropertyNames(reactprops);
-            var a = {};
-            var _loop_1 = function (i) {
-                var renderPropName = reactpropNames[i];
-                if (typeof reactprops[renderPropName] === 'function') {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
-                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
-                    if (typeof this_1[renderPropName] === 'function') {
-                        console.log('bound function, go aurelia');
-                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
-                    }
-                    else {
-                        console.log('function is not bound, check for default implementation on React template');
-                        var funcNames = ['defaultOnChangeEvent', 'defaultActionEvent', 'onlyAureliaBound'];
-                        if (!funcNames.includes(reactprops[renderPropName].name)) {
-                            console.log('React template has default implementation, call it.');
-                            that = this_1;
-                            a[renderPropName] = function () {
-                                var argLength = arguments.length;
-                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
-                            };
-                        }
-                        else {
-                            console.log('React template has empty implementation, do nothing.');
-                        }
-                    }
-                }
-                else {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
-                    if (typeof this_1[renderPropName] !== 'undefined') {
-                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
-                        a[renderPropName] = this_1[renderPropName];
-                    }
-                    else {
-                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
-                    }
-                }
-            };
-            var this_1 = this, that;
-            for (var i = 0; i < reactpropNames.length; i++) {
-                _loop_1(i);
-            }
-            return a;
-        };
-        AuReactStateWrapper.prototype.isHidden = function () {
-            return this.hiddenIsHidden ? this[this.hiddenName] : !this[this.hiddenName];
-        };
-        AuReactStateWrapper.prototype.bind = function (bindingContext) {
-            console.log('bind AuReactStateWrapper');
-            if (bindingContext !== null) {
-                this.parent = bindingContext;
-            }
-        };
-        AuReactStateWrapper.prototype.unbind = function () {
-            console.log('unbind AuReactStateWrapper');
-            if (this.container != null)
-                ReactDom.unmountComponentAtNode(this.container);
-        };
-        AuReactStateWrapper.prototype.propertyChanged = function (name, newValue, oldValue) {
-            if (newValue == oldValue) {
-                console.log('AuReactStateWrapper: propertySame');
-                return;
-            }
-            console.log('AuReactStateWrapper: propertyChanged');
-            console.log(this);
-            console.log(newValue);
-            console.log(oldValue);
-            var obj = {};
-            obj[name] = newValue;
-            if (this.changeState == true) {
-                console.log("AuReactStateWrapper: changeState == true");
-                this.reactComponent.innerReactComponent.setState(obj);
-            }
-            this.changeState = true;
-            return;
-            if (name == this.hiddenName) {
-                if (this.hiddenIsHidden ? newValue : !newValue) {
-                    this.moveBack();
-                }
-            }
-            console.log(this);
-            if (this.changeState == false) {
-                console.log("AuReactStateWrapper changeState == false");
-            }
-            else {
-                console.log("AuReactStateWrapper changeState == true");
-            }
-            this.reactComponent.setState(obj);
-            this.changeState = true;
-        };
-        AuReactStateWrapper.prototype.moveBack = function () {
-            console.log('moveBack AuReactStateWrapper');
-            var auelement = document.getElementById(this.inneridAurelia);
-            var oldParent = document.getElementById(this.reactComponent.inneridReact);
-            if (oldParent == null || auelement == null) {
-                return;
-            }
-            while (oldParent.childNodes.length > 0) {
-                auelement.appendChild(oldParent.childNodes[0]);
-            }
-        };
-        AuReactStateWrapper.prototype.renderReact = function (reactClass, a) {
-            console.log('renderReact AuReactStateWrapper');
-            ReactDom.unmountComponentAtNode(this.element);
-            this.container = this.element.querySelector('.au-react-root');
-            if (this.container != null) {
-                this.container.remove();
-            }
-            this.container = document.createElement('span');
-            this.container.setAttribute('class', 'au-react-root');
-            this.element.appendChild(this.container);
-            a.aureliaHost = this;
-            a.reactClass = reactClass;
-            var reactElement = React.createElement(ReactStateWrapper_1.ReactStateWrapper, a);
-            var reactComponent = ReactDom.render(reactElement, this.container);
-            this.reactComponent = reactComponent;
-            console.log('renderReact complete AuReactStateWrapper');
-        };
-        AuReactStateWrapper = __decorate([
-            aurelia_framework_1.inlineView('<template><span id.bind="inneridAurelia" show.bind="!hidden"><slot></slot></span></template>'),
-            __metadata("design:paramtypes", [Object])
-        ], AuReactStateWrapper);
-        return AuReactStateWrapper;
-    }());
-    exports.AuReactStateWrapper = AuReactStateWrapper;
-});
+
+
+define("__dot_dot__/src/austate/AuReactStateWrapper", function(){});
 ;
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('__dot_dot__/src/austate/AuReactStateWrapper copy',["require", "exports", "react", "react-dom", "aurelia-framework", "./ReactStateWrapper"], function (require, exports, React, ReactDom, aurelia_framework_1, ReactStateWrapper_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AuReactStateWrapper = void 0;
-    var AuReactStateWrapper = (function () {
-        function AuReactStateWrapper(element) {
-            console.log("ctor AuReactStateWrapper");
-            this.element = element;
-            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
-            this.inneridAurelia = 'du' + Math.round(Math.random() * 10000000000000000);
-        }
-        AuReactStateWrapper.prototype.createState = function (reactprops) {
-            console.log("createState AuReactStateWrapper");
-            var reactpropNames = Object.getOwnPropertyNames(reactprops);
-            var a = {};
-            var _loop_1 = function (i) {
-                var renderPropName = reactpropNames[i];
-                if (typeof reactprops[renderPropName] === 'function') {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
-                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
-                    if (typeof this_1[renderPropName] === 'function') {
-                        console.log('bound function, go aurelia');
-                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
-                    }
-                    else {
-                        console.log('function is not bound, check for default implementation on React template');
-                        var funcNames = ['defaultOnChangeEvent', 'defaultActionEvent', 'onlyAureliaBound'];
-                        if (!funcNames.includes(reactprops[renderPropName].name)) {
-                            console.log('React template has default implementation, call it.');
-                            that = this_1;
-                            a[renderPropName] = function () {
-                                var argLength = arguments.length;
-                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
-                            };
-                        }
-                        else {
-                            console.log('React template has empty implementation, do nothing.');
-                        }
-                    }
-                }
-                else {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
-                    if (typeof this_1[renderPropName] !== 'undefined') {
-                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
-                        a[renderPropName] = this_1[renderPropName];
-                    }
-                    else {
-                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
-                    }
-                }
-            };
-            var this_1 = this, that;
-            for (var i = 0; i < reactpropNames.length; i++) {
-                _loop_1(i);
-            }
-            return a;
-        };
-        AuReactStateWrapper.prototype.isHidden = function () {
-            return this.hiddenIsHidden ? this[this.hiddenName] : !this[this.hiddenName];
-        };
-        AuReactStateWrapper.prototype.bind = function (bindingContext) {
-            console.log('bind AuReactStateWrapper');
-            if (bindingContext !== null) {
-                this.parent = bindingContext;
-            }
-        };
-        AuReactStateWrapper.prototype.unbind = function () {
-            console.log('unbind AuReactStateWrapper');
-            if (this.container != null)
-                ReactDom.unmountComponentAtNode(this.container);
-        };
-        AuReactStateWrapper.prototype.propertyChanged = function (name, newValue, oldValue) {
-            if (newValue == oldValue) {
-                console.log('AuReactStateWrapper: propertySame');
-                return;
-            }
-            console.log('AuReactStateWrapper: propertyChanged');
-            console.log(this);
-            console.log(newValue);
-            console.log(oldValue);
-            var obj = {};
-            obj[name] = newValue;
-            if (this.changeState == true) {
-                console.log("AuReactStateWrapper: changeState == true");
-                this.reactComponent.innerReactComponent.setState(obj);
-            }
-            this.changeState = true;
-            return;
-            if (name == this.hiddenName) {
-                if (this.hiddenIsHidden ? newValue : !newValue) {
-                    this.moveBack();
-                }
-            }
-            console.log(this);
-            if (this.changeState == false) {
-                console.log("AuReactStateWrapper changeState == false");
-            }
-            else {
-                console.log("AuReactStateWrapper changeState == true");
-            }
-            this.reactComponent.setState(obj);
-            this.changeState = true;
-        };
-        AuReactStateWrapper.prototype.moveBack = function () {
-            console.log('moveBack AuReactStateWrapper');
-            var auelement = document.getElementById(this.inneridAurelia);
-            var oldParent = document.getElementById(this.reactComponent.inneridReact);
-            if (oldParent == null || auelement == null) {
-                return;
-            }
-            while (oldParent.childNodes.length > 0) {
-                auelement.appendChild(oldParent.childNodes[0]);
-            }
-        };
-        AuReactStateWrapper.prototype.renderReact = function (reactClass, a) {
-            console.log('renderReact AuReactStateWrapper');
-            ReactDom.unmountComponentAtNode(this.element);
-            this.container = this.element.querySelector('.au-react-root');
-            if (this.container != null) {
-                this.container.remove();
-            }
-            this.container = document.createElement('span');
-            this.container.setAttribute('class', 'au-react-root');
-            this.element.appendChild(this.container);
-            a.aureliaHost = this;
-            a.reactClass = reactClass;
-            var reactElement = React.createElement(ReactStateWrapper_1.ReactStateWrapper, a);
-            var reactComponent = ReactDom.render(reactElement, this.container);
-            this.reactComponent = reactComponent;
-            console.log('renderReact complete AuReactStateWrapper');
-        };
-        AuReactStateWrapper = __decorate([
-            aurelia_framework_1.inlineView('<template><span id.bind="inneridAurelia" show.bind="!hidden"><slot></slot></span></template>'),
-            __metadata("design:paramtypes", [Object])
-        ], AuReactStateWrapper);
-        return AuReactStateWrapper;
-    }());
-    exports.AuReactStateWrapper = AuReactStateWrapper;
-});
+
+
+define("__dot_dot__/src/austate/AuReactStateWrapperNoChildren", function(){});
 ;
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-define('__dot_dot__/src/austate/AuReactStateWrapperNoChildren',["require", "exports", "react", "react-dom", "./AuReactStateWrapper", "./ReactStateWrapperNoChildren"], function (require, exports, React, ReactDom, AuReactStateWrapper_1, ReactStateWrapperNoChildren_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AuReactStateWrapperNoChildren = void 0;
-    var AuReactStateWrapperNoChildren = (function (_super) {
-        __extends(AuReactStateWrapperNoChildren, _super);
-        function AuReactStateWrapperNoChildren() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        AuReactStateWrapperNoChildren.prototype.renderReact = function (reactClass, a) {
-            console.log("AuReactStateWrapperNoChildren: renderReact");
-            ReactDom.unmountComponentAtNode(this.element);
-            this.container = this.element.querySelector('.au-react-root');
-            if (this.container != null) {
-                console.log("AuReactStateWrapperNoChildren: remove");
-                this.container.remove();
-            }
-            this.container = document.createElement('span');
-            this.container.setAttribute('class', 'au-react-root');
-            this.element.appendChild(this.container);
-            a.aureliaHost = this;
-            a.reactClass = reactClass;
-            var reactElement = React.createElement(ReactStateWrapperNoChildren_1.ReactStateWrapperNoChildren, a);
-            var reactComponent = ReactDom.render(reactElement, this.container);
-            this.reactComponent = reactComponent;
-            console.log(reactComponent);
-            console.log("AuReactStateWrapperNoChildren: renderReact return");
-        };
-        return AuReactStateWrapperNoChildren;
-    }(AuReactStateWrapper_1.AuReactStateWrapper));
-    exports.AuReactStateWrapperNoChildren = AuReactStateWrapperNoChildren;
-});
+
+
+define("__dot_dot__/src/austate/AuReactStateWrapperNoChildren-bak", function(){});
 ;
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('__dot_dot__/src/austate/AuReactStateWrapperNoChildren2',["require", "exports", "react", "react-dom", "aurelia-framework", "./ReactStateWrapperNoChildren"], function (require, exports, React, ReactDom, aurelia_framework_1, ReactStateWrapperNoChildren_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AuReactStateWrapperNoChildren2 = void 0;
-    var AuReactStateWrapperNoChildren2 = (function () {
-        function AuReactStateWrapperNoChildren2(element, tq) {
-            this.tq = tq;
-            this.ignoreReactUpdate = false;
-            console.log("ctor AuReactStateWrapperNoChildren2");
-            this.element = element;
-            this.log = aurelia_framework_1.LogManager.getLogger('reacthost');
-        }
-        AuReactStateWrapperNoChildren2.prototype.createState = function (reactprops) {
-            console.log("createState AuReactStateWrapperNoChildren2");
-            var reactpropNames = Object.getOwnPropertyNames(reactprops);
-            var a = {};
-            var _loop_1 = function (i) {
-                var renderPropName = reactpropNames[i];
-                if (typeof reactprops[renderPropName] === 'function') {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is function");
-                    console.log("Aurelia object: typeof this[" + renderPropName + "] is " + typeof this_1[renderPropName]);
-                    if (typeof this_1[renderPropName] === 'function') {
-                        console.log('bound function, go aurelia');
-                        a[renderPropName] = this_1[renderPropName].bind(this_1.parent);
-                    }
-                    else {
-                        console.log('function is not bound, check for default implementation on React template');
-                        var funcNames = ['defaultOnChangeEvent', 'defaultActionEvent', 'onlyAureliaBound'];
-                        if (!funcNames.includes(reactprops[renderPropName].name)) {
-                            console.log('React template has default implementation, call it.');
-                            that = this_1;
-                            a[renderPropName] = function () {
-                                var argLength = arguments.length;
-                                reactprops[renderPropName](that, argLength >= 1 ? arguments[0] : undefined, argLength >= 2 ? arguments[1] : undefined, argLength >= 3 ? arguments[2] : undefined, argLength >= 4 ? arguments[3] : undefined);
-                            };
-                        }
-                        else {
-                            console.log('React template has empty implementation, do nothing.');
-                        }
-                    }
-                }
-                else {
-                    console.log("React template: typeof reactprops[" + renderPropName + "] is NOT function");
-                    if (typeof this_1[renderPropName] !== 'undefined') {
-                        console.log('Aurelia object property ' + renderPropName + ' has value ' + this_1[renderPropName]);
-                        a[renderPropName] = this_1[renderPropName];
-                    }
-                    else {
-                        console.log('Aurelia object property ' + renderPropName + ' has NO value ');
-                    }
-                }
-            };
-            var this_1 = this, that;
-            for (var i = 0; i < reactpropNames.length; i++) {
-                _loop_1(i);
-            }
-            return a;
-        };
-        AuReactStateWrapperNoChildren2.prototype.isHidden = function () {
-            return this.hiddenIsHidden ? this[this.hiddenName] : !this[this.hiddenName];
-        };
-        AuReactStateWrapperNoChildren2.prototype.bind = function (bindingContext) {
-            console.log('bind AuReactStateWrapperNoChildren2');
-            if (bindingContext !== null) {
-                this.parent = bindingContext;
-            }
-        };
-        AuReactStateWrapperNoChildren2.prototype.unbind = function () {
-            console.log('unbind AuReactStateWrapperNoChildren2');
-            if (this.element != null)
-                ReactDom.unmountComponentAtNode(this.element);
-        };
-        AuReactStateWrapperNoChildren2.prototype.propertyChanged = function (name, newValue, oldValue) {
-            var _this = this;
-            if (newValue == oldValue) {
-                console.log('AuReactStateWrapperNoChildren2: propertySame');
-                return;
-            }
-            console.log('AuReactStateWrapperNoChildren2: propertyChanged');
-            if (!this.ignoreReactUpdate) {
-                var obj = {};
-                obj[name] = newValue;
-                this.reactComponent.setState(obj);
-            }
-            this.tq.queueMicroTask(function () {
-                console.log("microTask");
-                console.log(_this);
-                _this.ignoreReactUpdate = false;
-            });
-            console.log("textfield: valueChanged Leaving");
-        };
-        AuReactStateWrapperNoChildren2.prototype.attached = function () {
-            this.renderReact();
-        };
-        AuReactStateWrapperNoChildren2.prototype.renderReact = function () {
-            console.log('renderReact AuReactStateWrapperNoChildren2');
-            var a = this.createState(this.orignalProp);
-            a.aureliaHost = this;
-            a.reactClass = this.reactClass;
-            var reactElement = React.createElement(ReactStateWrapperNoChildren_1.ReactStateWrapperNoChildren, a, null);
-            var reactComponent = ReactDom.render(reactElement, this.element);
-            this.reactComponent = reactComponent;
-            console.log('renderReact complete AuReactStateWrapperNoChildren2');
-        };
-        AuReactStateWrapperNoChildren2 = __decorate([
-            aurelia_framework_1.noView(),
-            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
-            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
-        ], AuReactStateWrapperNoChildren2);
-        return AuReactStateWrapperNoChildren2;
-    }());
-    exports.AuReactStateWrapperNoChildren2 = AuReactStateWrapperNoChildren2;
-});
+
+
+define("__dot_dot__/src/austate/IAuReactWrapper", function(){});
 ;
-define('__dot_dot__/src/austate/IAuReactWrapper',["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-});
+
+
+define("__dot_dot__/src/austate/ReactSimpleWrapper", function(){});
+;
+
+
+define("__dot_dot__/src/austate/ReactStateWrapper", function(){});
+;
+
+
+define("__dot_dot__/src/austate/ReactStateWrapperNoChildren", function(){});
 ;
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -579,232 +67,47 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-define('__dot_dot__/src/austate/ReactSimpleWrapper',["require", "exports", "react"], function (require, exports, React) {
+define('__dot_dot__/src/austate/T2',["require", "exports", "react", "@fluentui/react/lib/TextField"], function (require, exports, React, TextField_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ReactSimpleWrapper = void 0;
-    var ReactSimpleWrapper = (function (_super) {
-        __extends(ReactSimpleWrapper, _super);
-        function ReactSimpleWrapper(props) {
+    exports.T2 = void 0;
+    var T2 = (function (_super) {
+        __extends(T2, _super);
+        function T2(props) {
             var _this = _super.call(this, props) || this;
+            console.log("T2:ctor");
             _this.state = __assign({}, props);
-            _this.reactClass = props.reactClass;
             return _this;
         }
-        ReactSimpleWrapper.prototype.render = function () {
-            console.log("ReactStateWrapper: render");
-            this.innerReactComponent = React.createElement(this.reactClass, this.state);
-            return this.innerReactComponent;
+        T2.prototype.render = function () {
+            console.log("T2:render");
+            console.log(this);
+            return React.createElement(TextField_1.TextField, this.state, null);
         };
-        return ReactSimpleWrapper;
+        return T2;
     }(React.Component));
-    exports.ReactSimpleWrapper = ReactSimpleWrapper;
+    exports.T2 = T2;
 });
 ;
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-define('__dot_dot__/src/austate/ReactStateWrapper',["require", "exports", "react"], function (require, exports, React) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ReactStateWrapper = void 0;
-    var ReactStateWrapper = (function (_super) {
-        __extends(ReactStateWrapper, _super);
-        function ReactStateWrapper(props) {
-            var _this = _super.call(this, props) || this;
-            _this.state = __assign({}, props);
-            _this.inneridReact = 'du' + Math.round(Math.random() * 10000000000000000);
-            _this.aureliaHost = props.aureliaHost;
-            _this.reactClass = props.reactClass;
-            return _this;
-        }
-        ReactStateWrapper.prototype.componentWillUnmount = function () {
-            if (typeof this.aureliaHost.reactComponentWillUnmount === 'function') {
-                this.aureliaHost.reactComponentWillUnmount();
-            }
-        };
-        ReactStateWrapper.prototype.componentDidMount = function () {
-            if (typeof this.aureliaHost.reactComponentDidMount === 'function') {
-                this.aureliaHost.reactComponentDidMount();
-            }
-        };
-        ReactStateWrapper.prototype.render = function () {
-            var _this = this;
-            console.log("ReactStateWrapper: render");
-            if (this.aureliaHost.isHidden()) {
-                return null;
-            }
-            this.innerReactComponent = React.createElement(this.reactClass, this.state, React.createElement('span', {
-                id: this.inneridReact,
-                ref: function (newParent) {
-                    if (newParent == null) {
-                        newParent = document.getElementById(_this.inneridReact.toString());
-                        if (newParent == null) {
-                            return;
-                        }
-                    }
-                    if (_this.aureliaHost.isHidden()) {
-                        return;
-                    }
-                    var auelement = document.getElementById(_this.aureliaHost.inneridAurelia);
-                    if (auelement == null) {
-                        return;
-                    }
-                    while (auelement.childNodes.length > 0) {
-                        newParent.appendChild(auelement.childNodes[0]);
-                    }
-                }
-            }));
-            return this.innerReactComponent;
-        };
-        return ReactStateWrapper;
-    }(React.Component));
-    exports.ReactStateWrapper = ReactStateWrapper;
-});
+
+
+define("__dot_dot__/src/austate/addPropertiesNoState", function(){});
 ;
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-define('__dot_dot__/src/austate/ReactStateWrapperNoChildren',["require", "exports", "react", "./ReactStateWrapper"], function (require, exports, React, ReactStateWrapper_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ReactStateWrapperNoChildren = void 0;
-    var ReactStateWrapperNoChildren = (function (_super) {
-        __extends(ReactStateWrapperNoChildren, _super);
-        function ReactStateWrapperNoChildren() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        ReactStateWrapperNoChildren.prototype.render = function () {
-            console.log("ReactStateWrapperNoChildren render");
-            if (this.aureliaHost.isHidden()) {
-                return null;
-            }
-            this.innerReactComponent = React.createElement(this.reactClass, this.state);
-            console.log(this.innerReactComponent);
-            return this.innerReactComponent;
-        };
-        return ReactStateWrapperNoChildren;
-    }(ReactStateWrapper_1.ReactStateWrapper));
-    exports.ReactStateWrapperNoChildren = ReactStateWrapperNoChildren;
-});
+
+
+define("__dot_dot__/src/austate/addPropertiesState", function(){});
 ;
-define('__dot_dot__/src/austate/addPropertiesNoState',["require", "exports", "aurelia-framework", "./camelToKebab"], function (require, exports, aurelia_framework_1, camelToKebab_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.addPropertiesNoState = void 0;
-    function addPropertiesNoState(aureliaClass, reactprops) {
-        var reactpropNames = Object.getOwnPropertyNames(reactprops);
-        for (var i = 0; i < reactpropNames.length; i++) {
-            var renderPropName = reactpropNames[i];
-            aurelia_framework_1.bindable({
-                name: renderPropName,
-                attribute: camelToKebab_1.camelToKebab(renderPropName),
-                changeHandler: 'render',
-                defaultBindingMode: aurelia_framework_1.bindingMode.twoWay
-            })(aureliaClass);
-        }
-    }
-    exports.addPropertiesNoState = addPropertiesNoState;
-});
+
+
+define("__dot_dot__/src/austate/camelToKebab", function(){});
 ;
-define('__dot_dot__/src/austate/addPropertiesState',["require", "exports", "aurelia-framework", "./camelToKebab"], function (require, exports, aurelia_framework_1, camelToKebab_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.addPropertiesState = void 0;
-    function addPropertiesState(aureliaClass, reactprops) {
-        var reactpropNames = Object.getOwnPropertyNames(reactprops);
-        for (var i = 0; i < reactpropNames.length; i++) {
-            var renderPropName = reactpropNames[i];
-            aurelia_framework_1.bindable({
-                name: renderPropName,
-                attribute: camelToKebab_1.camelToKebab(renderPropName),
-                defaultBindingMode: aurelia_framework_1.bindingMode.twoWay
-            })(aureliaClass);
-        }
-    }
-    exports.addPropertiesState = addPropertiesState;
-});
+
+
+define("__dot_dot__/src/austate/events", function(){});
 ;
-define('__dot_dot__/src/austate/camelToKebab',["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.camelToKebab = void 0;
-    function camelToKebab(str) {
-        return str
-            .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-            .replace(/([A-Z])([A-Z])(?=[a-z])/g, '$1-$2')
-            .toLowerCase();
-    }
-    exports.camelToKebab = camelToKebab;
-});
-;
-define('__dot_dot__/src/austate/events',["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.onlyAureliaBound = exports.defaultOnChangeEvent = exports.defaultActionEvent = void 0;
-    function defaultActionEvent() { }
-    exports.defaultActionEvent = defaultActionEvent;
-    function defaultOnChangeEvent() { }
-    exports.defaultOnChangeEvent = defaultOnChangeEvent;
-    function onlyAureliaBound() { }
-    exports.onlyAureliaBound = onlyAureliaBound;
-});
-;
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
-};
-define('__dot_dot__/src/austate/index',["require", "exports", "./addPropertiesNoState", "./addPropertiesState", "./AuReactNoStateWrapper", "./AuReactStateWrapper", "./AuReactStateWrapperNoChildren", "./camelToKebab", "./events", "./IAuReactWrapper", "./ReactStateWrapper", "./ReactStateWrapperNoChildren"], function (require, exports, addPropertiesNoState_1, addPropertiesState_1, AuReactNoStateWrapper_1, AuReactStateWrapper_1, AuReactStateWrapperNoChildren_1, camelToKebab_1, events_1, IAuReactWrapper_1, ReactStateWrapper_1, ReactStateWrapperNoChildren_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    __exportStar(addPropertiesNoState_1, exports);
-    __exportStar(addPropertiesState_1, exports);
-    __exportStar(AuReactNoStateWrapper_1, exports);
-    __exportStar(AuReactStateWrapper_1, exports);
-    __exportStar(AuReactStateWrapperNoChildren_1, exports);
-    __exportStar(camelToKebab_1, exports);
-    __exportStar(events_1, exports);
-    __exportStar(IAuReactWrapper_1, exports);
-    __exportStar(ReactStateWrapper_1, exports);
-    __exportStar(ReactStateWrapperNoChildren_1, exports);
-});
+
+
+define("__dot_dot__/src/austate/index", function(){});
 ;
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -864,23 +167,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuActionButton',["require", "export
     reactprops.secondaryText = {};
     var DuActionButton = (function (_super) {
         __extends(DuActionButton, _super);
-        function DuActionButton(element) {
-            var _this = _super.call(this, element) || this;
+        function DuActionButton(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuActionButton.prototype.attached = function () {
             this.renderReact(Button_1.ActionButton, this.createState(reactprops));
         };
         DuActionButton = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-action-button'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuActionButton);
         return DuActionButton;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuActionButton = DuActionButton;
     au_react_wrapper_1.addPropertiesState(DuActionButton, reactprops);
 });
@@ -930,23 +232,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuCheckbox',["require", "exports", 
     reactprops.checked = {};
     var DuCheckbox = (function (_super) {
         __extends(DuCheckbox, _super);
-        function DuCheckbox(element) {
-            var _this = _super.call(this, element) || this;
+        function DuCheckbox(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuCheckbox.prototype.attached = function () {
             this.renderReact(Checkbox_1.Checkbox, this.createState(reactprops));
         };
         DuCheckbox = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-checkbox'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuCheckbox);
         return DuCheckbox;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuCheckbox = DuCheckbox;
     au_react_wrapper_1.addPropertiesState(DuCheckbox, reactprops);
 });
@@ -993,23 +294,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuChoiceGroup',["require", "exports
     reactprops.value = {};
     var DuChoiceGroup = (function (_super) {
         __extends(DuChoiceGroup, _super);
-        function DuChoiceGroup(element) {
-            var _this = _super.call(this, element) || this;
+        function DuChoiceGroup(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuChoiceGroup.prototype.attached = function () {
             this.renderReact(ChoiceGroup_1.ChoiceGroup, this.createState(reactprops));
         };
         DuChoiceGroup = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-choice-group'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuChoiceGroup);
         return DuChoiceGroup;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuChoiceGroup = DuChoiceGroup;
     au_react_wrapper_1.addPropertiesState(DuChoiceGroup, reactprops);
 });
@@ -1073,23 +373,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuComboBox',["require", "exports", 
     reactprops.onBlur = au_react_wrapper_1.onlyAureliaBound;
     var DuComboBox = (function (_super) {
         __extends(DuComboBox, _super);
-        function DuComboBox(element) {
-            var _this = _super.call(this, element) || this;
+        function DuComboBox(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuComboBox.prototype.attached = function () {
             this.renderReact(ComboBox_1.ComboBox, this.createState(reactprops));
         };
         DuComboBox = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-combo-box'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuComboBox);
         return DuComboBox;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuComboBox = DuComboBox;
     au_react_wrapper_1.addPropertiesState(DuComboBox, reactprops);
 });
@@ -1135,23 +434,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuCommandBarButton',["require", "ex
     reactprops.secondaryText = {};
     var DuCommandBarButton = (function (_super) {
         __extends(DuCommandBarButton, _super);
-        function DuCommandBarButton(element) {
-            var _this = _super.call(this, element) || this;
+        function DuCommandBarButton(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuCommandBarButton.prototype.attached = function () {
             this.renderReact(Button_1.CommandBarButton, this.createState(reactprops));
         };
         DuCommandBarButton = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-command-bar-button'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuCommandBarButton);
         return DuCommandBarButton;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuCommandBarButton = DuCommandBarButton;
     au_react_wrapper_1.addPropertiesState(DuCommandBarButton, reactprops);
 });
@@ -1214,23 +512,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuCompoundButton',["require", "expo
     reactprops.secondaryText = {};
     var DuCompoundButton = (function (_super) {
         __extends(DuCompoundButton, _super);
-        function DuCompoundButton(element) {
-            var _this = _super.call(this, element) || this;
+        function DuCompoundButton(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuCompoundButton.prototype.attached = function () {
             this.renderReact(Button_1.CompoundButton, this.createState(reactprops));
         };
         DuCompoundButton = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-compound-button'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuCompoundButton);
         return DuCompoundButton;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuCompoundButton = DuCompoundButton;
     au_react_wrapper_1.addPropertiesState(DuCompoundButton, reactprops);
 });
@@ -1294,23 +591,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuContextualMenu',["require", "expo
     reactprops.useTargetWidth = {};
     var DuContextualMenu = (function (_super) {
         __extends(DuContextualMenu, _super);
-        function DuContextualMenu(element) {
-            var _this = _super.call(this, element) || this;
+        function DuContextualMenu(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuContextualMenu.prototype.attached = function () {
             this.renderReact(ContextualMenu_1.ContextualMenu, this.createState(reactprops));
         };
         DuContextualMenu = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-contextual-menu'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuContextualMenu);
         return DuContextualMenu;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuContextualMenu = DuContextualMenu;
     au_react_wrapper_1.addPropertiesState(DuContextualMenu, reactprops);
 });
@@ -1373,8 +669,9 @@ define('__dot_dot__/src/elements/BasicInputs/DuDefaultButton',["require", "expor
     reactprops.secondaryText = {};
     var DuDefaultButton = (function (_super) {
         __extends(DuDefaultButton, _super);
-        function DuDefaultButton(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDefaultButton(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
             _this.hiddenIsHidden = true;
             _this.hiddenName = 'hidden';
@@ -1384,12 +681,12 @@ define('__dot_dot__/src/elements/BasicInputs/DuDefaultButton',["require", "expor
             this.renderReact(Button_1.DefaultButton, this.createState(reactprops));
         };
         DuDefaultButton = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-default-button'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDefaultButton);
         return DuDefaultButton;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDefaultButton = DuDefaultButton;
     au_react_wrapper_1.addPropertiesState(DuDefaultButton, reactprops);
 });
@@ -1441,23 +738,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuDropdown',["require", "exports", 
     reactprops.selectedKey = {};
     var DuDropdown = (function (_super) {
         __extends(DuDropdown, _super);
-        function DuDropdown(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDropdown(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDropdown.prototype.attached = function () {
             this.renderReact(Dropdown_1.Dropdown, this.createState(reactprops));
         };
         DuDropdown = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-dropdown'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDropdown);
         return DuDropdown;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDropdown = DuDropdown;
     au_react_wrapper_1.addPropertiesState(DuDropdown, reactprops);
 });
@@ -1520,23 +816,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuIconButton',["require", "exports"
     reactprops.secondaryText = {};
     var DuIconButton = (function (_super) {
         __extends(DuIconButton, _super);
-        function DuIconButton(element) {
-            var _this = _super.call(this, element) || this;
+        function DuIconButton(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuIconButton.prototype.attached = function () {
             this.renderReact(Button_1.IconButton, this.createState(reactprops));
         };
         DuIconButton = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-icon-button'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuIconButton);
         return DuIconButton;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuIconButton = DuIconButton;
     au_react_wrapper_1.addPropertiesState(DuIconButton, reactprops);
 });
@@ -1574,23 +869,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuLabel',["require", "exports", "au
     reactprops.htmlFor = {};
     var DuLabel = (function (_super) {
         __extends(DuLabel, _super);
-        function DuLabel(element) {
-            var _this = _super.call(this, element) || this;
+        function DuLabel(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuLabel.prototype.attached = function () {
             this.renderReact(Label_1.Label, this.createState(reactprops));
         };
         DuLabel = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-label'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuLabel);
         return DuLabel;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuLabel = DuLabel;
     au_react_wrapper_1.addPropertiesState(DuLabel, reactprops);
 });
@@ -1641,23 +935,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuSlider',["require", "exports", "a
     reactprops.vertical = {};
     var DuSlider = (function (_super) {
         __extends(DuSlider, _super);
-        function DuSlider(element) {
-            var _this = _super.call(this, element) || this;
+        function DuSlider(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuSlider.prototype.attached = function () {
             this.renderReact(Slider_1.Slider, this.createState(reactprops));
         };
         DuSlider = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-slider'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuSlider);
         return DuSlider;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuSlider = DuSlider;
     au_react_wrapper_1.addPropertiesState(DuSlider, reactprops);
 });
@@ -1738,23 +1031,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuSpinButton',["require", "exports"
     reactprops.precision = {};
     var DuSpinButton = (function (_super) {
         __extends(DuSpinButton, _super);
-        function DuSpinButton(element) {
-            var _this_1 = _super.call(this, element) || this;
+        function DuSpinButton(element, tq) {
+            var _this_1 = _super.call(this, element, tq) || this;
+            _this_1.tq = tq;
             _this_1.hidden = false;
-            _this_1.hiddenIsHidden = true;
-            _this_1.hiddenName = 'hidden';
             return _this_1;
         }
         DuSpinButton.prototype.attached = function () {
             this.renderReact(SpinButton_1.SpinButton, this.createState(reactprops));
         };
         DuSpinButton = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-spin-button'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuSpinButton);
         return DuSpinButton;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuSpinButton = DuSpinButton;
     au_react_wrapper_1.addPropertiesState(DuSpinButton, reactprops);
 });
@@ -1803,9 +1095,11 @@ define('__dot_dot__/src/elements/BasicInputs/DuTextField',["require", "exports",
     reactprops.maskChar = {};
     reactprops.maskFormat = {};
     reactprops.multiline = {};
-    reactprops.onChange = function (that, _event, newValue) {
-        that['value'] = newValue;
-    };
+    reactprops.onChange = (function (that, event, newValue) {
+        that.ignoreReactUpdate = true;
+        that.value = newValue;
+        that.reactComponent.setState({ "value": newValue || '' });
+    });
     reactprops.onNotifyValidationResult = au_react_wrapper_1.onlyAureliaBound;
     reactprops.onGetErrorMessage = au_react_wrapper_1.onlyAureliaBound;
     reactprops.prefix = {};
@@ -1821,11 +1115,12 @@ define('__dot_dot__/src/elements/BasicInputs/DuTextField',["require", "exports",
     reactprops.placeholder = {};
     var DuTextField = (function (_super) {
         __extends(DuTextField, _super);
-        function DuTextField(element) {
-            var _this = _super.call(this, element) || this;
+        function DuTextField(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
+            _this.orignalProp = reactprops;
+            _this.reactClass = TextField_1.TextField;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuTextField.prototype.attached = function () {
@@ -1863,12 +1158,12 @@ define('__dot_dot__/src/elements/BasicInputs/DuTextField',["require", "exports",
             this.reactComponent.setSelectionStart(value);
         };
         DuTextField = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-text-field'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuTextField);
         return DuTextField;
-    }(au_react_wrapper_1.AuReactStateWrapperNoChildren));
+    }(au_react_wrapper_1.AuReactWrapperNoChildren));
     exports.DuTextField = DuTextField;
     au_react_wrapper_1.addPropertiesState(DuTextField, reactprops);
 });
@@ -1886,30 +1181,16 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('__dot_dot__/src/elements/BasicInputs/DuTextField2',["require", "exports", "react", "react-dom", "aurelia-framework", "@fluentui/react/lib/TextField", "@dunite/au-react-wrapper"], function (require, exports, React, ReactDom, aurelia_framework_1, TextField_1, au_react_wrapper_1) {
+define('__dot_dot__/src/elements/BasicInputs/DuTextField2',["require", "exports", "aurelia-framework", "@fluentui/react/lib/TextField", "@dunite/au-react-wrapper"], function (require, exports, aurelia_framework_1, TextField_1, au_react_wrapper_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.T2 = exports.DuTextField2 = void 0;
+    exports.DuTextField2 = void 0;
     var reactprops = {};
     reactprops.ariaLabel = {};
     reactprops.autoAdjustHeight = {};
@@ -1928,7 +1209,11 @@ define('__dot_dot__/src/elements/BasicInputs/DuTextField2',["require", "exports"
     reactprops.maskChar = {};
     reactprops.maskFormat = {};
     reactprops.multiline = {};
-    reactprops.onChange = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.onChange = (function (that, event, newValue) {
+        that.ignoreReactUpdate = true;
+        that.value = newValue;
+        that.reactComponent.setState({ "value": newValue || '' });
+    });
     reactprops.onNotifyValidationResult = au_react_wrapper_1.onlyAureliaBound;
     reactprops.onGetErrorMessage = au_react_wrapper_1.onlyAureliaBound;
     reactprops.prefix = {};
@@ -1942,82 +1227,23 @@ define('__dot_dot__/src/elements/BasicInputs/DuTextField2',["require", "exports"
     reactprops.value = {};
     reactprops.required = {};
     reactprops.placeholder = {};
-    var DuTextField2 = (function () {
-        function DuTextField2(element, tq) {
-            this.tq = tq;
-            this.orignalProp = reactprops;
-            this.hidden = false;
-            this.ignoreReactUpdate = false;
-            this.element = element;
+    var DuTextField2 = (function (_super) {
+        __extends(DuTextField2, _super);
+        function DuTextField2() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.orignalProp = reactprops;
+            _this.reactClass = TextField_1.TextField;
+            return _this;
         }
-        DuTextField2.prototype.attached = function () {
-            this.renderReact();
-        };
-        DuTextField2.prototype.renderReact = function () {
-            var _this = this;
-            console.log("DuTextField2: renderReact");
-            var a = {
-                "label": "mylabel2",
-                "value": this.value,
-                "onChange": function (event, newValue) {
-                    console.log("DuTextField2: [renderReact] onChange Entering");
-                    _this.ignoreReactUpdate = true;
-                    _this.value = newValue;
-                    _this.reactComponent.setState({ "value": newValue || '' });
-                    console.log("DuTextField2: [renderReact] onChange Leaving");
-                }
-            };
-            var reactElement = React.createElement(T2, a, null);
-            this.reactComponent = ReactDom.render(reactElement, document.getElementById("myreact"));
-        };
-        DuTextField2.prototype.valueChanged = function (newValue, oldValue, more) {
-            var _this = this;
-            console.log("DuTextField2: valueChanged Entering");
-            console.log(this);
-            console.log(newValue);
-            console.log(oldValue);
-            console.log(more);
-            if (!this.ignoreReactUpdate) {
-                this.reactComponent.setState({ "value": newValue || '' });
-            }
-            this.tq.queueMicroTask(function () {
-                console.log("microTask");
-                console.log(_this);
-                _this.ignoreReactUpdate = false;
-            });
-            console.log("DuTextField2: valueChanged Leaving");
-        };
         DuTextField2 = __decorate([
             aurelia_framework_1.customElement('du-text-field2'),
             aurelia_framework_1.noView(),
-            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
-            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue)
         ], DuTextField2);
         return DuTextField2;
-    }());
+    }(au_react_wrapper_1.AuReactWrapperNoChildren));
     exports.DuTextField2 = DuTextField2;
-    aurelia_framework_1.bindable({
-        name: "value",
-        attribute: "value",
-        changeHandler: 'valueChanged',
-        defaultBindingMode: aurelia_framework_1.bindingMode.twoWay
-    })(DuTextField2);
-    var T2 = (function (_super) {
-        __extends(T2, _super);
-        function T2(props) {
-            var _this = _super.call(this, props) || this;
-            console.log("T2:ctor");
-            _this.state = __assign({}, props);
-            return _this;
-        }
-        T2.prototype.render = function () {
-            console.log("T2:render");
-            console.log(this);
-            return React.createElement(TextField_1.TextField, this.state, null);
-        };
-        return T2;
-    }(React.Component));
-    exports.T2 = T2;
+    au_react_wrapper_1.addPropertiesState(DuTextField2, reactprops);
 });
 ;
 var __extends = (this && this.__extends) || (function () {
@@ -2061,23 +1287,22 @@ define('__dot_dot__/src/elements/BasicInputs/DuToggle',["require", "exports", "a
     reactprops.keytipProps = {};
     var DuToggle = (function (_super) {
         __extends(DuToggle, _super);
-        function DuToggle(element) {
-            var _this = _super.call(this, element) || this;
+        function DuToggle(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuToggle.prototype.attached = function () {
             this.renderReact(Toggle_1.Toggle, this.createState(reactprops));
         };
         DuToggle = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-toggle'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuToggle);
         return DuToggle;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuToggle = DuToggle;
     au_react_wrapper_1.addPropertiesState(DuToggle, reactprops);
 });
@@ -2139,10 +1364,9 @@ define('__dot_dot__/src/elements/Content/DuDetailsList',["require", "exports", "
     reactprops.items = {};
     var DuDetailsList = (function (_super) {
         __extends(DuDetailsList, _super);
-        function DuDetailsList(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuDetailsList(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuDetailsList.prototype.scrollToIndex = function (index) {
@@ -2161,12 +1385,12 @@ define('__dot_dot__/src/elements/Content/DuDetailsList',["require", "exports", "
             return this.reactComponent.getStartItemIndexInView();
         };
         DuDetailsList = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-details-list'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDetailsList);
         return DuDetailsList;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDetailsList = DuDetailsList;
     au_react_wrapper_1.addPropertiesState(DuDetailsList, reactprops);
 });
@@ -2209,10 +1433,9 @@ define('__dot_dot__/src/elements/Content/DuFacepile',["require", "exports", "aur
     reactprops.showAddButton = {};
     var DuFacepile = (function (_super) {
         __extends(DuFacepile, _super);
-        function DuFacepile(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuFacepile(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuFacepile.prototype.getPersonaProps = function (persona) {
@@ -2222,12 +1445,12 @@ define('__dot_dot__/src/elements/Content/DuFacepile',["require", "exports", "aur
             this.renderReact(Facepile_1.Facepile, this.createState(reactprops));
         };
         DuFacepile = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-facepile'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuFacepile);
         return DuFacepile;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuFacepile = DuFacepile;
     au_react_wrapper_1.addPropertiesState(DuFacepile, reactprops);
 });
@@ -2275,10 +1498,9 @@ define('__dot_dot__/src/elements/Content/DuGroupedList',["require", "exports", "
     reactprops.key = {};
     var DuGroupedList = (function (_super) {
         __extends(DuGroupedList, _super);
-        function DuGroupedList(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuGroupedList(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuGroupedList.prototype.toggleCollapseAll = function (allCollapsed) {
@@ -2291,12 +1513,12 @@ define('__dot_dot__/src/elements/Content/DuGroupedList',["require", "exports", "
             this.renderReact(GroupedList_1.GroupedList, this.createState(reactprops));
         };
         DuGroupedList = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-grouped-list'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuGroupedList);
         return DuGroupedList;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuGroupedList = DuGroupedList;
     au_react_wrapper_1.addPropertiesState(DuGroupedList, reactprops);
 });
@@ -2357,22 +1579,21 @@ define('__dot_dot__/src/elements/Content/DuPersona',["require", "exports", "aure
     reactprops.onRenderTertiaryText = au_react_wrapper_1.onlyAureliaBound;
     var DuPersona = (function (_super) {
         __extends(DuPersona, _super);
-        function DuPersona(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuPersona(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuPersona.prototype.attached = function () {
             this.renderReact(Persona_1.Persona, this.createState(reactprops));
         };
         DuPersona = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-persona'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuPersona);
         return DuPersona;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuPersona = DuPersona;
     au_react_wrapper_1.addPropertiesState(DuPersona, reactprops);
 });
@@ -2412,23 +1633,22 @@ define('__dot_dot__/src/elements/Navigation/DuBreadcrumb',["require", "exports",
     reactprops.overflowIndex = {};
     var DuBreadcrumb = (function (_super) {
         __extends(DuBreadcrumb, _super);
-        function DuBreadcrumb(element) {
-            var _this = _super.call(this, element) || this;
+        function DuBreadcrumb(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuBreadcrumb.prototype.attached = function () {
             this.renderReact(Breadcrumb_1.Breadcrumb, this.createState(reactprops));
         };
         DuBreadcrumb = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-breadcrumb'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuBreadcrumb);
         return DuBreadcrumb;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuBreadcrumb = DuBreadcrumb;
     au_react_wrapper_1.addPropertiesState(DuBreadcrumb, reactprops);
 });
@@ -2467,23 +1687,22 @@ define('__dot_dot__/src/elements/Navigation/DuCommandBar',["require", "exports",
     reactprops.className = {};
     var DuCommandBar = (function (_super) {
         __extends(DuCommandBar, _super);
-        function DuCommandBar(element) {
-            var _this = _super.call(this, element) || this;
+        function DuCommandBar(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuCommandBar.prototype.attached = function () {
             this.renderReact(CommandBar_1.CommandBar, this.createState(reactprops));
         };
         DuCommandBar = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-command-bar'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuCommandBar);
         return DuCommandBar;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuCommandBar = DuCommandBar;
     au_react_wrapper_1.addPropertiesState(DuCommandBar, reactprops);
 });
@@ -2523,23 +1742,22 @@ define('__dot_dot__/src/elements/Navigation/DuNav',["require", "exports", "aurel
     reactprops.selectedKey = {};
     var DuNav = (function (_super) {
         __extends(DuNav, _super);
-        function DuNav(element) {
-            var _this = _super.call(this, element) || this;
+        function DuNav(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuNav.prototype.attached = function () {
             this.renderReact(Nav_1.Nav, this.createState(reactprops));
         };
         DuNav = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-nav'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuNav);
         return DuNav;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuNav = DuNav;
     au_react_wrapper_1.addPropertiesState(DuNav, reactprops);
 });
@@ -2644,9 +1862,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 define('__dot_dot__/src/elements/Navigation/DuSearchBox',["require", "exports", "aurelia-framework", "@fluentui/react/lib/SearchBox", "@dunite/au-react-wrapper"], function (require, exports, aurelia_framework_1, SearchBox_1, au_react_wrapper_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -2672,23 +1887,19 @@ define('__dot_dot__/src/elements/Navigation/DuSearchBox',["require", "exports", 
     reactprops.iconProps = {};
     var DuSearchBox = (function (_super) {
         __extends(DuSearchBox, _super);
-        function DuSearchBox(element) {
-            var _this = _super.call(this, element) || this;
+        function DuSearchBox() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this.orignalProp = reactprops;
+            _this.reactClass = SearchBox_1.SearchBox;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
-        DuSearchBox.prototype.attached = function () {
-            this.renderReact(SearchBox_1.SearchBox, this.createState(reactprops));
-        };
         DuSearchBox = __decorate([
-            aurelia_framework_1.inject(Element),
-            aurelia_framework_1.customElement('du-search-box'),
-            __metadata("design:paramtypes", [Object])
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
+            aurelia_framework_1.customElement('du-search-box')
         ], DuSearchBox);
         return DuSearchBox;
-    }(au_react_wrapper_1.AuReactStateWrapperNoChildren));
+    }(au_react_wrapper_1.AuReactWrapperNoChildren));
     exports.DuSearchBox = DuSearchBox;
     au_react_wrapper_1.addPropertiesState(DuSearchBox, reactprops);
 });
@@ -2732,23 +1943,22 @@ define('__dot_dot__/src/elements/Pickers/DuColorPicker',["require", "exports", "
     reactprops.redLabel = {};
     var DuColorPicker = (function (_super) {
         __extends(DuColorPicker, _super);
-        function DuColorPicker(element) {
-            var _this = _super.call(this, element) || this;
+        function DuColorPicker(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuColorPicker.prototype.attached = function () {
             this.renderReact(ColorPicker_1.ColorPicker, this.createState(reactprops));
         };
         DuColorPicker = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-color-picker'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuColorPicker);
         return DuColorPicker;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuColorPicker = DuColorPicker;
     au_react_wrapper_1.addPropertiesState(DuColorPicker, reactprops);
 });
@@ -2807,23 +2017,22 @@ define('__dot_dot__/src/elements/Pickers/DuCompactPeoplePicker',["require", "exp
     reactprops.enableSelectedSuggestionAlert = {};
     var DuCompactPeoplePicker = (function (_super) {
         __extends(DuCompactPeoplePicker, _super);
-        function DuCompactPeoplePicker(element) {
-            var _this_1 = _super.call(this, element) || this;
+        function DuCompactPeoplePicker(element, tq) {
+            var _this_1 = _super.call(this, element, tq) || this;
+            _this_1.tq = tq;
             _this_1.hidden = false;
-            _this_1.hiddenIsHidden = true;
-            _this_1.hiddenName = 'hidden';
             return _this_1;
         }
         DuCompactPeoplePicker.prototype.attached = function () {
             this.renderReact(Pickers_1.CompactPeoplePicker, this.createState(reactprops));
         };
         DuCompactPeoplePicker = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-compact-people-picker'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuCompactPeoplePicker);
         return DuCompactPeoplePicker;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuCompactPeoplePicker = DuCompactPeoplePicker;
     au_react_wrapper_1.addPropertiesState(DuCompactPeoplePicker, reactprops);
 });
@@ -2883,23 +2092,22 @@ define('__dot_dot__/src/elements/Pickers/DuDatePicker',["require", "exports", "a
     reactprops.onAfterMenuDismiss = au_react_wrapper_1.onlyAureliaBound;
     var DuDatePicker = (function (_super) {
         __extends(DuDatePicker, _super);
-        function DuDatePicker(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDatePicker(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDatePicker.prototype.attached = function () {
             this.renderReact(DatePicker_1.DatePicker, this.createState(reactprops));
         };
         DuDatePicker = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-date-picker'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDatePicker);
         return DuDatePicker;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDatePicker = DuDatePicker;
     au_react_wrapper_1.addPropertiesState(DuDatePicker, reactprops);
 });
@@ -2960,23 +2168,22 @@ define('__dot_dot__/src/elements/Pickers/DuListPeoplePicker',["require", "export
     reactprops.selectedItems = {};
     var DuListPeoplePicker = (function (_super) {
         __extends(DuListPeoplePicker, _super);
-        function DuListPeoplePicker(element) {
-            var _this_1 = _super.call(this, element) || this;
+        function DuListPeoplePicker(element, tq) {
+            var _this_1 = _super.call(this, element, tq) || this;
+            _this_1.tq = tq;
             _this_1.hidden = false;
-            _this_1.hiddenIsHidden = true;
-            _this_1.hiddenName = 'hidden';
             return _this_1;
         }
         DuListPeoplePicker.prototype.attached = function () {
             this.renderReact(Pickers_1.ListPeoplePicker, this.createState(reactprops));
         };
         DuListPeoplePicker = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-list-people-picker'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuListPeoplePicker);
         return DuListPeoplePicker;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuListPeoplePicker = DuListPeoplePicker;
     au_react_wrapper_1.addPropertiesState(DuListPeoplePicker, reactprops);
 });
@@ -3036,23 +2243,22 @@ define('__dot_dot__/src/elements/Pickers/DuNormalPeoplePicker',["require", "expo
     reactprops.selectedItems = {};
     var DuNormalPeoplePicker = (function (_super) {
         __extends(DuNormalPeoplePicker, _super);
-        function DuNormalPeoplePicker(element) {
-            var _this_1 = _super.call(this, element) || this;
+        function DuNormalPeoplePicker(element, tq) {
+            var _this_1 = _super.call(this, element, tq) || this;
+            _this_1.tq = tq;
             _this_1.hidden = false;
-            _this_1.hiddenIsHidden = true;
-            _this_1.hiddenName = 'hidden';
             return _this_1;
         }
         DuNormalPeoplePicker.prototype.attached = function () {
             this.renderReact(Pickers_1.NormalPeoplePicker, this.createState(reactprops));
         };
         DuNormalPeoplePicker = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-normal-people-picker'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuNormalPeoplePicker);
         return DuNormalPeoplePicker;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuNormalPeoplePicker = DuNormalPeoplePicker;
     au_react_wrapper_1.addPropertiesState(DuNormalPeoplePicker, reactprops);
 });
@@ -3111,23 +2317,22 @@ define('__dot_dot__/src/elements/Pickers/DuTagPicker',["require", "exports", "au
     reactprops.selectedItems = {};
     var DuTagPicker = (function (_super) {
         __extends(DuTagPicker, _super);
-        function DuTagPicker(element) {
-            var _this = _super.call(this, element) || this;
+        function DuTagPicker(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuTagPicker.prototype.attached = function () {
             this.renderReact(Pickers_1.TagPicker, this.createState(reactprops));
         };
         DuTagPicker = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-tag-picker'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuTagPicker);
         return DuTagPicker;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuTagPicker = DuTagPicker;
     au_react_wrapper_1.addPropertiesState(DuTagPicker, reactprops);
 });
@@ -3169,23 +2374,22 @@ define('__dot_dot__/src/elements/ProgressValidation/DuMessageBar',["require", "e
     reactprops.actions = {};
     var DuMessageBar = (function (_super) {
         __extends(DuMessageBar, _super);
-        function DuMessageBar(element) {
-            var _this = _super.call(this, element) || this;
+        function DuMessageBar(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuMessageBar.prototype.attached = function () {
             this.renderReact(MessageBar_1.MessageBar, this.createState(reactprops));
         };
         DuMessageBar = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-message-bar'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuMessageBar);
         return DuMessageBar;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuMessageBar = DuMessageBar;
     au_react_wrapper_1.addPropertiesState(DuMessageBar, reactprops);
 });
@@ -3225,23 +2429,22 @@ define('__dot_dot__/src/elements/ProgressValidation/DuProgressIndicator',["requi
     reactprops.progressHidden = {};
     var DuProgressIndicator = (function (_super) {
         __extends(DuProgressIndicator, _super);
-        function DuProgressIndicator(element) {
-            var _this = _super.call(this, element) || this;
+        function DuProgressIndicator(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuProgressIndicator.prototype.attached = function () {
             this.renderReact(ProgressIndicator_1.ProgressIndicator, this.createState(reactprops));
         };
         DuProgressIndicator = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-progress-indicator'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuProgressIndicator);
         return DuProgressIndicator;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuProgressIndicator = DuProgressIndicator;
     au_react_wrapper_1.addPropertiesState(DuProgressIndicator, reactprops);
 });
@@ -3279,23 +2482,22 @@ define('__dot_dot__/src/elements/ProgressValidation/DuSpinner',["require", "expo
     reactprops.labelPosition = {};
     var DuSpinner = (function (_super) {
         __extends(DuSpinner, _super);
-        function DuSpinner(element) {
-            var _this = _super.call(this, element) || this;
+        function DuSpinner(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuSpinner.prototype.attached = function () {
             this.renderReact(Spinner_1.Spinner, this.createState(reactprops));
         };
         DuSpinner = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-spinner'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuSpinner);
         return DuSpinner;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuSpinner = DuSpinner;
     au_react_wrapper_1.addPropertiesState(DuSpinner, reactprops);
 });
@@ -3355,23 +2557,22 @@ define('__dot_dot__/src/elements/Surfaces/DuCallout',["require", "exports", "aur
     reactprops.target = {};
     var DuCallout = (function (_super) {
         __extends(DuCallout, _super);
-        function DuCallout(element) {
-            var _this = _super.call(this, element) || this;
+        function DuCallout(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuCallout.prototype.attached = function () {
             this.renderReact(Callout_1.Callout, this.createState(reactprops));
         };
         DuCallout = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-callout'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuCallout);
         return DuCallout;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuCallout = DuCallout;
     au_react_wrapper_1.addPropertiesState(DuCallout, reactprops);
 });
@@ -3422,33 +2623,29 @@ define('__dot_dot__/src/elements/Surfaces/DuCoachmark',["require", "exports", "@
     reactprops.preventFocusOnMount = {};
     var DuCoachmark = (function (_super) {
         __extends(DuCoachmark, _super);
-        function DuCoachmark(element) {
-            var _this = _super.call(this, element) || this;
+        function DuCoachmark(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.teachingBubbleElement = {};
-            _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+            _this.hidden = true;
             return _this;
         }
         DuCoachmark.prototype.attached = function () {
-            this.renderReact2(reactprops);
+            this.renderReact2(this.createState(reactprops));
         };
-        DuCoachmark.prototype.renderReact2 = function (reactprops) {
-            ReactDom.unmountComponentAtNode(this.element);
+        DuCoachmark.prototype.renderReact2 = function (a) {
             this.container = this.element.querySelector('.au-react-root');
-            if (this.container != null) {
-                this.container.remove();
+            if (this.container == null) {
+                this.container = document.createElement('span');
+                this.container.setAttribute('class', 'au-react-root');
+                this.element.appendChild(this.container);
             }
-            this.container = document.createElement('span');
-            this.container.setAttribute('class', 'au-react-root');
-            this.element.appendChild(this.container);
             this.teachingBubbleContent.aureliaHost = this;
             this.teachingBubbleContent.reactClass = TeachingBubble_1.TeachingBubbleContent;
-            var reactTeachingBubbleElement = React.createElement(au_react_wrapper_1.ReactStateWrapper, this.teachingBubbleContent);
-            var a = this.createState(reactprops);
+            var reactTeachingBubbleElement = React.createElement(au_react_wrapper_1.ReactWrapper, this.teachingBubbleContent);
             a.aureliaHost = this;
             a.reactClass = Coachmark_1.Coachmark;
-            var reactElement = React.createElement(au_react_wrapper_1.ReactStateWrapperNoChildren, a, reactTeachingBubbleElement);
+            var reactElement = React.createElement(au_react_wrapper_1.ReactSimpleWrapper, a, reactTeachingBubbleElement);
             this.reactComponent = ReactDom.render(reactElement, this.container);
         };
         __decorate([
@@ -3460,12 +2657,12 @@ define('__dot_dot__/src/elements/Surfaces/DuCoachmark',["require", "exports", "@
             __metadata("design:type", Boolean)
         ], DuCoachmark.prototype, "hidden", void 0);
         DuCoachmark = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-coachmark'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuCoachmark);
         return DuCoachmark;
-    }(au_react_wrapper_1.AuReactStateWrapperNoChildren));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuCoachmark = DuCoachmark;
     au_react_wrapper_1.addPropertiesState(DuCoachmark, reactprops);
 });
@@ -3504,22 +2701,21 @@ define('__dot_dot__/src/elements/Surfaces/DuDialog',["require", "exports", "aure
     reactprops.onDismiss = {};
     var DuDialog = (function (_super) {
         __extends(DuDialog, _super);
-        function DuDialog(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuDialog(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuDialog.prototype.attached = function () {
             this.renderReact(Dialog_1.Dialog, this.createState(reactprops));
         };
         DuDialog = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-dialog'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDialog);
         return DuDialog;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDialog = DuDialog;
     au_react_wrapper_1.addPropertiesState(DuDialog, reactprops);
 });
@@ -3554,23 +2750,22 @@ define('__dot_dot__/src/elements/Surfaces/DuDialogFooter',["require", "exports",
     reactprops.className = {};
     var DuDialogFooter = (function (_super) {
         __extends(DuDialogFooter, _super);
-        function DuDialogFooter(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDialogFooter(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDialogFooter.prototype.attached = function () {
             this.renderReact(Dialog_1.DialogFooter, this.createState(reactprops));
         };
         DuDialogFooter = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-dialog-footer'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDialogFooter);
         return DuDialogFooter;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDialogFooter = DuDialogFooter;
     au_react_wrapper_1.addPropertiesState(DuDialogFooter, reactprops);
 });
@@ -3609,23 +2804,22 @@ define('__dot_dot__/src/elements/Surfaces/DuDocumentCard',["require", "exports",
     reactprops.role = {};
     var DuDocumentCard = (function (_super) {
         __extends(DuDocumentCard, _super);
-        function DuDocumentCard(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDocumentCard(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDocumentCard.prototype.attached = function () {
             this.renderReact(DocumentCard_1.DocumentCard, this.createState(reactprops));
         };
         DuDocumentCard = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-document-card'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDocumentCard);
         return DuDocumentCard;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDocumentCard = DuDocumentCard;
     au_react_wrapper_1.addPropertiesState(DuDocumentCard, reactprops);
 });
@@ -3661,23 +2855,22 @@ define('__dot_dot__/src/elements/Surfaces/DuDocumentCardActions',["require", "ex
     reactprops.views = {};
     var DuDocumentCardActions = (function (_super) {
         __extends(DuDocumentCardActions, _super);
-        function DuDocumentCardActions(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDocumentCardActions(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDocumentCardActions.prototype.attached = function () {
             this.renderReact(DocumentCard_1.DocumentCardActions, this.createState(reactprops));
         };
         DuDocumentCardActions = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-document-card-actions'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDocumentCardActions);
         return DuDocumentCardActions;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDocumentCardActions = DuDocumentCardActions;
     au_react_wrapper_1.addPropertiesState(DuDocumentCardActions, reactprops);
 });
@@ -3713,23 +2906,22 @@ define('__dot_dot__/src/elements/Surfaces/DuDocumentCardActivity',["require", "e
     reactprops.people = {};
     var DuDocumentCardActivity = (function (_super) {
         __extends(DuDocumentCardActivity, _super);
-        function DuDocumentCardActivity(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDocumentCardActivity(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDocumentCardActivity.prototype.attached = function () {
             this.renderReact(DocumentCard_1.DocumentCardActivity, this.createState(reactprops));
         };
         DuDocumentCardActivity = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-document-card-activity'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDocumentCardActivity);
         return DuDocumentCardActivity;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDocumentCardActivity = DuDocumentCardActivity;
     au_react_wrapper_1.addPropertiesState(DuDocumentCardActivity, reactprops);
 });
@@ -3767,23 +2959,22 @@ define('__dot_dot__/src/elements/Surfaces/DuDocumentCardLocation',["require", "e
     reactprops.onClick = au_react_wrapper_1.onlyAureliaBound;
     var DuDocumentCardLocation = (function (_super) {
         __extends(DuDocumentCardLocation, _super);
-        function DuDocumentCardLocation(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDocumentCardLocation(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDocumentCardLocation.prototype.attached = function () {
             this.renderReact(DocumentCard_1.DocumentCardLocation, this.createState(reactprops));
         };
         DuDocumentCardLocation = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-document-card-location'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDocumentCardLocation);
         return DuDocumentCardLocation;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDocumentCardLocation = DuDocumentCardLocation;
     au_react_wrapper_1.addPropertiesState(DocumentCard_1.DocumentCardLocation, reactprops);
 });
@@ -3819,23 +3010,22 @@ define('__dot_dot__/src/elements/Surfaces/DuDocumentCardPreview',["require", "ex
     reactprops.previewImages = {};
     var DuDocumentCardPreview = (function (_super) {
         __extends(DuDocumentCardPreview, _super);
-        function DuDocumentCardPreview(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDocumentCardPreview(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDocumentCardPreview.prototype.attached = function () {
             this.renderReact(DocumentCard_1.DocumentCardPreview, this.createState(reactprops));
         };
         DuDocumentCardPreview = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-document-card-preview'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDocumentCardPreview);
         return DuDocumentCardPreview;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDocumentCardPreview = DuDocumentCardPreview;
     au_react_wrapper_1.addPropertiesState(DuDocumentCardPreview, reactprops);
 });
@@ -3872,23 +3062,22 @@ define('__dot_dot__/src/elements/Surfaces/DuDocumentCardTitle',["require", "expo
     reactprops.title = {};
     var DuDocumentCardTitle = (function (_super) {
         __extends(DuDocumentCardTitle, _super);
-        function DuDocumentCardTitle(element) {
-            var _this = _super.call(this, element) || this;
+        function DuDocumentCardTitle(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hidden = false;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
             return _this;
         }
         DuDocumentCardTitle.prototype.attached = function () {
             this.renderReact(DocumentCard_1.DocumentCardTitle, this.createState(reactprops));
         };
         DuDocumentCardTitle = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-document-card-title'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuDocumentCardTitle);
         return DuDocumentCardTitle;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuDocumentCardTitle = DuDocumentCardTitle;
     au_react_wrapper_1.addPropertiesState(DuDocumentCardTitle, reactprops);
 });
@@ -3940,22 +3129,21 @@ define('__dot_dot__/src/elements/Surfaces/DuHoverCard',["require", "exports", "a
     reactprops.type = {};
     var DuHoverCard = (function (_super) {
         __extends(DuHoverCard, _super);
-        function DuHoverCard(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuHoverCard(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuHoverCard.prototype.attached = function () {
             this.renderReact(HoverCard_1.HoverCard, this.createState(reactprops));
         };
         DuHoverCard = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-hover-card'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuHoverCard);
         return DuHoverCard;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuHoverCard = DuHoverCard;
     au_react_wrapper_1.addPropertiesState(DuHoverCard, reactprops);
 });
@@ -3988,13 +3176,24 @@ define('__dot_dot__/src/elements/Surfaces/DuPanel',["require", "exports", "aurel
     exports.DuPanel = void 0;
     var reactprops = {};
     reactprops.isOpen = {};
-    reactprops.onDismiss = {};
+    reactprops.onDismiss = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.onDismissed = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.onOpen = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.onOpened = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.onOuterClick = au_react_wrapper_1.onlyAureliaBound;
     reactprops.headerText = {};
     reactprops.type = {};
+    reactprops.isBlocking = {};
+    reactprops.hasCloseButton = {};
+    reactprops.isHiddenOnDismiss = {};
+    reactprops.customWidth = {};
+    reactprops.open = au_react_wrapper_1.onlyAureliaBound;
+    reactprops.dismiss = au_react_wrapper_1.onlyAureliaBound;
     var DuPanel = (function (_super) {
         __extends(DuPanel, _super);
-        function DuPanel(element) {
-            var _this = _super.call(this, element) || this;
+        function DuPanel(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             _this.hiddenIsHidden = false;
             _this.hiddenName = 'isOpen';
             return _this;
@@ -4003,12 +3202,12 @@ define('__dot_dot__/src/elements/Surfaces/DuPanel',["require", "exports", "aurel
             this.renderReact(Panel_1.Panel, this.createState(reactprops));
         };
         DuPanel = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-panel'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuPanel);
         return DuPanel;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuPanel = DuPanel;
     au_react_wrapper_1.addPropertiesState(DuPanel, reactprops);
 });
@@ -4053,10 +3252,9 @@ define('__dot_dot__/src/elements/Surfaces/DuTeachingBubble',["require", "exports
     reactprops.illustrationImage = {};
     var DuTeachingBubble = (function (_super) {
         __extends(DuTeachingBubble, _super);
-        function DuTeachingBubble(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuTeachingBubble(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuTeachingBubble.prototype.attached = function () {
@@ -4067,12 +3265,12 @@ define('__dot_dot__/src/elements/Surfaces/DuTeachingBubble',["require", "exports
             __metadata("design:type", Boolean)
         ], DuTeachingBubble.prototype, "hidden", void 0);
         DuTeachingBubble = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-teaching-bubble'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuTeachingBubble);
         return DuTeachingBubble;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuTeachingBubble = DuTeachingBubble;
     au_react_wrapper_1.addPropertiesState(DuTeachingBubble, reactprops);
 });
@@ -4117,22 +3315,21 @@ define('__dot_dot__/src/elements/Surfaces/DuTeachingBubbleContent',["require", "
     reactprops.illustrationImage = {};
     var DuTeachingBubbleContent = (function (_super) {
         __extends(DuTeachingBubbleContent, _super);
-        function DuTeachingBubbleContent(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuTeachingBubbleContent(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuTeachingBubbleContent.prototype.attached = function () {
             this.renderReact(TeachingBubble_1.TeachingBubbleContent, this.createState(reactprops));
         };
         DuTeachingBubbleContent = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-teaching-bubble-content'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuTeachingBubbleContent);
         return DuTeachingBubbleContent;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuTeachingBubbleContent = DuTeachingBubbleContent;
     au_react_wrapper_1.addPropertiesState(DuTeachingBubbleContent, reactprops);
 });
@@ -4174,22 +3371,21 @@ define('__dot_dot__/src/elements/Surfaces/DuToolTip',["require", "exports", "aur
     reactprops.hidden = {};
     var DuToolTip = (function (_super) {
         __extends(DuToolTip, _super);
-        function DuToolTip(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuToolTip(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuToolTip.prototype.attached = function () {
             this.renderReact(Tooltip_1.Tooltip, this.createState(reactprops));
         };
         DuToolTip = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-tool-tip'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuToolTip);
         return DuToolTip;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuToolTip = DuToolTip;
     au_react_wrapper_1.addPropertiesState(DuToolTip, reactprops);
 });
@@ -4224,22 +3420,21 @@ define('__dot_dot__/src/elements/Utilities/DuMarqueeSelection',["require", "expo
     reactprops.hidden = {};
     var DuMarqueeSelection = (function (_super) {
         __extends(DuMarqueeSelection, _super);
-        function DuMarqueeSelection(element) {
-            var _this = _super.call(this, element) || this;
-            _this.hiddenIsHidden = true;
-            _this.hiddenName = 'hidden';
+        function DuMarqueeSelection(element, tq) {
+            var _this = _super.call(this, element, tq) || this;
+            _this.tq = tq;
             return _this;
         }
         DuMarqueeSelection.prototype.attached = function () {
             this.renderReact(MarqueeSelection_1.MarqueeSelection, this.createState(reactprops));
         };
         DuMarqueeSelection = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('du-marquee-selection'),
-            __metadata("design:paramtypes", [Object])
+            __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
         ], DuMarqueeSelection);
         return DuMarqueeSelection;
-    }(au_react_wrapper_1.AuReactStateWrapper));
+    }(au_react_wrapper_1.AuReactWrapper));
     exports.DuMarqueeSelection = DuMarqueeSelection;
     au_react_wrapper_1.addPropertiesState(DuMarqueeSelection, reactprops);
 });
@@ -4721,7 +3916,6 @@ define('basicinputs/combobox',["require", "exports", "@fluentui/react/lib/ComboB
                 }
                 if (option.key != 'Banana') {
                     _this.selectedItem = option.key;
-                    _this.selectedItems.push(option.key);
                 }
                 else {
                     _this.selectedItem = "undefined";
@@ -4731,13 +3925,6 @@ define('basicinputs/combobox',["require", "exports", "@fluentui/react/lib/ComboB
                 console.log("The option has been changed to Object:");
                 console.log(option);
                 console.log(index);
-                if (option.selected) {
-                    _this.selectedItems.push(option.key);
-                    _this.selectedItems = _this.selectedItems.reverse();
-                }
-                else {
-                    _this.selectedItems.splice(_this.selectedItems.indexOf(option.key), 1);
-                }
             };
         }
         combobox.prototype.setApple = function () {
@@ -4760,7 +3947,7 @@ define('basicinputs/combobox',["require", "exports", "@fluentui/react/lib/ComboB
     exports.combobox = combobox;
 });
 ;
-define('text!basicinputs/combobox.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Combobox</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Combobox controlled, single select\"><div slot=example><du-combo-box placeholder=\"Select an Option\" selected-key.bind=selectedItem label=\"Dropdown, controlled no-banana, with error message for anything but English\" id=dropDefaultKey options.one-time=fruits on-change.bind=onChange on-blur.bind=onBlur on-focus.bind=onFocus error-message.bind=errorMessage></du-combo-box><div>SelectedItem: ${selectedItem}</div><du-default-button click.trigger=setApple()>Set Apple</du-default-button></div></examplecard><examplecard title=\"Combobox multi select\"><div slot=example><du-combo-box placeholder=\"Select an Option\" selected-keys.bind=selectedItems label=\"Dropdown, controlled (allowFreeform: true, AutoComplete: on)\" id=dropDefaultKey options.one-time=fruits on-change.bind=onMultiChange on-blur.bind=onBlur on-focus.bind=onFocus error-message.bind=errorMessage multi-select=true allow-freeform=true></du-combo-box><div>Multi selected items:</div><div><div repeat.for=\"item of selectedItems\">${item}</div></div></div></examplecard></div></template>";});;
+define('text!basicinputs/combobox.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Combobox</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Combobox controlled, single select\"><div slot=example><du-combo-box placeholder=\"Select an Option\" selected-key.bind=selectedItem label=\"Dropdown, controlled no-banana, with error message for anything but English\" id=dropDefaultKey options.one-time=fruits on-change.bind=onChange on-blur.bind=onBlur on-focus.bind=onFocus error-message.bind=errorMessage></du-combo-box><div>SelectedItem: ${selectedItem}</div><du-default-button click.trigger=setApple()>Set Apple</du-default-button></div></examplecard><examplecard title=\"Combobox multi select\"><div slot=example><du-combo-box view-model.ref=cbx placeholder=\"Select an Option\" selected-keys.bind=selectedItems label=\"Dropdown, controlled (allowFreeform: true, AutoComplete: on)\" id=dropDefaultKey options.one-time=fruits on-change.bind=onMultiChange on-blur.bind=onBlur on-focus.bind=onFocus error-message.bind=errorMessage multi-select=true allow-freeform=true></du-combo-box><div>Multi selected items:</div><div><div repeat.for=\"item of selectedItems\">${item}</div></div></div></examplecard></div></template>";});;
 define('basicinputs/dropdown',["require", "exports", "@fluentui/react/lib/Dropdown"], function (require, exports, Dropdown_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -4836,7 +4023,7 @@ define('basicinputs/label',["require", "exports"], function (require, exports) {
     exports.label = label;
 });
 ;
-define('text!basicinputs/label.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Label</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Default Checkbox\"><div slot=example><du-label><span>I'm a Label with</span><span>inner content</span></du-label><du-label required.one-time=true>I'm a required Label</du-label><du-label html-for=anInput>A Label for An Input</du-label><du-text-field id=anInput></du-text-field><du-label disabled.one-time=true>I'm a disabled Label</du-label></div></examplecard></div></template>";});;
+define('text!basicinputs/label.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Label</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Default Label\"><div slot=example><du-label><span>I'm a Label with</span><span>inner content</span></du-label><du-label required.one-time=true>I'm a required Label</du-label><du-label html-for=anInput>A Label for An Input</du-label><du-text-field id=anInput></du-text-field><du-label disabled.one-time=true>I'm a disabled Label</du-label></div></examplecard></div></template>";});;
 define('basicinputs/slider',["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -4920,15 +4107,18 @@ define('basicinputs/textfield',["require", "exports"], function (require, export
             };
         }
         textfield.prototype.onchange = function (event, newValue) {
-            console.log(event);
+            console.log(this);
             console.log(newValue);
+            this.controlledText.ignoreReactUpdate = true;
             this.myvalue = newValue;
+            this.controlledText.reactComponent.setState({ "value": newValue || '' });
         };
         return textfield;
     }());
     exports.textfield = textfield;
 });
 ;
+define('text!basicinputs/textfield.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Textfield</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Implementation examples\"><div slot=example>Standard input element: ${myvalue} <br><input value.bind=myvalue><du-text-field value.bind=myvalue label=\"Standard bound to ${myvalue}\"></du-text-field><du-text-field view-model.ref=controlledText value.bind=myvalue on-change.bind=onchange label=\"Controlled onChange\"></du-text-field><du-text-field label=Disabled disabled.one-time=true></du-text-field><du-text-field label=\"Read Only\" read-only.one-time=true></du-text-field><du-text-field label=Required required.one-time=true></du-text-field><du-text-field label=\"With error message\" error-message=\"Error message\"></du-text-field><du-text-field label=\"With placeholder message\" placeholder=\"I am a placeholder.\"></du-text-field><du-text-field label=\"Multiline resizable\" multiline=true rows=4 resizable.bind=true></du-text-field><du-text-field label=\"Multiline auto adjust\" multiline=true auto-adjust-height.bind=true rows=4></du-text-field><du-text-field label=\"Multiline non resizable\" multiline=true rows=4 resizable.bind=false></du-text-field><du-text-field label=Underlined underlined=true></du-text-field><du-text-field label=Borderless borderless=true></du-text-field><du-text-field label=AutoComplete auto-complete=true></du-text-field><du-text-field label=Prefix prefix=https:// ></du-text-field><du-text-field label=Suffix suffix=.com></du-text-field><du-text-field label=\"With icon\" icon-props.one-time=\"{ iconName: 'Calendar' }\"></du-text-field><du-text-field label=\"With description\" description=\"A description\"></du-text-field><du-text-field label=\"TextField with a string-based validator.\" on-get-error-message.bind=onGetErrorMessage></du-text-field><du-text-field on-before-change.bind=onchange on-changed.bind=onchange validate.bind=onchange label=\"TextField with a Promise-based validator.\" on-get-error-message.bind=onGetErrorMessagePromise></du-text-field></div></examplecard></div></template>";});;
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4938,81 +4128,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define('basicinputs/textfield copy',["require", "exports", "elements/BasicInputs/DuTextField2", "react", "react-dom", "aurelia-framework"], function (require, exports, DuTextField2_1, React, ReactDom, aurelia_framework_1) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.textfield = void 0;
-    var textfield = (function () {
-        function textfield(tq) {
-            var _this = this;
-            this.tq = tq;
-            this.ignoreReactUpdate = false;
-            this.onGetErrorMessage = function (value) {
-                console.log('onGetErrorMessage');
-                console.log(value);
-                return value.length < 3 ? '' : "Input value length must be less than 3. Actual length is " + value.length + ".";
-            };
-            this.onGetErrorMessagePromise = function (value) {
-                return new Promise(function (resolve) {
-                    setTimeout(function () { return resolve(_this.onGetErrorMessage(value)); }, 5000);
-                });
-            };
-        }
-        textfield.prototype.attached = function () {
-            this.renderReact();
-        };
-        textfield.prototype.renderReact = function () {
-            var _this = this;
-            console.log("textfield: renderReact");
-            var a = {
-                "label": "mylabel",
-                "value": this.myvalue,
-                "onChange": function (event, newValue) {
-                    console.log("textfield: [renderReact] onChange Entering");
-                    _this.ignoreReactUpdate = true;
-                    _this.myvalue = newValue;
-                    _this.reactComponent.setState({ "value": newValue || '' });
-                    console.log("textfield: [renderReact] onChange Leaving");
-                }
-            };
-            var reactElement = React.createElement(DuTextField2_1.T2, a, null);
-            this.reactComponent = ReactDom.render(reactElement, document.getElementById("myreact"));
-        };
-        textfield.prototype.valueChanged = function (newValue, oldValue) {
-            var _this = this;
-            console.log("textfield: valueChanged Entering");
-            if (!this.ignoreReactUpdate) {
-                this.reactComponent.setState({ "value": newValue || '' });
-            }
-            this.tq.queueMicroTask(function () {
-                console.log("microTask");
-                console.log(_this);
-                _this.ignoreReactUpdate = false;
-            });
-            console.log("textfield: valueChanged Leaving");
-        };
-        textfield = __decorate([
-            aurelia_framework_1.observable({ name: 'myvalue', changeHandler: 'valueChanged' }),
-            aurelia_framework_1.autoinject(),
-            __metadata("design:paramtypes", [aurelia_framework_1.TaskQueue])
-        ], textfield);
-        return textfield;
-    }());
-    exports.textfield = textfield;
-});
-;
-define('text!basicinputs/textfield copy.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Textfield</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Implementation examples\"><div slot=example>myvalue: ${myvalue} <br>ignoreReactUpdate: ${ignoreReactUpdate} <br><input value.bind=myvalue><div id=myreact></div></div></examplecard></div></template>";});;
-define('text!basicinputs/textfield.html',[],function(){return "<template><div class=content style=bottom:unset;top:0;background-color:#038387><h1 class=pageTitle>Textfield</h1><div role=presentation class=ms-FocusZone></div></div><div class=PageSection><examplecard title=\"Implementation examples\"><div slot=example>name: ${name} <br><input value.bind=myvalue><du-text-field value.bind=myvalue validate.bind=onchange label=\"Standard bound to ${myvalue}\"></du-text-field><du-text-field label=Disabled disabled.one-time=true></du-text-field><du-text-field label=\"Read Only\" read-only.one-time=true></du-text-field><du-text-field label=Required required.one-time=true></du-text-field><du-text-field label=\"With error message\" error-message=\"Error message\"></du-text-field><du-text-field label=\"With placeholder message\" placeholder=\"I am a placeholder.\"></du-text-field><du-text-field label=\"Multiline resizable\" multiline=true rows=4 resizable.bind=true></du-text-field><du-text-field label=\"Multiline auto adjust\" multiline=true auto-adjust-height.bind=true rows=4></du-text-field><du-text-field label=\"Multiline non resizable\" multiline=true rows=4 resizable.bind=false></du-text-field><du-text-field label=Underlined underlined=true></du-text-field><du-text-field label=Borderless borderless=true></du-text-field><du-text-field label=AutoComplete auto-complete=true></du-text-field><du-text-field label=Prefix prefix=https:// ></du-text-field><du-text-field label=Suffix suffix=.com></du-text-field><du-text-field label=\"With icon\" icon-props.one-time=\"{ iconName: 'Calendar' }\"></du-text-field><du-text-field label=\"With description\" description=\"A description\"></du-text-field><du-text-field label=\"TextField with a string-based validator.\" on-get-error-message.bind=onGetErrorMessage></du-text-field><du-text-field on-before-change.bind=onchange on-changed.bind=onchange validate.bind=onchange label=\"TextField with a Promise-based validator.\" on-get-error-message.bind=onGetErrorMessagePromise></du-text-field></div></examplecard></div></template>";});;
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('basicinputs/textfieldtest',["require", "exports", "elements/BasicInputs/DuTextField2", "react", "react-dom", "aurelia-framework"], function (require, exports, DuTextField2_1, React, ReactDom, aurelia_framework_1) {
+define('basicinputs/textfieldtest',["require", "exports", "../../src/austate/T2", "react", "react-dom", "aurelia-framework"], function (require, exports, T2_1, React, ReactDom, aurelia_framework_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.textfieldtest = void 0;
@@ -5037,7 +4153,7 @@ define('basicinputs/textfieldtest',["require", "exports", "elements/BasicInputs/
                     console.log("textfield: [renderReact] onChange Leaving");
                 }
             };
-            var reactElement = React.createElement(DuTextField2_1.T2, a, null);
+            var reactElement = React.createElement(T2_1.T2, a, null);
             this.reactComponent = ReactDom.render(reactElement, document.getElementById("myreact"));
         };
         textfieldtest.prototype.valueChanged = function (newValue, oldValue) {
@@ -7374,7 +6490,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define('surfaces/mycoach',["require", "exports", "@fluentui/react/lib/Coachmark", "aurelia-framework", "./myutils", "@fluentui/react/lib/TeachingBubble", "react", "react-dom", "./mybase", "./mystate", "./mystatenochild"], function (require, exports, Coachmark_1, aurelia_framework_1, myutils_1, TeachingBubble_1, React, ReactDom, mybase_1, mystate_1, mystatenochild_1) {
+define('surfaces/mycoach',["require", "exports", "@fluentui/react/lib/Coachmark", "aurelia-framework", "./myutils", "@fluentui/react/lib/TeachingBubble", "react", "react-dom", "./mybase", "@dunite/au-react-wrapper"], function (require, exports, Coachmark_1, aurelia_framework_1, myutils_1, TeachingBubble_1, React, ReactDom, mybase_1, au_react_wrapper_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.mycoach = void 0;
@@ -7409,21 +6525,19 @@ define('surfaces/mycoach',["require", "exports", "@fluentui/react/lib/Coachmark"
             this.renderReact2(reactprops);
         };
         mycoach.prototype.renderReact2 = function (reactprops) {
-            ReactDom.unmountComponentAtNode(this.element);
             this.container = this.element.querySelector('.au-react-root');
-            if (this.container != null) {
-                this.container.remove();
+            if (this.container == null) {
+                this.container = document.createElement('span');
+                this.container.setAttribute('class', 'au-react-root');
+                this.element.appendChild(this.container);
             }
-            this.container = document.createElement('span');
-            this.container.setAttribute('class', 'au-react-root');
-            this.element.appendChild(this.container);
             this.teachingBubbleContent.aureliaHost = this;
             this.teachingBubbleContent.reactClass = TeachingBubble_1.TeachingBubbleContent;
-            var reactTeachingBubbleElement = React.createElement(mystate_1.mystate, this.teachingBubbleContent);
+            var reactTeachingBubbleElement = React.createElement(au_react_wrapper_1.ReactWrapper, this.teachingBubbleContent);
             var a = this.createState(reactprops);
             a.aureliaHost = this;
             a.reactClass = Coachmark_1.Coachmark;
-            var reactElement = React.createElement(mystatenochild_1.mystatenochild, a, reactTeachingBubbleElement);
+            var reactElement = React.createElement(au_react_wrapper_1.ReactSimpleWrapper, a, reactTeachingBubbleElement);
             console.log("mycoach");
             this.reactComponent = ReactDom.render(reactElement, this.container);
         };
@@ -7518,7 +6632,7 @@ define('surfaces/myelement',["require", "exports", "aurelia-framework", "aurelia
             __metadata("design:type", Boolean)
         ], myelement.prototype, "hidden", void 0);
         myelement = __decorate([
-            aurelia_framework_1.inject(Element),
+            aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
             aurelia_framework_1.customElement('myelement'),
             __metadata("design:paramtypes", [Object])
         ], myelement);

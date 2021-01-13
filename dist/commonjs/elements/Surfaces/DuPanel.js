@@ -28,13 +28,24 @@ var Panel_1 = require("@fluentui/react/lib/Panel");
 var au_react_wrapper_1 = require("@dunite/au-react-wrapper");
 var reactprops = {};
 reactprops.isOpen = {};
-reactprops.onDismiss = {};
+reactprops.onDismiss = au_react_wrapper_1.onlyAureliaBound;
+reactprops.onDismissed = au_react_wrapper_1.onlyAureliaBound;
+reactprops.onOpen = au_react_wrapper_1.onlyAureliaBound;
+reactprops.onOpened = au_react_wrapper_1.onlyAureliaBound;
+reactprops.onOuterClick = au_react_wrapper_1.onlyAureliaBound;
 reactprops.headerText = {};
 reactprops.type = {};
+reactprops.isBlocking = {};
+reactprops.hasCloseButton = {};
+reactprops.isHiddenOnDismiss = {};
+reactprops.customWidth = {};
+reactprops.open = au_react_wrapper_1.onlyAureliaBound;
+reactprops.dismiss = au_react_wrapper_1.onlyAureliaBound;
 var DuPanel = (function (_super) {
     __extends(DuPanel, _super);
-    function DuPanel(element) {
-        var _this = _super.call(this, element) || this;
+    function DuPanel(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hiddenIsHidden = false;
         _this.hiddenName = 'isOpen';
         return _this;
@@ -43,12 +54,12 @@ var DuPanel = (function (_super) {
         this.renderReact(Panel_1.Panel, this.createState(reactprops));
     };
     DuPanel = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-panel'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuPanel);
     return DuPanel;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuPanel = DuPanel;
 au_react_wrapper_1.addPropertiesState(DuPanel, reactprops);
 

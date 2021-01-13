@@ -54,23 +54,22 @@ reactprops.onDismiss = au_react_wrapper_1.onlyAureliaBound;
 reactprops.enableSelectedSuggestionAlert = {};
 var DuCompactPeoplePicker = (function (_super) {
     __extends(DuCompactPeoplePicker, _super);
-    function DuCompactPeoplePicker(element) {
-        var _this_1 = _super.call(this, element) || this;
+    function DuCompactPeoplePicker(element, tq) {
+        var _this_1 = _super.call(this, element, tq) || this;
+        _this_1.tq = tq;
         _this_1.hidden = false;
-        _this_1.hiddenIsHidden = true;
-        _this_1.hiddenName = 'hidden';
         return _this_1;
     }
     DuCompactPeoplePicker.prototype.attached = function () {
         this.renderReact(Pickers_1.CompactPeoplePicker, this.createState(reactprops));
     };
     DuCompactPeoplePicker = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-compact-people-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuCompactPeoplePicker);
     return DuCompactPeoplePicker;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuCompactPeoplePicker = DuCompactPeoplePicker;
 au_react_wrapper_1.addPropertiesState(DuCompactPeoplePicker, reactprops);
 

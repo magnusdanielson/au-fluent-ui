@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { TeachingBubbleContent, ITeachingBubbleProps } from '@fluentui/react/lib/TeachingBubble';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: ITeachingBubbleProps = <ITeachingBubbleProps>{};
 
@@ -17,14 +17,14 @@ reactprops.targetElement = <any>{};
 reactprops.illustrationImage = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-teaching-bubble-content')
-export class DuTeachingBubbleContent  extends AuReactStateWrapper implements ITeachingBubbleProps
+export class DuTeachingBubbleContent  extends AuReactWrapper implements ITeachingBubbleProps
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;

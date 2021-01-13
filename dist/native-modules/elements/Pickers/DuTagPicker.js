@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { TagPicker } from '@fluentui/react/lib/Pickers';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.onResolveSuggestions = onlyAureliaBound;
 reactprops.resolveDelay = {};
@@ -51,23 +51,22 @@ reactprops.items = {};
 reactprops.selectedItems = {};
 var DuTagPicker = (function (_super) {
     __extends(DuTagPicker, _super);
-    function DuTagPicker(element) {
-        var _this = _super.call(this, element) || this;
+    function DuTagPicker(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuTagPicker.prototype.attached = function () {
         this.renderReact(TagPicker, this.createState(reactprops));
     };
     DuTagPicker = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-tag-picker'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuTagPicker);
     return DuTagPicker;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuTagPicker };
 addPropertiesState(DuTagPicker, reactprops);
 

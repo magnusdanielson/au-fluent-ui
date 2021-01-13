@@ -1,7 +1,9 @@
+import { TaskQueue } from 'aurelia-framework';
 import { IPanelProps } from '@fluentui/react/lib/Panel';
-import { AuReactStateWrapper } from '@dunite/au-react-wrapper';
-export declare class DuPanel extends AuReactStateWrapper implements IPanelProps {
-    constructor(element: any);
+import { AuReactWrapper } from '@dunite/au-react-wrapper';
+export declare class DuPanel extends AuReactWrapper implements IPanelProps {
+    protected tq: TaskQueue;
+    constructor(element: any, tq: TaskQueue);
     isOpen: boolean;
     attached(): void;
 }

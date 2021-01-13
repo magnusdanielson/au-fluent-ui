@@ -31,23 +31,22 @@ reactprops.getOverflowDocumentCountText = {};
 reactprops.previewImages = {};
 var DuDocumentCardPreview = (function (_super) {
     __extends(DuDocumentCardPreview, _super);
-    function DuDocumentCardPreview(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDocumentCardPreview(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDocumentCardPreview.prototype.attached = function () {
         this.renderReact(DocumentCard_1.DocumentCardPreview, this.createState(reactprops));
     };
     DuDocumentCardPreview = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-document-card-preview'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDocumentCardPreview);
     return DuDocumentCardPreview;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDocumentCardPreview = DuDocumentCardPreview;
 au_react_wrapper_1.addPropertiesState(DuDocumentCardPreview, reactprops);
 

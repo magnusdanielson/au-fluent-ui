@@ -23,7 +23,8 @@ export class DuPivot extends AuReactNoStateWrapper {
 
   container: HTMLElement | null;
   
-  constructor(element) {
+  constructor(element) 
+  {
     super(element);
   }
 

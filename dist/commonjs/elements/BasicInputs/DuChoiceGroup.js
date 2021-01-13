@@ -42,23 +42,22 @@ reactprops.selectedKey = {};
 reactprops.value = {};
 var DuChoiceGroup = (function (_super) {
     __extends(DuChoiceGroup, _super);
-    function DuChoiceGroup(element) {
-        var _this = _super.call(this, element) || this;
+    function DuChoiceGroup(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuChoiceGroup.prototype.attached = function () {
         this.renderReact(ChoiceGroup_1.ChoiceGroup, this.createState(reactprops));
     };
     DuChoiceGroup = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-choice-group'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuChoiceGroup);
     return DuChoiceGroup;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuChoiceGroup = DuChoiceGroup;
 au_react_wrapper_1.addPropertiesState(DuChoiceGroup, reactprops);
 

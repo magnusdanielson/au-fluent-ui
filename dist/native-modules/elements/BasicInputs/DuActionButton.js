@@ -20,9 +20,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { ActionButton } from '@fluentui/react/lib/Button';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 var reactprops = {};
 reactprops.allowDisabledFocus = {};
 reactprops.ariaDescription = {};
@@ -55,23 +55,22 @@ reactprops.onClick = onlyAureliaBound;
 reactprops.secondaryText = {};
 var DuActionButton = (function (_super) {
     __extends(DuActionButton, _super);
-    function DuActionButton(element) {
-        var _this = _super.call(this, element) || this;
+    function DuActionButton(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuActionButton.prototype.attached = function () {
         this.renderReact(ActionButton, this.createState(reactprops));
     };
     DuActionButton = __decorate([
-        inject(Element),
+        inject(Element, TaskQueue),
         customElement('du-action-button'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, TaskQueue])
     ], DuActionButton);
     return DuActionButton;
-}(AuReactStateWrapper));
+}(AuReactWrapper));
 export { DuActionButton };
 addPropertiesState(DuActionButton, reactprops);
 

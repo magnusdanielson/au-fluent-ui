@@ -55,23 +55,22 @@ reactprops.setInitialFocus = {};
 reactprops.target = {};
 var DuCallout = (function (_super) {
     __extends(DuCallout, _super);
-    function DuCallout(element) {
-        var _this = _super.call(this, element) || this;
+    function DuCallout(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuCallout.prototype.attached = function () {
         this.renderReact(Callout_1.Callout, this.createState(reactprops));
     };
     DuCallout = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-callout'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuCallout);
     return DuCallout;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuCallout = DuCallout;
 au_react_wrapper_1.addPropertiesState(DuCallout, reactprops);
 

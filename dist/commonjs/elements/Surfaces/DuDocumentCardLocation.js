@@ -33,23 +33,22 @@ reactprops.locationHref = {};
 reactprops.onClick = au_react_wrapper_1.onlyAureliaBound;
 var DuDocumentCardLocation = (function (_super) {
     __extends(DuDocumentCardLocation, _super);
-    function DuDocumentCardLocation(element) {
-        var _this = _super.call(this, element) || this;
+    function DuDocumentCardLocation(element, tq) {
+        var _this = _super.call(this, element, tq) || this;
+        _this.tq = tq;
         _this.hidden = false;
-        _this.hiddenIsHidden = true;
-        _this.hiddenName = 'hidden';
         return _this;
     }
     DuDocumentCardLocation.prototype.attached = function () {
         this.renderReact(DocumentCard_1.DocumentCardLocation, this.createState(reactprops));
     };
     DuDocumentCardLocation = __decorate([
-        aurelia_framework_1.inject(Element),
+        aurelia_framework_1.inject(Element, aurelia_framework_1.TaskQueue),
         aurelia_framework_1.customElement('du-document-card-location'),
-        __metadata("design:paramtypes", [Object])
+        __metadata("design:paramtypes", [Object, aurelia_framework_1.TaskQueue])
     ], DuDocumentCardLocation);
     return DuDocumentCardLocation;
-}(au_react_wrapper_1.AuReactStateWrapper));
+}(au_react_wrapper_1.AuReactWrapper));
 exports.DuDocumentCardLocation = DuDocumentCardLocation;
 au_react_wrapper_1.addPropertiesState(DocumentCard_1.DocumentCardLocation, reactprops);
 

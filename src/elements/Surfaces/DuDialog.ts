@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { Dialog, IDialogProps } from '@fluentui/react/lib/Dialog';
-import { AuReactStateWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState } from '@dunite/au-react-wrapper';
 
 let reactprops: IDialogProps = <IDialogProps>{};
 reactprops.dialogContentProps = <any>{};
@@ -9,14 +9,14 @@ reactprops.className = <any>{};
 reactprops.modalProps = <any>{};
 reactprops.onDismiss = <any>{};
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-dialog')
-export class DuDialog  extends AuReactStateWrapper implements IDialogProps
+export class DuDialog  extends AuReactWrapper implements IDialogProps
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;

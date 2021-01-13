@@ -1,8 +1,8 @@
 import { ITextFieldProps } from "@fluentui/react/lib/TextField"
-import { T2 } from "elements/BasicInputs/DuTextField2";
+import { T2 } from "../../src/austate/T2";
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import {autoinject, TaskQueue,observable } from 'aurelia-framework';
+import {autoinject, TaskQueue } from 'aurelia-framework';
 
 // remove1
 //@observable({ name: 'myvalue', changeHandler: 'valueChanged' })

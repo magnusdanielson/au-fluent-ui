@@ -1,6 +1,6 @@
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, TaskQueue, inject } from 'aurelia-framework';
 import { HoverCard, IHoverCardProps } from '@fluentui/react/lib/HoverCard';
-import { AuReactStateWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
+import { AuReactWrapper, addPropertiesState, onlyAureliaBound } from '@dunite/au-react-wrapper';
 
 let reactprops: IHoverCardProps = <IHoverCardProps>{};
 reactprops.cardDismissDelay = <any>{};
@@ -23,14 +23,14 @@ reactprops.trapFocus = <any>{};
 reactprops.type = <any>{};
 
 
-@inject(Element)
+@inject(Element, TaskQueue)
 @customElement('du-hover-card')
-export class DuHoverCard extends AuReactStateWrapper implements IHoverCardProps
+export class DuHoverCard extends AuReactWrapper implements IHoverCardProps
 {
-  constructor(element) {
-    super(element);
-    this.hiddenIsHidden = true;
-    this.hiddenName = 'hidden';
+  constructor(element, protected tq: TaskQueue) 
+  {
+    super(element, tq);
+    
   }
 
   hidden: boolean;
